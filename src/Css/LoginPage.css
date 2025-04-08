@@ -1,0 +1,37 @@
+.contenedorLogin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  
+    background-image: url('/Login.jpg'); /* ajusta la ruta */
+    background-size:cover;      /* para que cubra todo */
+    background-position: center; /* centrado */
+    background-repeat: no-repeat;
+    padding: 10px;
+  }
+  
+  
+  .contenedorformulario {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(253, 253, 253,0.8);
+    border-radius: 15px;
+    box-shadow: 0 5px 10px rgba(0, 0, 5, 1);
+    padding: 25px;
+    max-width: 400px; /* límite de ancho para que no se estire demasiado */
+    width:100%;
+    justify-content: center;
+    min-height: 350px;
+}
+
+  .contenedorformulario{
+    align-items: center;
+  }
+
+  .formulario{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
