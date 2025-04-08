@@ -1,0 +1,45 @@
+.InformacionServicio{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: auto;
+    padding: 20px;
+}
+
+.Descripcion{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.Descripcion h1{
+    text-align: center;
+}
+
+.dropdown{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.ContenedorLocal {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 15px;
+  }
+  
+
+.card-responsive {
+    max-width: 500px;
+    flex: 1 1 200px;
+  }
+  
+.dropdown-menu{
+    width: 100%;
+}
+
+.Locales{
+    
+}
