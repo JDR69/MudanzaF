@@ -8,7 +8,7 @@
 
 /* Contenedor del formulario */
 .formContainer {
-    background:url("RegisterClient.jpg");
+    background:url("/RegisterClient.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     display: flex; 
