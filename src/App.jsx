@@ -19,7 +19,7 @@ function Main() {
       <CustomNavbar/>
       <Routes>
         <Route path="/login" element={<LoginPage/>}/>
-        <Route path="/RegisterClient" element={<RegistroClientPage/>}/>
+        <Route path="/register" element={<RegistroClientPage/>}/>
         <Route path="" element={<Home/>}/>
       </Routes>
     </>
