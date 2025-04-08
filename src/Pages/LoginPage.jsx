@@ -66,7 +66,7 @@ const LoginPage = () => {
                         )}
                     </div>
 
-                    <button type="submit" className="btn btn-outline-success">
+                    <button type="submit" className="btn btn-primary">
                         Ingresar
                     </button>
                 </form>
