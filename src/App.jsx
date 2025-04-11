@@ -3,24 +3,30 @@ import LoginPage from "./Pages/LoginPage"
 import CustomNavbar from "./Components/CustomNavbar"
 import RegistroClientPage from "./Pages/RegistroClientPage"
 import Home from "./Pages/Home"
+import {  AuthProvider, useAuth } from "./context/AuthContext"
 
 function App() {
 
   return (
-    <BrowserRouter>
-      <Main/>
-    </BrowserRouter>
+    <AuthProvider>
+      <BrowserRouter>
+        <Main />
+      </BrowserRouter>
+    </AuthProvider>
   )
 }
 
 function Main() {
-  return(
+
+  const { user } = useAuth();
+
+  return (
     <>
-      <CustomNavbar/>
+      <CustomNavbar />
       <Routes>
-        <Route path="/login" element={<LoginPage/>}/>
-        <Route path="/register" element={<RegistroClientPage/>}/>
-        <Route path="" element={<Home/>}/>
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegistroClientPage />} />
+        <Route path="" element={<Home />} />
       </Routes>
     </>
   )

@@ -2,8 +2,11 @@ import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import "../Css/LoginPage.css"
+import { useAuth } from '../context/AuthContext';
 
 const LoginPage = () => {
+
+    const { signin } = useAuth();
 
     // Validación con Yup
     const validationSchema = Yup.object({
@@ -22,8 +25,13 @@ const LoginPage = () => {
             password: "",
         },
         validationSchema: validationSchema,
-        onSubmit: (values) => {
-            alert(JSON.stringify(values, null, 2)); // Simula envío de datos
+        onSubmit: async (values) => {
+            try {
+                await signin(data);
+            } catch (error) {
+                console.error(error)
+            }
+
         },
     });
 
