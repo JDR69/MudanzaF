@@ -1,0 +1,15 @@
+.VehiculosConteiner{
+    width: 100%;
+    padding:50px;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    
+}
+
+/* FORM */
+.VehiculosConteiner2{
+    padding:50px;
+    width: 100%;
+
+}
