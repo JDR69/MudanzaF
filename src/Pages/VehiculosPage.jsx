@@ -12,8 +12,7 @@ function VehiculosPage() {
                 <div className="form-group">
                     <label htmlFor="Nombre">Nombre</label>
                     <input type="text" name="Nombre" className='form-control' required />
-                    <img src="https://res.cloudinary.com/ddltlpsy1/image/upload/v1744404252/samples/animals/three-dogs.jpg" alt="" />
-                </div>
+                    </div>
                 <div className="form-group">
                     <label htmlFor="Nombre">Nombre</label>
                     <input type="text" name="Nombre" className='form-control' required />
