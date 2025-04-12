@@ -1,0 +1,101 @@
+.container-chofer {
+    padding: 30px;
+    max-width: 900px;
+    margin: auto;
+    font-family: 'Segoe UI', sans-serif;
+    color: #333;
+  }
+  
+  .titulo-chofer {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
+  
+  .icon-titulo {
+    font-size: 45px;
+    color: #2b7a78;
+  }
+  
+  .formulario-chofer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 30px;
+  }
+  
+  .formulario-chofer input,
+  .formulario-chofer select {
+    flex: 1 1 calc(50% - 20px);
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #f9f9f9;
+    transition: 0.3s;
+  }
+  
+  .formulario-chofer input:focus,
+  .formulario-chofer select:focus {
+    outline: none;
+    border-color: #2b7a78;
+    background: #fff;
+  }
+  
+  .buscar-vehiculo {
+    margin-top: 40px;
+    margin-bottom: 20px;
+  }
+  
+  .buscar-vehiculo input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+  }
+  
+  .tabla-moviles {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .tabla-moviles th,
+  .tabla-moviles td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .tabla-moviles th {
+    background-color: #f4f4f4;
+  }
+  
+  .btn-quitar {
+    padding: 6px 12px;
+    background-color: #e63946;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn-quitar:hover {
+    background-color: #d62828;
+  }
+  
+  @media (max-width: 600px) {
+    .formulario-chofer input,
+    .formulario-chofer select {
+      flex: 1 1 100%;
+    }
+  }
+
+.registerChofer{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 20px;
+}
+  
