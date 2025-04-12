@@ -8,9 +8,8 @@ import VehiculosPage from "./Pages/VehiculosPage"
 import Cloudinary from "./Cloudinary"
 import GaleriaVehiculosPage from "./Pages/GaleriaVehiculosPage"
 import AsignacionChoferePage from "./Pages/AsignacionChoferePage"
-
-
 import ContraseñaPage from "./Pages/ContraseñaPage"
+import PerfilDeUsuario from "./Pages/PerfilDeUsuario"
 
 function App() {
 
@@ -38,6 +37,7 @@ function Main() {
         <Route path="/aa" element={<Cloudinary/>}/>
         <Route path="/galeriaVehiculos" element={<GaleriaVehiculosPage/>}/>
         <Route path="/asignChoferes" element={<AsignacionChoferePage/>}/>
+        <Route path="/perfilDeUsuario" element={<PerfilDeUsuario/>}/>
         
 
         <Route path="/contraseña" element={<ContraseñaPage/>}/>
