@@ -1,15 +1,61 @@
-.VehiculosConteiner{
+.VehiculosConteiner {
     width: 100%;
-    padding:50px;
+    padding: 20px;
     display: flex; 
     justify-content: center; 
     align-items: center; 
-    
+}
+
+.form-group {
+    margin-bottom: 15px;
 }
 
 /* FORM */
-.VehiculosConteiner2{
-    padding:50px;
-    width: 100%;
+.VehiculosConteiner2 {
+    width: 60%;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+}
 
+.VehiculosConteiner2 button {
+    width: 50%;
+}
+
+.vehiculos-table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden; 
+}
+
+.vehiculos-table th, .vehiculos-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.vehiculos-table th {
+    background-color: rgb(50, 119, 247);
+    color: white;
+}
+
+.vehiculos-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.tablaVehiculos {
+    width: 100%;
+}
+
+.tablaVehiculos button {
+    width: 45%; 
+    text-align: center;
+    margin: 1px; 
+}
+
+.acciones {
+    display: flex; 
+    justify-content: center; 
+    gap: 10px; 
+    width: 100%; 
 }

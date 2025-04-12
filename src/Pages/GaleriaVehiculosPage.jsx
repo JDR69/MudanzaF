@@ -1,16 +1,16 @@
 // src/pages/GaleriaVehiculosPage.jsx
 import React, { useState } from 'react';
 import Cloudinary from '../Cloudinary';
-import '../Css/VehiculosPage.css';
+import '../Css/GaleriaVehiculosPage.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function GaleriaVehiculosPage() {
-    const { image, loading, message, handleFileChange, uploadImage } = Cloudinary();
+    const { loading, message, handleFileChange, uploadImage } = Cloudinary();
     const [placa, setPlaca] = useState('');
 
     return (
-        <div className='VehiculosConteiner'>
-            <div className='VehiculosConteiner2'>
+        <div className='GaleriaConteiner'>
+            <div className='GaleriaConteiner2'>
                 <h1>Galería de Vehículos</h1>
 
                 <div className="form-group">
@@ -41,12 +41,7 @@ function GaleriaVehiculosPage() {
 
                 {loading && <p>Cargando imagen...</p>}
                 {message && <p>{message}</p>}
-                {image && (
-                    <div style={{ marginTop: '10px' }}>
-                        <img src={image} alt="Vehículo" style={{ width: '200px' }} />
-                    </div>
-                )}
-            </div>
+                           </div>
         </div>
     );
 }
