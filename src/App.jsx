@@ -8,6 +8,9 @@ import VehiculosPage from "./Pages/VehiculosPage"
 import Cloudinary from "./Cloudinary"
 import GaleriaVehiculosPage from "./Pages/GaleriaVehiculosPage"
 
+
+import ContraseñaPage from "./Pages/ContraseñaPage"
+
 function App() {
 
   return (
@@ -34,6 +37,9 @@ function Main() {
         <Route path="/aa" element={<Cloudinary/>}/>
         <Route path="/galeriaVehiculos" element={<GaleriaVehiculosPage/>}/>
         
+
+        <Route path="/contraseña" element={<ContraseñaPage/>}/>
+
       </Routes>
     </>
   )
