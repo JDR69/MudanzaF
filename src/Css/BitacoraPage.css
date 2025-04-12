@@ -1,0 +1,55 @@
+.bitacora-container {
+    width: 100%;
+    padding: 20px;
+    overflow-x: auto;
+    background-color: #f4f4f9; 
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    max-width: 1200px; 
+    margin: auto; 
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  
+  
+  .bitacora-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff; /* Fondo blanco */
+    border-radius: 10px;
+    overflow: hidden; /* Esconder bordes cuando se hace scroll */
+  }
+  
+  .bitacora-table th, .bitacora-table td {
+    border: 1px solid #ccc;
+    text-align: center;
+    padding: 10px;
+  }
+  
+  .bitacora-table th {
+    background-color: rgb(50, 119, 247);
+    color: white;
+  }
+  
+  /* Estilos para dispositivos móviles */
+  @media (max-width: 768px) {
+    .bitacora-container {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+  
+    .bitacora-table {
+        display: block; 
+        overflow-x: auto; 
+        white-space: nowrap; 
+    }
+  
+    .bitacora-table th, .bitacora-table td {
+        font-size: 12px; 
+        padding: 8px;
+    }
+  }

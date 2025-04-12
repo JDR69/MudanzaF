@@ -1,0 +1,158 @@
+/* Estilos Generales */
+.principalPrivilegio {
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    max-width: 800px;
+    margin: 0 auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+}
+
+
+.contenedorPrivilegios {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    padding: 10px;
+}
+
+/* Selector de Rol */
+.contenedorRol {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+h2 {
+    color: #444;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+#soyRol {
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    transition: border 0.3s ease;
+}
+
+#soyRol:hover {
+    border-color: #007BFF;
+}
+
+/* Botón de Menú */
+.toggle-menu {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 0 auto;
+}
+
+/* Submenú */
+.submenu {
+    background-color: #fff;
+    padding: 25px;
+    width: 100%; 
+    align-items: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column; 
+    gap: 10px;
+}
+
+
+
+.privilege-item {
+    justify-content: flex-end; /* Aligns buttons to the end */
+    display: flex;
+    align-items: center;
+    padding: 10px 40px;
+    background-color: #f9f9f9;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    gap: 15px;
+    transition: background-color 0.3s ease;
+}
+
+
+.privilege-item:hover {
+    background-color: #f1f1f1;
+}
+
+.privilege-name {
+    font-size: 1rem;
+    color: #333;
+}
+
+/* Botón de Privilegio */
+/* Botón de Privilegio */
+.privilege-button {
+    width: 100px; /* Establece un ancho fijo */
+    height: 40px;
+    font-size: 0.9rem;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    box-sizing: border-box; /* Asegura que el padding y el borde se incluyan en el tamaño total */
+}
+
+.privilege-button.active {
+    background-color: #28a745;
+    color: white;
+}
+
+.privilege-button.inactive {
+    background-color: #dc3545;
+    color: white;
+}
+
+.privilege-button:hover {
+    transform: scale(1.05);
+}
+/* Botón para Guardar Cambios */
+.save-changes {
+    background-color: #28a745;
+    color: white;
+    padding: 12px 14px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
+    display: block;
+    margin: 0 auto;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.save-changes:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+.mensaje-exito {
+    margin-top: 20px;
+    width: 50%;
+    padding: 15px;
+    background-color: #28a745;
+    color: white;
+    text-align: center;
+   
+    border-radius: 8px;
+    font-size: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.5s ease;
+}

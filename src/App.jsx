@@ -10,6 +10,8 @@ import GaleriaVehiculosPage from "./Pages/GaleriaVehiculosPage"
 import AsignacionChoferePage from "./Pages/AsignacionChoferePage"
 import ContraseñaPage from "./Pages/ContraseñaPage"
 import PerfilDeUsuario from "./Pages/PerfilDeUsuario"
+import PrivilegioPage from "./Pages/PrivilegioPage"
+import BitacoraPage from "./Pages/BitacoraPage"
 
 function App() {
 
@@ -38,7 +40,9 @@ function Main() {
         <Route path="/galeriaVehiculos" element={<GaleriaVehiculosPage/>}/>
         <Route path="/asignChoferes" element={<AsignacionChoferePage/>}/>
         <Route path="/perfilDeUsuario" element={<PerfilDeUsuario/>}/>
-        
+        <Route path="/privilegio" element={<PrivilegioPage/>}/>
+        <Route path="/bitacora" element={<BitacoraPage/>}/>
+       
 
         <Route path="/contraseña" element={<ContraseñaPage/>}/>
 
