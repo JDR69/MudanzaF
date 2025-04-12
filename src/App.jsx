@@ -7,6 +7,7 @@ import {  AuthProvider, useAuth } from "./context/AuthContext"
 import VehiculosPage from "./Pages/VehiculosPage"
 import Cloudinary from "./Cloudinary"
 import GaleriaVehiculosPage from "./Pages/GaleriaVehiculosPage"
+import AsignacionChoferePage from "./Pages/AsignacionChoferePage"
 
 function App() {
 
@@ -33,6 +34,7 @@ function Main() {
         <Route path="/vehiculos" element={<VehiculosPage/>}/>
         <Route path="/aa" element={<Cloudinary/>}/>
         <Route path="/galeriaVehiculos" element={<GaleriaVehiculosPage/>}/>
+        <Route path="/asignChoferes" element={<AsignacionChoferePage/>}/>
         
       </Routes>
     </>
