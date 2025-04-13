@@ -16,7 +16,7 @@ import BitacoraPage from "./Pages/BitacoraPage"
 
 
 //---------------------------------------------
-import { Homed } from "./components/HomeD/Homed.jsx";
+import { Homed } from "./Components/Homed/Homed"
 
 function App() {
 
