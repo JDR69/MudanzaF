@@ -59,10 +59,10 @@ export const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
         className="link-container"
         onClick={() => setIsPaquete1Open(!isPaquete1Open)}
       >
-        <h3 className="dropdown-label">Adm. Usuario</h3>
+        <h3 className="dropdown-label">Usuario</h3>
       </div>
       {isPaquete1Open &&
-        enlaceprincipal.map(({ label, icon, to }) => (
+        enlaceUsuario.map(({ label, icon, to }) => (
           <div className="link-container" key={label}>
             <NavLink
               to={to}
@@ -81,10 +81,10 @@ export const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
         className="link-container"
         onClick={() => setIsPaquete2Open(!isPaquete2Open)}
       >
-        <h3 className="dropdown-label">Adm. Invent.</h3>
+        <h3 className="dropdown-label">Servicios</h3>
       </div>
       {isPaquete2Open &&
-        enlaceinventario.map(({ label, icon, to }) => (
+        enlaceServicios.map(({ label, icon, to }) => (
           <div className="link-container" key={label}>
             <NavLink
               to={to}
@@ -100,11 +100,11 @@ export const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
 
       {/* Paquete 3 - Ventas (vacío por ahora) */}
       <div className="link-container" onClick={() => setIsPaquete40pen(!isPaquete40pen)}>
-        <h3 className="dropdown-label">Ventas</h3>
+        <h3 className="dropdown-label">Experiencia</h3>
       </div>
       {
         isPaquete40pen &&
-        enlaceventa.map(({ label, icon, to }) => (
+        enlaceExperiencia.map(({ label, icon, to }) => (
           <div className="link-container" key={label}>
             <NavLink
               to={to}
@@ -120,11 +120,11 @@ export const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
 
       {/* Paquete 4 - Compras (vacío por ahora) */}
       <div className="link-container" onClick={() => setIsPaquete30pen(!isPaquete30pen)}>
-        <h3 className="dropdown-label">Compras</h3>
+        <h3 className="dropdown-label">Translado</h3>
       </div>
       {
         isPaquete30pen &&
-        enlacecompra.map(({ label, icon, to }) => (
+        Translado.map(({ label, icon, to }) => (
           <div className="link-container" key={label}>
             <NavLink
               to={to}
@@ -164,11 +164,11 @@ export const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   );
 };
 
-const enlaceprincipal = [
+const enlaceUsuario = [
   {
-    label: "Home",
+    label: "Permisos",
     icon: <MdOutlineAnalytics />,
-    to: "/dasboard/homeda", // Corregido a "dashboard"
+    to: "/dasboard/permisos", // Corregido a "dashboard"
   },
   {
     label: "Usuarios",
@@ -176,57 +176,97 @@ const enlaceprincipal = [
     to: "/dasboard/usuarioGestion", // Corregido a "dashboard"
   },
   {
-    label: "Clientes",
+    label: "Perfiles de Usuarios",
     icon: <MdOutlineAnalytics />,
-    to: "/dasboard/clientRegister", // Corregido a "dashboard"
-  },
-  {
-    label: "Empleados",
-    icon: <AiOutlineApartment />,
-    to: "/dasboard/empleadRegister", // Corregido a "dashboard"
+    to: "/dasboard/perfiles", // Corregido a "dashboard"
   },
   {
     label: "Bitacora",
-    icon: <MdOutlineAnalytics />,
+    icon: <AiOutlineApartment />,
     to: "/dasboard/bitacora", // Corregido a "dashboard"
-  },
-  {
-    label: "Privilegios",
-    icon: <MdOutlineAnalytics />,
-    to: "/dasboard/privilegios", // Corregido a "dashboard"
   },
 ];
 
-const enlaceinventario = [
+const enlaceServicios = [
   {
-    label: "Productos",
+    label: "Inventario de Materiales",
     icon: <MdOutlineAnalytics />,
     to: "/dasboard/products", // Corregido a "dashboard"
   },
   {
-    label: "Categorias",
+    label: "Control de Tarifas",
     icon: <MdOutlineAnalytics />,
     to: "/dasboard/categoriaproducto", // Corregido a "dashboard"
   },
   {
-    label: "OrganizacionProducto",
+    label: "Tipo Emabalage",
     icon: <MdOutlineAnalytics />,
     to: "/dasboard/organizacion-productos", // Corregido a "dashboard"
   },
   {
-    label: "Nota Salida",
+    label: "Vehiculos",
+    icon: <MdOutlineAnalytics />,
+    to: "/dasboard/vehiculos", // Corregido a "dashboard"
+  },
+  {
+    label: "Asignar Choferes",
+    icon: <MdOutlineAnalytics />,
+    to: "/dasboard/regisChofer", // Corregido a "dashboard"
+  },
+  {
+    label: "Cotizaciones",
     icon: <MdOutlineAnalytics />,
     to: "/dasboard/notaSalida", // Corregido a "dashboard"
   },
-];
-const enlacecompra = [
   {
-    label: "Proveedores",
+    label: "Galeria de vehiculos",
+    icon: <MdOutlineAnalytics />,
+    to: "/dasboard/galeriaVeh", // Corregido a "dashboard"
+  },
+  {
+    label: "Bitacora vehiculos",
+    icon: <MdOutlineAnalytics />,
+    to: "/dasboard/notaSalia", // Corregido a "dashboard"
+  },
+  {
+    label: "Catalogo de vehiculos",
+    icon: <MdOutlineAnalytics />,
+    to: "/dasboard/notaSalid", // Corregido a "dashboard"
+  },
+  {
+    label: "Gestion de viajes",
+    icon: <MdOutlineAnalytics />,
+    to: "/dasboard/notaSalid", // Corregido a "dashboard"
+  },
+  {
+    label: "Promociones",
+    icon: <MdOutlineAnalytics />,
+    to: "/dasboard/notaSalid", // Corregido a "dashboard"
+  },
+  {
+    label: "Informacion de vehiculo",
+    icon: <MdOutlineAnalytics />,
+    to: "/dasboard/notaSalid", // Corregido a "dashboard"
+  },
+  {
+    label: "Gastos de Rutas",
+    icon: <MdOutlineAnalytics />,
+    to: "/dasboard/notaSalid", // Corregido a "dashboard"
+  },
+  {
+    label: "Horario del Personal",
+    icon: <MdOutlineAnalytics />,
+    to: "/dasboard/notaSalid", // Corregido a "dashboard"
+  },
+];
+const Translado = [
+  {
+    label: "Notificar",
     icon: <MdOutlineAnalytics />,
     to: "/dasboard/proveedorRegister", // Corregido a "dashboard"
   },
   {
-    label: "Compras",
+    label: "Comentarios",
     icon: <MdOutlineAnalytics />,
     to: "/dasboard/compras",
   },
@@ -249,29 +289,29 @@ const enlacesecundario = [
   },
 ];
 
-const enlaceventa =[
+const enlaceExperiencia =[
   {
-    label: "Aperturas",
+    label: "Notificaones",
     icon: <MdOutlineAnalytics />,
     to: "/dasboard/apertura",
   },
   {
-    label: "Combos",
+    label: "Comentarios",
     icon: <MdOutlineAnalytics />,
     to: "/dasboard/combos",
   },
   {
-    label: "Facturacion",
+    label: "Calificaciones",
     icon: <MdOutlineAnalytics />,
     to: "/dasboard/factura",
   },
   {
-    label: "Comprobante",
+    label: "Alertas de translado",
     icon: <MdOutlineAnalytics />,
     to: "/dasboard/comprobantes",
   },
   {
-    label: "Detalles De Facturas",
+    label: "Registros de servicios",
     icon: <MdOutlineAnalytics />,
     to: "/dasboard/detalleFactura",
   }

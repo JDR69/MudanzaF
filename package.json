@@ -17,6 +17,7 @@
     "bootstrap": "^5.3.5",
     "bootstrap-icons": "^1.11.3",
     "cloudinary": "^2.6.0",
+    "date-fns": "^4.1.0",
     "formik": "^2.4.6",
     "react": "^19.0.0",
     "react-bootstrap": "^2.10.9",

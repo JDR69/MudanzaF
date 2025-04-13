@@ -39,6 +39,7 @@ export const AuthProvider = ({ children }) => {
         setUser(fakeUser);
       };
 
+
     useEffect(() => {
     async function checklogin() {
         const token = localStorage.getItem('token');
