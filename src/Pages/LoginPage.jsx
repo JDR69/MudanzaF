@@ -30,6 +30,7 @@ const LoginPage = () => {
         onSubmit: async (values) => {
             try {
                 // await signin(data);
+                console.log(values)
                 await signin(values); // antes decía "data", pero es "values"
                 navigate("/dasboard/homeda"); // redirige al dashboard
             } catch (error) {
