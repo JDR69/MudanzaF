@@ -19,26 +19,18 @@ export const AuthProvider = ({ children }) => {
         setUser(data);
     };
 
-    // const signin = async (user) => {
-    //     try {
-    //         const res = await loginRequest(user);
-    //         setUser(res.data);
-    //         localStorage.setItem('token', res.data.token);
-    //     } catch (error) {
-    //         console.error(error)
-    //     }
-    // }
+    const signin = async (user) => {
+        try {
+            const res = await loginRequest(user);
+            setUser(res.data);
+            console.log(res.data);
+            localStorage.setItem('token', res.data.token);
+        } catch (error) {
+            console.error(error)
+        }
+    }
 
-    const signin = (data) => {
-        // Aquí puedes validar cualquier cosa si quieres, por ahora simulado
-        const fakeUser = {
-          id: 1,
-          name: "Demo User",
-          email: data.email,
-        };
-        setUser(fakeUser);
-      };
-
+  
 
     useEffect(() => {
     async function checklogin() {
