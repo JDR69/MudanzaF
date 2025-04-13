@@ -13,7 +13,14 @@ import PerfilDeUsuario from "./Pages/PerfilDeUsuario"
 import PrivilegioPage from "./Pages/PrivilegioPage"
 import BitacoraPage from "./Pages/BitacoraPage"
 
+
+
+//---------------------------------------------
+import { Homed } from "./components/HomeD/Homed.jsx";
+
 function App() {
+
+
 
   return (
     <AuthProvider>
@@ -28,9 +35,10 @@ function Main() {
 
   const { user } = useAuth();
 
+
   return (
     <>
-      <CustomNavbar />
+       <CustomNavbar />
       <Routes>
         <Route path="/login" element={<LoginPage/>}/>
         <Route path="/register" element={<RegistroClientPage/>}/>
@@ -42,10 +50,10 @@ function Main() {
         <Route path="/perfilDeUsuario" element={<PerfilDeUsuario/>}/>
         <Route path="/privilegio" element={<PrivilegioPage/>}/>
         <Route path="/bitacora" element={<BitacoraPage/>}/>
-       
-
         <Route path="/contraseña" element={<ContraseñaPage/>}/>
 
+
+        <Route path="/dasboard/*" element={<Homed/>}/>
       </Routes>
     </>
   )

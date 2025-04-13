@@ -3,10 +3,12 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import "../Css/LoginPage.css"
 import { useAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
 
     const { signin } = useAuth();
+    const navigate = useNavigate();
 
     // Validación con Yup
     const validationSchema = Yup.object({
@@ -27,7 +29,9 @@ const LoginPage = () => {
         validationSchema: validationSchema,
         onSubmit: async (values) => {
             try {
-                await signin(data);
+                // await signin(data);
+                await signin(values); // antes decía "data", pero es "values"
+                navigate("/dasboard/homeda"); // redirige al dashboard
             } catch (error) {
                 console.error(error)
             }

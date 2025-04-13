@@ -19,15 +19,25 @@ export const AuthProvider = ({ children }) => {
         setUser(data);
     };
 
-    const signig = async (user) => {
-        try {
-            const res = await loginRequest(user);
-            setUser(res.data);
-            localStorage.setItem('token', res.data.token);
-        } catch (error) {
-            console.error(error)
-        }
-    }
+    // const signin = async (user) => {
+    //     try {
+    //         const res = await loginRequest(user);
+    //         setUser(res.data);
+    //         localStorage.setItem('token', res.data.token);
+    //     } catch (error) {
+    //         console.error(error)
+    //     }
+    // }
+
+    const signin = (data) => {
+        // Aquí puedes validar cualquier cosa si quieres, por ahora simulado
+        const fakeUser = {
+          id: 1,
+          name: "Demo User",
+          email: data.email,
+        };
+        setUser(fakeUser);
+      };
 
     useEffect(() => {
     async function checklogin() {
@@ -57,7 +67,7 @@ export const AuthProvider = ({ children }) => {
 
 return (
     <AuthContext.Provider value={{
-        signig,
+        signin,
         setUserData,
         user,
 
