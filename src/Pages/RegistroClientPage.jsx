@@ -37,7 +37,6 @@ function RegistroClientPage() {
       const fechaFormateada = format(new Date(formData.fecha_nacimiento), "dd/MM/yyyy");
       const data = {
         nombre: formData.nombre,
-        username: formData.username,
         email: formData.email,
         telefono: formData.telefono,
         fecha_nacimiento: fechaFormateada,
