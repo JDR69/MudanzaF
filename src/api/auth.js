@@ -23,3 +23,18 @@ export const obtenerBitacoraRequest = () => { return instance.get(`/api/auth/get
     withCredentials: true,
     timeout: tiempoEspera
 })}
+
+
+export const registerVehiculo = (data) => instance.post(`/vehiculo/registrar`,
+    data,{
+        headers: {
+            "Content-Type": "application/json"
+          },
+        withCredentials:true
+    }
+)
+
+export const obtenerTipoVehiculo = () => { return instance.get(`/vehiculo/get-all-tipo-vehiculo`,{
+    withCredentials: true,
+    timeout: tiempoEspera
+})}

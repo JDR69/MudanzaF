@@ -1,5 +1,5 @@
 import { createContext, useState, useContext, useEffect } from "react";
-import { loginRequest, obtenerBitacoraRequest, obtenerRolesRequest } from "../api/auth";
+import { loginRequest, obtenerBitacoraRequest, obtenerRolesRequest, obtenerTipoVehiculo } from "../api/auth";
 
 const AuthContext = createContext();
 
@@ -36,8 +36,9 @@ export const AuthProvider = ({ children }) => {
     const cargarDatos = async () =>{
         try {
             const res = await obtenerRolesRequest();
+            const tpven = await obtenerTipoVehiculo();
             // const resb = await obtenerBitacoraRequest();
-            // console.log(resb.data)
+            console.log(tpven.data)
             setRoles(res.data)
             // setBitacora(resb.data)
         } catch (err) {
