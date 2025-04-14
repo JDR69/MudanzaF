@@ -38,3 +38,12 @@ export const obtenerTipoVehiculo = () => { return instance.get(`/api/vehiculo/ge
     withCredentials: true,
     timeout: tiempoEspera
 })}
+
+export const registerChofer = (data) => instance.post(`/api/chofer/registrar`,
+    data,{
+        headers: {
+            "Content-Type": "application/json"
+          },
+        withCredentials:true
+    }
+)

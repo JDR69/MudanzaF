@@ -23,26 +23,33 @@ function VehiculosPage() {
         setFormData({ ...formData, [name]: value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        if (editIndex !== null) {
-            const updatedVehiculos = vehiculos.map((vehiculo, index) =>
-                index === editIndex ? formData : vehiculo
-            );
-            setVehiculos(updatedVehiculos);
-            setEditIndex(null);
-        } else {
-            setVehiculos([...vehiculos, formData]);
+      
+        const data = {
+          placa: formData.Placa,
+          tipoVehiculoId: Number(formData.TipoVehiculo),
+          peso: Number(formData.PesoDeCarga),
+          estado: true,
+          kilometraje: Number(formData.Kilometraje),
+          choferId:1
         }
-        console.log(vehiculos)
+      
+        try {
+          const res = await registerVehiculo(data);
+          console.log("✅ Vehículo registrado:", res.data);
+        } catch (err) {
+          throw err;
+        }
+      
         setFormData({
-            Placa: '',
-            TipoVehiculo: '',
-            PesoDeCarga: '',
-            Estado: '',
-            Kilometraje: ''
+          Placa: '',
+          TipoVehiculo: '',
+          PesoDeCarga: '',
+          Estado: '',
+          Kilometraje: ''
         });
-    };
+      };
 
     const handleEdit = (index) => {
         setEditIndex(index);
