@@ -43,6 +43,7 @@ export const AuthProvider = ({ children }) => {
             console.log(resb.data)
             setRoles(res.data)
             setBitacora(resb.data)
+            setTipoVehiculo(tpven.data)
             // setBitacora(resb.data)
         } catch (err) {
             throw err;
