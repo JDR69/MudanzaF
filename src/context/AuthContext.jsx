@@ -36,12 +36,12 @@ export const AuthProvider = ({ children }) => {
     
     const cargarDatos = async () =>{
         try {
-            // const res = await obtenerRolesRequest();
+            const res = await obtenerRolesRequest();
             const tpven = await obtenerTipoVehiculo();
             const resb = await obtenerBitacoraRequest();
             console.log(tpven.data)
             console.log(resb.data)
-            // setRoles(res.data)
+            setRoles(res.data)
             setBitacora(resb.data)
             setTipoVehiculo(tpven.data)
             // setBitacora(resb.data)
