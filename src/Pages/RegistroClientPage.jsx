@@ -42,6 +42,7 @@ function RegistroClientPage() {
         telefono: formData.telefono,
         fecha_nacimiento: fechaFormateada,
         password: formData.password,
+        url_profile: 'jskdfjsdfjds'
       };
 
       console.log(data)
