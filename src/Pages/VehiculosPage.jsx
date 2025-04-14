@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../Css/VehiculosPage.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useAuth } from '../context/AuthContext';
+import { registerVehiculo } from '../api/auth';
 
 function VehiculosPage() {
 
@@ -33,6 +34,7 @@ function VehiculosPage() {
         } else {
             setVehiculos([...vehiculos, formData]);
         }
+        console.log(vehiculos)
         setFormData({
             Placa: '',
             TipoVehiculo: '',
