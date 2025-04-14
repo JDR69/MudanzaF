@@ -31,7 +31,7 @@ const LoginPage = () => {
             try {
                 // await signin(data);
                 console.log(values)
-                await cargarDatos
+                await cargarDatos();
                 await signin(values); // antes decía "data", pero es "values"
                 await ca
                 navigate("/dasboard/homeda"); // redirige al dashboard
