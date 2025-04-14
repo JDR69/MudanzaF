@@ -36,10 +36,10 @@ export const AuthProvider = ({ children }) => {
     const cargarDatos = async () =>{
         try {
             const res = await obtenerRolesRequest();
-            const resb = await obtenerBitacoraRequest();
-            console.log(resb.data)
+            // const resb = await obtenerBitacoraRequest();
+            // console.log(resb.data)
             setRoles(res.data)
-            setBitacora(resb.data)
+            // setBitacora(resb.data)
         } catch (err) {
             throw err;
         }
