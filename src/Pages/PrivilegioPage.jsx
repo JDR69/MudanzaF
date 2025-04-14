@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import '../Css/PrivilegioPage.css'
+import { useAuth } from '../context/AuthContext';
 
 function PrivilegioPage() {
+
+    
+    const {roles} = useAuth();
+
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [privilegios, setPrivilegios] = useState([]);
-    const [rolSeleccionado, setRolSeleccionado] = useState("administrador");
+    const [rolSeleccionado, setRolSeleccionado] = useState(roles[0].nombre);
     const [mensajeExitoso, setMensajeExitoso] = useState("");
 
     useEffect(() => {
@@ -51,9 +56,11 @@ function PrivilegioPage() {
                 <div className='contenedorRol'>
                     <h2>Seleccionar Rol</h2>
                     <select name="rol" id='soyRol' value={rolSeleccionado} onChange={manejarCambioRol}>
-                        <option value="administrador">Administrador</option>
-                        <option value="empleado">Empleado</option>
-                        <option value="cliente">Cliente</option>
+                        <option value="administrador">{roles[0].nombre}</option>
+                        <option value="administrador">{roles[1].nombre}</option>
+                        <option value="administrador">{roles[2].nombre}</option>
+                        <option value="administrador">{roles[3].nombre}</option>
+                        <option value="administrador">{roles[4].nombre}</option>
                     </select>
                 </div>
                 <div className='contenedorPrivilegios'>

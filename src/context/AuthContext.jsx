@@ -36,6 +36,7 @@ export const AuthProvider = ({ children }) => {
         try {
             const res = await obtenerRolesRequest();
             console.log(res.data)
+            setRoles(res.data)
         } catch (err) {
             throw err;
         }
@@ -74,7 +75,7 @@ return (
         setUserData,
         cargarDatos,
         user,
-
+        roles,
     }}>
         {children}
     </AuthContext.Provider>
