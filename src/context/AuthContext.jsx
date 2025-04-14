@@ -22,8 +22,8 @@ export const AuthProvider = ({ children }) => {
     const signin = async (user) => {
         try {
             const res = await loginRequest(user);
-            setUser(res.data);
-            console.log(res.data);
+            setUser(res.data.usuario);
+            console.log(res.data.usuario);
             localStorage.setItem('token', res.data.token);
         } catch (err) {
             throw err; 
