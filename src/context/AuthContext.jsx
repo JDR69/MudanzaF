@@ -1,5 +1,5 @@
 import { createContext, useState, useContext, useEffect } from "react";
-import { loginRequest } from "../api/auth";
+import { loginRequest, obtenerRolesRequest } from "../api/auth";
 
 const AuthContext = createContext();
 
@@ -14,6 +14,7 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [roles, setRoles] = useState([]);
 
     const setUserData = (data) => {
         setUser(data);
@@ -30,6 +31,15 @@ export const AuthProvider = ({ children }) => {
           }
     }
 
+    
+    const cargarDatos = async () =>{
+        try {
+            const res = await obtenerRolesRequest();
+            console.log(res.data)
+        } catch (err) {
+            throw err;
+        }
+    }
   
 
     useEffect(() => {
@@ -62,6 +72,7 @@ return (
     <AuthContext.Provider value={{
         signin,
         setUserData,
+        cargarDatos,
         user,
 
     }}>

@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
 
-    const { signin } = useAuth();
+    const { signin, cargarDatos } = useAuth();
     const navigate = useNavigate();
 
     // Validación con Yup
@@ -31,7 +31,9 @@ const LoginPage = () => {
             try {
                 // await signin(data);
                 console.log(values)
+                await cargarDatos
                 await signin(values); // antes decía "data", pero es "values"
+                await ca
                 navigate("/dasboard/homeda"); // redirige al dashboard
             } catch (error) {
                 console.error(error)
