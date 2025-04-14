@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext'
 
 const BitacoraPage = () => {
 
-    const {bitacora} = useAuth
+    const {bitacora} = useAuth();
 
     const bitacoras = bitacora;
 
