@@ -16,6 +16,7 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [roles, setRoles] = useState([]);
     const [bitacora, setBitacora] = useState([])
+    const [tipoVehiculo, setTipoVehiculo] = useState([])
 
     const setUserData = (data) => {
         setUser(data);
@@ -37,9 +38,11 @@ export const AuthProvider = ({ children }) => {
         try {
             const res = await obtenerRolesRequest();
             const tpven = await obtenerTipoVehiculo();
-            // const resb = await obtenerBitacoraRequest();
+             const resb = await obtenerBitacoraRequest();
             console.log(tpven.data)
+            console.log(resb.data)
             setRoles(res.data)
+            setBitacora(resb.data)
             // setBitacora(resb.data)
         } catch (err) {
             throw err;
@@ -80,6 +83,8 @@ return (
         cargarDatos,
         user,
         roles,
+        bitacora,
+        tipoVehiculo
     }}>
         {children}
     </AuthContext.Provider>

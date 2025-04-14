@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import '../Css/VehiculosPage.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useAuth } from '../context/AuthContext';
 
 function VehiculosPage() {
+
+    const { tipoVehiculo } = useAuth()
+
     const [editIndex, setEditIndex] = useState(null);
     const [vehiculos, setVehiculos] = useState([]);
     const [formData, setFormData] = useState({
@@ -59,11 +63,19 @@ function VehiculosPage() {
                     </div>
                     <div className="form-group">
                         <label htmlFor="TipoVehiculo">Tipo Vehiculo</label>
-                        <select name="TipoVehiculo" className='form-control' value={formData.TipoVehiculo} onChange={handleChange} required>
+                        <select
+                            name="TipoVehiculo"
+                            className="form-control"
+                            value={formData.TipoVehiculo}
+                            onChange={handleChange}
+                            required
+                        >
                             <option value="">Seleccione</option>
-                            <option value="Auto">Auto</option>
-                            <option value="Camión">Camión</option>
-                            <option value="Motocicleta">Motocicleta</option>
+                            {tipoVehiculo.map((tipo) => (
+                                <option key={tipo.id} value={tipo.id}>
+                                    {tipo.nombre}
+                                </option>
+                            ))}
                         </select>
                     </div>
                     <div className="form-group">
