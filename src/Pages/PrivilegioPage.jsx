@@ -57,10 +57,10 @@ function PrivilegioPage() {
                     <h2>Seleccionar Rol</h2>
                     <select name="rol" id='soyRol' value={rolSeleccionado} onChange={manejarCambioRol}>
                         <option value="administrador">{roles[0].nombre}</option>
-                        <option value="administrador">{roles[1].nombre}</option>
-                        <option value="administrador">{roles[2].nombre}</option>
-                        <option value="administrador">{roles[3].nombre}</option>
-                        <option value="administrador">{roles[4].nombre}</option>
+                        <option value="usuario">{roles[1].nombre}</option>
+                        <option value="cliente">{roles[2].nombre}</option>
+                        <option value="ayudante">{roles[3].nombre}</option>
+                        <option value="chofer">{roles[4].nombre}</option>
                     </select>
                 </div>
                 <div className='contenedorPrivilegios'>
