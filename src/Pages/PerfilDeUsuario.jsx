@@ -1,18 +1,22 @@
 import React, { useState } from 'react';
 import '../Css/PerfilDeUsuario.css';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 function PerfilDeUsuario() {
+
+  const { user } = useAuth();
+
   const [editar, setEditar] = useState(false);
   const [usuario, setUsuario] = useState({
-    id: '1',
-    nombre: 'Gabriel',
-    correo: 'gabriel@gmail.com',
+    id: user.id,
+    nombre: user.nombre,
+    correo: user.email,
     direccion: 'av/bolivia',
-    telefono: '77606076',
+    telefono: '76672191',
     contraseña: '********',
     puntaje: '5',
-    rol: 'cliente'
+    rol: user.rol.nombre
   });
 
   const handleChange = (e) => {
