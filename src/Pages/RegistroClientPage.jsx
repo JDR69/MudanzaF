@@ -31,41 +31,42 @@ function RegistroClientPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
-      console.log(formData.fecha_nacimiento)
       const fechaFormateada = format(new Date(formData.fecha_nacimiento), "dd/MM/yyyy");
+  
       const data = {
         nombre: formData.nombre,
         email: formData.email,
         telefono: formData.telefono,
         fecha_nacimiento: fechaFormateada,
         password: formData.password,
-        url_profile: 'jskdfjsdfjds'
+        url_profile: 'jskdfjsdfjds' // aquí pondrás tu lógica real para la imagen
       };
-
-      console.log(data)
+  
       const response = await registerReques(data);
-      if (response.ok) {
-        alert("✅ Registro exitoso");
-        setFormData({
-          nombre: '',
-          username: '',
-          email: '',
-          telefono: '',
-          fecha_nacimiento: '',
-          password: '',
-          foto: null
-        });
-        navigate('/login')
-      } else {
-        const error = await response.json();
-        console.error("❌ Error en el registro:", error);
-        alert("Error: " + (error?.message || 'Verifica los campos'));
-      }
+  
+      // ✅ axios: la respuesta va en response.data
+      alert("✅ Registro exitoso");
+  
+      setFormData({
+        nombre: '',
+        username: '',
+        email: '',
+        telefono: '',
+        fecha_nacimiento: '',
+        password: '',
+        foto: null
+      });
+  
+      navigate('/login');
+  
     } catch (err) {
-      console.error(err);
-      alert("Error de conexión con el servidor");
+      console.error("❌ Error en el registro:", err);
+  
+      // axios puede tener response.data.message
+      const mensaje = err?.response?.data?.message || 'Verifica los campos o intenta más tarde.';
+      alert("Error: " + mensaje);
     }
   };
 
