@@ -17,3 +17,9 @@ export const obtenerRolesRequest = () => { return instance.get(`/api/rol`, {
     withCredentials: true,
     timeout: tiempoEspera
 })}
+
+
+export const obtenerBitacoraRequest = () => { return instance.get(`/api/auth/getBitacora`,{
+    withCredentials: true,
+    timeout: tiempoEspera
+})}
