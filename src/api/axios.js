@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-    baseURL: 'EL_LINK_BACKEND_/api',
+    baseURL: 'https://backend-tms-qh89.onrender.com',
     timeout:10000
 })
 

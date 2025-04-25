@@ -1,29 +1,12 @@
 import React from 'react'
 import '../Css/BitacoraPage.css'
+import { useAuth } from '../context/AuthContext'
+
 const BitacoraPage = () => {
 
-    const bitacoras = [
-        {
-            BitacoraID: 1,
-            UsuarioID: 'U001',
-            Nombre: 'Juan Pérez',
-            Correo: 'juan@example.com',
-            ip: '192.168.1.10',
-            fecha: '2025-04-04',
-            Hora: '10:23:45',
-            Accion: 'Inicio de sesión'
-        },
-        {
-            BitacoraID: 2,
-            UsuarioID: 'U002',
-            Nombre: 'María López',
-            Correo: 'maria@example.com',
-            ip: '192.168.1.20',
-            fecha: '2025-04-04',
-            Hora: '10:45:12',
-            Accion: 'Actualización de perfil'
-        }
-    ]
+    const {bitacora} = useAuth();
+
+    const bitacoras = bitacora;
 
         return (
             <div className="bitacora-container">
@@ -46,15 +29,15 @@ const BitacoraPage = () => {
                             <tbody>
                                 {Array.isArray(bitacoras) && bitacoras.length > 0 ? (
                                     bitacoras.map((bitacora) => (
-                                        <tr key={bitacora.BitacoraID}>
-                                            <td>{bitacora.BitacoraID}</td>
-                                            <td>{bitacora.UsuarioID}</td>
-                                            <td>{bitacora.Nombre}</td>
-                                            <td>{bitacora.Correo}</td>
+                                        <tr key={bitacora.id}>
+                                            <td>{bitacora.id}</td>
+                                            <td>{bitacora.id_usuario}</td>
+                                            <td>{bitacora.nombre}</td>
+                                            <td>{bitacora.correo}</td>
                                             <td>{bitacora.ip}</td>
                                             <td>{bitacora.fecha}</td>
-                                            <td>{bitacora.Hora}</td>
-                                            <td>{bitacora.Accion}</td>
+                                            <td>{bitacora.hora}</td>
+                                            <td>{bitacora.correo}</td>
                                         </tr>
                                     ))
                                 ) : (

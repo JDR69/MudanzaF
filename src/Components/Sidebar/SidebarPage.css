@@ -1,0 +1,140 @@
+:root {
+    --text-color: #212326;
+    --bg-color: #ffffff;
+    --bg3: #1f1d1d;
+    --bg4: #007bff;
+    --bg-tgderecha: #e2e8f0;
+  }
+  
+  /* === Sidebar Container === */
+  .sidebar-container {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    min-width: 100px;
+    padding-top: 2rem;
+    transition: width 0.3s ease;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+    overflow-y: auto;
+  }
+  
+  /* === Toggle Button === */
+  .sidebar-button {
+    position: absolute;
+    top: 48px;
+    right: -16px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background-color: var(--bg-tgderecha);
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: rotate(180deg);
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* === Logo Section === */
+  .logo-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 1.5rem;
+  }
+  
+  .img-content img {
+    max-width: 60px;
+    height: auto;
+    transition: all 0.3s ease;
+  }
+  
+  /* === Dropdown Labels === */
+  .dropdown-label {
+    cursor: pointer;
+    padding: 0.75rem 1.5rem;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-color);
+    transition: background 0.3s;
+  }
+  
+  .dropdown-label:hover {
+    background-color: var(--bg3);
+    border-radius: 4px;
+  }
+  
+  /* === Link Container === */
+  .link-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0 1rem;
+    margin: 4px 0;
+    transition: background 0.3s;
+  }
+  
+  .link-container:hover {
+    background-color: var(--bg3);
+    border-radius: 4px;
+  }
+  
+  /* === Navigation Links === */
+  .links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    height: 48px;
+    padding: 0 1rem;
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    transition: background 0.3s;
+  }
+  
+  .links:hover {
+    background-color: #e5e7eb;
+    border-radius: 4px;
+  }
+  
+  .links.active {
+    background-color: var(--bg4);
+    color: white;
+    border-radius: 4px;
+  }
+  
+  .links.active .link-icon svg {
+    color: white;
+  }
+  
+  /* === Icons === */
+  .link-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .link-icon svg {
+    font-size: 1.4rem;
+  }
+  
+  /* === Divider === */
+  .divider {
+    height: 1px;
+    width: 80%;
+    background-color: var(--bg3);
+    margin: 1rem auto;
+  }
+
+  .link-container button{
+    color: #080808;
+
+  }
+
+  .sidebar-container h3{
+    color: #e5e7eb;
+  }
+  

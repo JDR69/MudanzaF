@@ -1,5 +1,5 @@
 import { createContext, useState, useContext, useEffect } from "react";
-import { loginRequest } from "../api/auth";
+import { loginRequest, obtenerBitacoraRequest, obtenerRolesRequest, obtenerTipoVehiculo } from "../api/auth";
 
 const AuthContext = createContext();
 
@@ -14,20 +14,42 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [roles, setRoles] = useState([]);
+    const [bitacora, setBitacora] = useState([])
+    const [tipoVehiculo, setTipoVehiculo] = useState([])
 
     const setUserData = (data) => {
         setUser(data);
     };
 
-    const signig = async (user) => {
+    const signin = async (user) => {
         try {
             const res = await loginRequest(user);
-            setUser(res.data);
+            setUser(res.data.usuario);
+            console.log(res.data.usuario);
             localStorage.setItem('token', res.data.token);
-        } catch (error) {
-            console.error(error)
+        } catch (err) {
+            throw err; 
+          }
+    }
+
+    
+    const cargarDatos = async () =>{
+        try {
+            const res = await obtenerRolesRequest();
+            const tpven = await obtenerTipoVehiculo();
+            const resb = await obtenerBitacoraRequest();
+            console.log(tpven.data)
+            console.log(resb.data)
+            setRoles(res.data)
+            setBitacora(resb.data)
+            setTipoVehiculo(tpven.data)
+            // setBitacora(resb.data)
+        } catch (err) {
+            throw err;
         }
     }
+  
 
     useEffect(() => {
     async function checklogin() {
@@ -57,10 +79,13 @@ export const AuthProvider = ({ children }) => {
 
 return (
     <AuthContext.Provider value={{
-        signig,
+        signin,
         setUserData,
+        cargarDatos,
         user,
-
+        roles,
+        bitacora,
+        tipoVehiculo
     }}>
         {children}
     </AuthContext.Provider>
