@@ -42,8 +42,6 @@ function Main() {
         <Route path="/perfilDeUsuario" element={<PerfilDeUsuario/>}/>
         <Route path="/privilegio" element={<PrivilegioPage/>}/>
         <Route path="/bitacora" element={<BitacoraPage/>}/>
-       
-
         <Route path="/contraseña" element={<ContraseñaPage/>}/>
 
       </Routes>
