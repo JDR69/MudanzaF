@@ -12,7 +12,7 @@ import ContraseñaPage from "./Pages/ContraseñaPage"
 import PerfilDeUsuario from "./Pages/PerfilDeUsuario"
 import PrivilegioPage from "./Pages/PrivilegioPage"
 import BitacoraPage from "./Pages/BitacoraPage"
-
+import InformacionPage from "./Pages/InformacionPage"
 
 
 //---------------------------------------------
@@ -51,6 +51,7 @@ function Main() {
         <Route path="/privilegio" element={<PrivilegioPage/>}/>
         <Route path="/bitacora" element={<BitacoraPage/>}/>
         <Route path="/contraseña" element={<ContraseñaPage/>}/>
+        <Route path="/informacion" element={<InformacionPage/>}/>
 
 
         <Route path="/dasboard/*" element={<Homed/>}/>
