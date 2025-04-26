@@ -13,6 +13,7 @@ import PerfilDeUsuario from "./Pages/PerfilDeUsuario"
 import PrivilegioPage from "./Pages/PrivilegioPage"
 import BitacoraPage from "./Pages/BitacoraPage"
 import InformacionPage from "./Pages/InformacionPage"
+import CatalogoVehiculoPage from "./Pages/CatalogoVehiculoPage"
 
 
 //---------------------------------------------
@@ -54,6 +55,7 @@ function Main() {
         <Route path="/informacion" element={<InformacionPage/>}/>
 
 
+        <Route path="/catalogo" element={<CatalogoVehiculoPage/>}/>
         <Route path="/dasboard/*" element={<Homed/>}/>
       </Routes>
     </>

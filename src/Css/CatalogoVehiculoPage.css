@@ -1,0 +1,104 @@
+
+/* .col-md-2 img {
+    width: 100%;
+    height: auto;
+    -webkit-mask-image: linear-gradient(to left, transparent 50%, black 70%);
+    mask-image: linear-gradient(to left, transparent 5%, black 30%);
+  } */
+
+.containerCatalago{
+    margin: 0;
+    padding: 0;
+}
+
+.contextCatalago {
+    position: relative; /* Importante: para posicionar los textos encima */
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+  }
+  
+  .contextCatalago img {
+    width: 100%;
+    height: auto;
+    mask-image: linear-gradient(to right, black 30%, transparent 100%);
+  }
+  
+  .textosCatalogo {
+    position: absolute; /* Para que flote encima */
+    top: 30%;
+    left: 70%;
+    color: white; /* Blanco para que contraste sobre la imagen */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* Sombra al texto para que se lea mejor */
+    
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  /* --- Responsive para móviles --- */
+@media (max-width: 768px) {
+    .textosCatalogo {
+      width: 150px;
+      top: 15%;
+      left: 60%;
+    }
+    
+    .textosCatalogo h2 {
+      font-size: 15px; /* más pequeño en móviles */
+    }
+  }
+  
+
+  .conteinerTrailer{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    padding: 2px;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.camiones {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+    max-width: 450px;
+    height: auto;
+    padding: 20px; /* Añadimos espacio interno */
+    background: #ffffff; /* Fondo blanco para resaltar */
+    border: 1px solid #e0e0e0; /* Borde gris claro */
+    border-radius: 15px; /* Más redondeado */
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: box-shadow 0.3s ease; /* Animación suave */
+    /* background-color: rgb(129, 224, 224); */
+}
+
+
+.conteinerTrailer h2{
+    text-align: left;
+}
+
+.camiones h2{
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    /* font-weight: bold; */
+    font-size: 15px;
+    text-align: center;
+}
+
+.cantidadCamiones{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    /* border: 1px solid rgb(187, 185, 185);
+    border-radius: 10px; */
+    padding: 20px;
+    justify-content: center;
+    gap: 10px;
+}
+
+.entro{
+    display: flex;
+}
