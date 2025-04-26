@@ -21,7 +21,7 @@
   .contextCatalago img {
     width: 100%;
     height: auto;
-    mask-image: linear-gradient(to right, black 30%, transparent 100%);
+    /* mask-image: linear-gradient(to right, black 30%, transparent 100%); */
   }
   
   .textosCatalogo {
@@ -47,20 +47,38 @@
       font-size: 15px; /* más pequeño en móviles */
     }
   }
+
+  .seleccionVehiculo{
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    width: 100%;
+  }
+
+  .form-select{
+    width: 500px;
+    background-color: #000000;
+    color: #e0e0e0;
+    font-weight: bold; 
+  }
   
 
-  .conteinerTrailer{
+  .conteinerFurgoneta{
     display: flex;
     width: 100%;
     flex-direction: row;
-    padding: 2px;
+    padding: 10px;
     gap: 10px;
     flex-wrap: wrap;
 }
 
+.conteinerFurgoneta h1{
+    margin: 0;
+}
+
 .camiones {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     gap: 16px;
     justify-content: center;
@@ -102,3 +120,54 @@
 .entro{
     display: flex;
 }
+
+.estado {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .estado button {
+    width: 25%;
+    padding: 10px;
+    background-color: #000000;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .estado button:hover {
+    background-color: #92d429;
+  }
+  
+  .estado input {
+    width: 60%;
+    padding: 10px;
+    border: 0px solid #000000;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+  }
+  
+  .estado input:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+
+  .noDisponible h3{
+    text-align: center;
+    color: #ff0000;
+    font-size: 18px;
+    font-weight: bold; 
+  }
+
+  .disponible h3{
+    color: #000000;
+    font-size: 18px;
+    font-weight: bold; 
+  }
+  
