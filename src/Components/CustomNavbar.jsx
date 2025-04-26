@@ -23,9 +23,12 @@ const CustomNavbar = () => {
             <Nav.Link as={Link} to="/productos">
               Productos
             </Nav.Link>
+            <Nav.Link as={Link} to="/catalogo-vehiculos">
+              Catálogo
+            </Nav.Link>
 
             {/* Dropdown (opcional) */}
-            <NavDropdown title="Categorías" id="basic-nav-dropdown">
+            {/* <NavDropdown title="Categorías" id="basic-nav-dropdown">
               <NavDropdown.Item as={Link} to="/categorias/electronica">
                 Electrónica
               </NavDropdown.Item>
@@ -36,7 +39,7 @@ const CustomNavbar = () => {
               <NavDropdown.Item as={Link} to="/categorias">
                 Ver todas
               </NavDropdown.Item>
-            </NavDropdown>
+            </NavDropdown> */}
           </Nav>
 
           {/* Elementos alineados a la derecha (login, carrito) */}
