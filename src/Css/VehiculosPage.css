@@ -4,6 +4,7 @@
     display: flex; 
     justify-content: center; 
     align-items: center; 
+    flex-direction: column;
 }
 
 .form-group {
@@ -12,7 +13,7 @@
 
 /* FORM */
 .VehiculosConteiner2 {
-    width: 60%;
+    width: 80%;
     gap: 20px;
     display: flex;
     flex-direction: column;
@@ -24,8 +25,8 @@
 
 .vehiculos-table {
     width: 100%;
-    border-collapse: collapse;
-    overflow: hidden; 
+    border-collapse:collapse;
+    overflow:hidden; 
 }
 
 .vehiculos-table th, .vehiculos-table td {
@@ -45,6 +46,7 @@
 
 .tablaVehiculos {
     width: 100%;
+    overflow-x: scroll;
 }
 
 .tablaVehiculos button {
@@ -59,3 +61,41 @@
     gap: 10px; 
     width: 100%; 
 }
+.tituloVehiculos{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+}
+
+.tituloVehiculos h1{
+    margin: 0;
+}
+
+.tituloVehiculos i{
+    font-size: 50px;
+}
+
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(49, 48, 48, 0.5); 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.vehiculos-table button{
+    border: 1px solid #8e8e8e;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 2);
+    background-color: rgb(1, 15, 1);
+    width: 100px;
+    color: #ffffff;
+    font-weight: bold;
+}
+
