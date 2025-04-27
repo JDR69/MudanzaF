@@ -39,14 +39,16 @@ const Cloudinary = () => {
             if (result.secure_url) {
                 setImage(result.secure_url);
                 setMessage('✅ Imagen subida exitosamente');
+                return result.secure_url; 
             } else {
                 setMessage('❌ Error al subir la imagen');
             }
 
-            setLoading(false);
         } catch (error) {
             console.error('Error al subir la imagen:', error);
             setMessage('❌ Ocurrió un error durante la subida');
+            setLoading(false);
+        } finally{
             setLoading(false);
         }
     };
