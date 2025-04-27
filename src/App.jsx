@@ -14,10 +14,14 @@ import PrivilegioPage from "./Pages/PrivilegioPage"
 import BitacoraPage from "./Pages/BitacoraPage"
 import InformacionPage from "./Pages/InformacionPage"
 import CatalogoVehiculoPage from "./Pages/CatalogoVehiculoPage"
+import GestionInmueblePage from "./Pages/GestionInmueblePage"
+import RegistroInmueble from "./Pages/RegistroInmueble"
 
 
 //---------------------------------------------
 import { Homed } from "./Components/Homed/Homed"
+
+
 
 function App() {
 
@@ -53,6 +57,8 @@ function Main() {
         <Route path="/bitacora" element={<BitacoraPage/>}/>
         <Route path="/contraseña" element={<ContraseñaPage/>}/>
         <Route path="/informacion" element={<InformacionPage/>}/>
+        <Route path="/gestionInmueble" element={<GestionInmueblePage/>}/>
+        <Route path="/registroInmueble" element={<RegistroInmueble/>}/>
 
 
         <Route path="/catalogo" element={<CatalogoVehiculoPage/>}/>
