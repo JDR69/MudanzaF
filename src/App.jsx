@@ -20,6 +20,7 @@ import RegistroInmueble from "./Pages/RegistroInmueble"
 
 //---------------------------------------------
 import { Homed } from "./Components/Homed/Homed"
+import GestionEmbalajePage from "./Pages/GestionEmbalajePage"
 
 
 
@@ -59,6 +60,7 @@ function Main() {
         <Route path="/informacion" element={<InformacionPage/>}/>
         <Route path="/gestionInmueble" element={<GestionInmueblePage/>}/>
         <Route path="/registroInmueble" element={<RegistroInmueble/>}/>
+        <Route path="/gestionEmbalaje" element={<GestionEmbalajePage/>}/>
 
 
         <Route path="/catalogo" element={<CatalogoVehiculoPage/>}/>
