@@ -89,9 +89,25 @@
     color: #0056b3;
   }
 
-/* Añadir esta clase al CSS existente */
-
 .input-editable {
-    background-color: #e7f1ff; /* Color de fondo azul claro */
-    border-color: #007bff; /* Cambia el color del borde a azul */
+    background-color: #e7f1ff; 
+    border-color: #007bff; 
   }
+
+  .imagen-perfil-container {
+    text-align: center;
+  }
+  .imagen-perfil {
+    width: 150px;
+    height: 150px;
+    border-radius: 30%;
+    object-fit: cover;
+    border: 3px solid #ccc;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+  }
+  
+  .imagen-perfil:hover {
+    transform: scale(1.15);
+  }
+  

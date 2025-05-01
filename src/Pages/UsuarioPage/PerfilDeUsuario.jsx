@@ -15,8 +15,8 @@ function PerfilDeUsuario() {
     direccion: user.direccion,
     telefono: user.telefono,
     contraseña: '********',
-    puntaje: '5',
-    rol: user?.rol?.nombre || ''
+    rol: user?.rol?.nombre || '',
+    profile_icon: user.profile_icon || '',
   });
 
   const handleChange = (e) => {
@@ -32,8 +32,8 @@ function PerfilDeUsuario() {
         direccion: user.direccion || '',
         telefono: user.telefono || '',
         contraseña: '********',
-        puntaje: '5',
-        rol: user?.rol?.nombre || ''
+        rol: user?.rol?.nombre || '',
+        profile_icon: user.profile_icon || '',
       });
     }
   }, [user]);
@@ -42,6 +42,17 @@ function PerfilDeUsuario() {
     <div className='PerfilContenedor'>
       <div className='PerfilConteiner'>
         <h1>Perfil del Usuario</h1>
+
+        {usuario.profile_icon && (
+          <div className="imagen-perfil-container">
+            <img
+              src={usuario.profile_icon}
+              alt="Foto de perfil"
+              className="imagen-perfil"
+
+            />
+          </div>
+        )}
 
         <div className="form-group">
           <label htmlFor="nombre">Nombre</label>
@@ -114,17 +125,6 @@ function PerfilDeUsuario() {
         )}
 
         <div className="form-group">
-          <label htmlFor="puntaje">Media Puntaje</label>
-          <input
-            value={usuario.puntaje}
-            type="text"
-            name="puntaje"
-            className="form-control"
-            readOnly
-          />
-        </div>
-
-        <div className="form-group">
           <label htmlFor="rol">Rol</label>
           <input
             value={usuario?.rol || ''}
@@ -144,7 +144,7 @@ function PerfilDeUsuario() {
               }}
               className="btn btn-success"
             >
-                            Guardar Cambios
+              Guardar Cambios
             </button>
           ) : (
             <button
