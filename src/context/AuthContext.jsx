@@ -38,14 +38,16 @@ export const AuthProvider = ({ children }) => {
     const cargarDatos = async () =>{
         try {
 
-            const [resRoles, resTipoVehiculo, resBitacora] = await Promise.all([
+            const [resRoles,resBitacora, resTipoVehiculo ] = await Promise.all([
                 obtenerRolesRequest(),
-                obtenerTipoVehiculo(),
                 obtenerBitacoraRequest(),
+                // obtenerTipoVehiculo(),
             ])
-
+            
+            // console.log(resRoles.data)
             setRoles(resRoles.data)
-            setTipoVehiculo(resTipoVehiculo.data)
+            // setTipoVehiculo(resTipoVehiculo.data)
+            console.log(resBitacora.data)
             setBitacora(resBitacora.data)
         } catch (err) {
             throw err;
@@ -68,6 +70,7 @@ export const AuthProvider = ({ children }) => {
             //     setLoading(false);
             //     return;
             // }
+            cargarDatos();
             setUser(JSON.parse(savedUser));
             setLoading(false);
         } catch (error) {

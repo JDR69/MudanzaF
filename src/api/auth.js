@@ -16,13 +16,13 @@ export const registerReques = data => instance.post(`/api/auth/register`,data,{
     withCredentials: true
 })
 
-export const obtenerRolesRequest = () => { return instance.get(`/api/rol`, {
+export const obtenerRolesRequest = () => { return instance.get(`/api/rol/get`, {
     withCredentials: true,
     timeout: tiempoEspera
 })}
 
 
-export const obtenerBitacoraRequest = () => { return instance.get(`/api/auth/getBitacora`,{
+export const obtenerBitacoraRequest = () => { return instance.get(`/api/bitacora/get`,{
     withCredentials: true,
     timeout: tiempoEspera
 })}

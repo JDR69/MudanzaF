@@ -33,11 +33,11 @@ const BitacoraPage = () => {
                                             <td>{bitacora.id}</td>
                                             <td>{bitacora.id_usuario}</td>
                                             <td>{bitacora.nombre}</td>
-                                            <td>{bitacora.correo}</td>
+                                            <td>{bitacora.email}</td>
                                             <td>{bitacora.ip}</td>
                                             <td>{bitacora.fecha}</td>
                                             <td>{bitacora.hora}</td>
-                                            <td>{bitacora.correo}</td>
+                                            <td>{bitacora.tipo_sesion}</td>
                                         </tr>
                                     ))
                                 ) : (

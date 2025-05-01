@@ -30,7 +30,7 @@ const LoginPage = () => {
         onSubmit: async (values) => {
             try {
                 console.log(values)
-                // await cargarDatos();
+                await cargarDatos();
                 await signin(values); 
                 navigate("/dasboard/homeda"); 
             } catch (error) {
