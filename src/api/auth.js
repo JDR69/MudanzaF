@@ -42,6 +42,11 @@ export const obtenerTipoVehiculo = () => { return instance.get(`/api/tipoVeh/get
     timeout: tiempoEspera
 })}
 
+export const obtenerVehiculo = () => { return instance.get(`/api/veh/get`,{
+    withCredentials: true,
+    timeout: tiempoEspera
+})}
+
 export const registerChofer = (data) => instance.post(`/api/chofer/registrar`,
     data,{
         headers: {

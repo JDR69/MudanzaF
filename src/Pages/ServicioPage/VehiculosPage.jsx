@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../../Css/VehiculosPage.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useAuth } from '../../context/AuthContext';
-import { registerVehiculo } from '../../api/auth';
+import { registerVehiculo, obtenerVehiculo } from '../../api/auth';
 
 function VehiculosPage() {
 
@@ -98,6 +98,14 @@ function VehiculosPage() {
         setFormData(vehiculos2[index]);
     };
 
+    const listarVehiculo = async() =>{
+        try {
+            const res = obtenerVehiculo();
+            console.log(res.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     return (
         <div className='VehiculosConteiner'>
@@ -170,6 +178,7 @@ function VehiculosPage() {
                         </button>
                     </div>
                 </form>
+                <button onClick={listarVehiculo}>listar</button>
                 <div className='tablaVehiculos'>
                     <h2 className="mt-4">Lista de Vehículos</h2>
                     <table className="vehiculos-table">
