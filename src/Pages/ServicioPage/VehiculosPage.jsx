@@ -182,7 +182,6 @@ function VehiculosPage() {
                                 <th>Nombre</th>
                                 <th>Placa</th>
                                 <th>Tipo Vehiculo</th>
-                                <th>Peso de Carga</th>
                                 <th>Capacidad Max</th>
                                 <th>Estado</th>
                                 <th>Coste Kilometraje</th>
@@ -194,10 +193,9 @@ function VehiculosPage() {
                                 <tr key={index}>
                                     <td>{vehiculo.nombre}</td>
                                     <td>{vehiculo.placa}</td>
-                                    <td>{vehiculo.tipoVehiculoNombre || 'N/A'}</td>
-                                    <td>{vehiculo.pesoCarga || 'N/A'}</td>
-                                    <td>{vehiculo.capacidad}</td>
-                                    <td>{vehiculo.estado === 1 ? 'Disponible' : 'Deshabilitado'}</td>
+                                    <td>{vehiculo.tipo || 'N/A'}</td>
+                                      <td>{vehiculo.capacidad}</td>
+                                    <td>{vehiculo.estado === 'Disponible' ? 'Disponible' : 'Deshabilitado'}</td>
                                     <td>{vehiculo.costeKilometraje}</td>
                                     <td>
                                         <button className="btn btn-warning" onClick={() => handleEdit(index)}>Editar</button>
