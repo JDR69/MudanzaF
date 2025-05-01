@@ -21,6 +21,7 @@ import RegistroClientPage from "./Pages/UsuarioPage/RegistroClientPage";
 
 //---------------------------------------------
 import { Homed } from "./Components/Homed/Homed"
+import UsuariosPage from "./Pages/UsuarioPage/UsuariosPage";
 
 
 
@@ -69,7 +70,7 @@ function Main() {
         {/* <Route path="/catalogo" element={<CatalogoVehiculoPage/>}/> */}
         <Route path="/dasboard/*" element={<Homed/>}/>
         {/* <Route path="/tipoV" element={<TipoVehiculoPage/>}/> */}
-
+        <Route path="/usuarios" element={<UsuariosPage/>}/>
 
       </Routes>
     </>
