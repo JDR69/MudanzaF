@@ -36,15 +36,16 @@ export const AuthProvider = ({ children }) => {
     
     const cargarDatos = async () =>{
         try {
-            const res = await obtenerRolesRequest();
-            const tpven = await obtenerTipoVehiculo();
-            const resb = await obtenerBitacoraRequest();
-            console.log(tpven.data)
-            console.log(resb.data)
-            setRoles(res.data)
-            setBitacora(resb.data)
-            setTipoVehiculo(tpven.data)
-            // setBitacora(resb.data)
+
+            const [resRoles, resTipoVehiculo, resBitacora] = await Promise.all([
+                obtenerRolesRequest(),
+                obtenerTipoVehiculo(),
+                obtenerBitacoraRequest(),
+            ])
+
+            setRoles(resRoles.data)
+            setTipoVehiculo(resTipoVehiculo.data)
+            setBitacora(resBitacora.data)
         } catch (err) {
             throw err;
         }

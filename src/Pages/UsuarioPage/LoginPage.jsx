@@ -10,7 +10,7 @@ const LoginPage = () => {
     const { signin, cargarDatos } = useAuth();
     const navigate = useNavigate();
 
-    // Validación con Yup
+
     const validationSchema = Yup.object({
         email: Yup.string()
             .email("Correo inválido")
@@ -20,7 +20,7 @@ const LoginPage = () => {
             .required("La contraseña es obligatoria"),
     });
 
-    // Configuración de Formik
+
     const formik = useFormik({
         initialValues: {
             email: "",
@@ -29,11 +29,10 @@ const LoginPage = () => {
         validationSchema: validationSchema,
         onSubmit: async (values) => {
             try {
-                // await signin(data);
                 console.log(values)
                 // await cargarDatos();
-                await signin(values); // antes decía "data", pero es "values"
-                navigate("/dasboard/homeda"); // redirige al dashboard
+                await signin(values); 
+                navigate("/dasboard/homeda"); 
             } catch (error) {
                 console.error(error)
             }
