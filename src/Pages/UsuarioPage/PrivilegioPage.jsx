@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import '../Css/PrivilegioPage.css'
-import { useAuth } from '../context/AuthContext';
+import '../../Css/PrivilegioPage.css'
+import { useAuth } from '../../context/AuthContext';
 
 function PrivilegioPage() {
 

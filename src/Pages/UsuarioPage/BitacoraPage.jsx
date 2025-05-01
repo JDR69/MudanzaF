@@ -1,6 +1,6 @@
 import React from 'react'
-import '../Css/BitacoraPage.css'
-import { useAuth } from '../context/AuthContext'
+import '../../Css/BitacoraPage.css'
+import { useAuth } from '../../context/AuthContext'
 
 const BitacoraPage = () => {
 

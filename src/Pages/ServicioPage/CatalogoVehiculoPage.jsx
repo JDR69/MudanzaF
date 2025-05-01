@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import CardCarusel from './CarruselCamon';
-import '../Css/CatalogoVehiculoPage.css';
+import '../../Css/CatalogoVehiculoPage.css';
 
 const CatalogoVehiculoPage = () => {
     const [vehiculoSeleccionado, setVehiculoSeleccionado] = useState('todos');

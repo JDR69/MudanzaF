@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../Css/GestionInmueblePage.css';
+import '../../Css/GestionInmueblePage.css';
 
 function GestionInmueblePage() {
     const [electrodomesticos, setElectrodomesticos] = useState([]);

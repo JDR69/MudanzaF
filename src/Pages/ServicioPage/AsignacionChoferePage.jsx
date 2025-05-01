@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import '../Css/AsignacionChoferePage.css';
-import Cloudinary from '../Cloudinary';
-import { registerChofer } from '../api/auth';
+import '../../Css/AsignacionChoferePage.css';
+import Cloudinary from '../../Cloudinary';
+import { registerChofer } from '../../api/auth';
 
 const AsignacionChoferePage = () => {
   const { image, handleFileChange, uploadImage } = Cloudinary();

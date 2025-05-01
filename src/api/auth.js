@@ -47,3 +47,12 @@ export const registerChofer = (data) => instance.post(`/api/chofer/registrar`,
         withCredentials:true
     }
 )
+
+export const tipoVehiculoRequest = (data) => instance.post( `/api/tipoVeh/reg`,
+    data,{
+        headers: {
+            "Content-Type": "application/json"
+          },
+        withCredentials:true
+    }
+)

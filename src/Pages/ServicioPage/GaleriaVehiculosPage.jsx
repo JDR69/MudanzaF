@@ -1,7 +1,7 @@
 // src/pages/GaleriaVehiculosPage.jsx
 import React, { useState } from 'react';
-import Cloudinary from '../Cloudinary';
-import '../Css/GaleriaVehiculosPage.css';
+import Cloudinary from '../../Cloudinary';
+import '../../Css/GaleriaVehiculosPage.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function GaleriaVehiculosPage() {

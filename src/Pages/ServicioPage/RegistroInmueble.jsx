@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../Css/RegistroInmueble.css';
+import '../../Css/RegistroInmueble.css';
 
 function RegistroInmueble() {
     const [categorias, setCategorias] = useState([]);

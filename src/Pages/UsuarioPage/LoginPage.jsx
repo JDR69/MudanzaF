@@ -1,8 +1,8 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import "../Css/LoginPage.css"
-import { useAuth } from '../context/AuthContext';
+import "../../Css/LoginPage.css"
+import { useAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
@@ -31,7 +31,7 @@ const LoginPage = () => {
             try {
                 // await signin(data);
                 console.log(values)
-                await cargarDatos();
+                // await cargarDatos();
                 await signin(values); // antes decía "data", pero es "values"
                 navigate("/dasboard/homeda"); // redirige al dashboard
             } catch (error) {

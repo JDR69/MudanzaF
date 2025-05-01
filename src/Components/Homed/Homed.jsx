@@ -5,14 +5,14 @@ import   {HomeDas}  from "../Home/Homedas";
 import { useAuth } from "../../context/AuthContext";
 
 //--------------------Usuarios-------------//
-import BitacoraPage from "../../Pages/BitacoraPage.jsx";
-import PrivilegioPage from "../../Pages/PrivilegioPage.jsx";
-import PerfilDeUsuario from "../../Pages/PerfilDeUsuario.jsx";
+import BitacoraPage from "../../Pages/UsuarioPage/BitacoraPage.jsx";
+import PrivilegioPage from "../../Pages/UsuarioPage/PrivilegioPage.jsx";
+import PerfilDeUsuario from "../../Pages/UsuarioPage/PerfilDeUsuario.jsx";
 
 //-------------------Servicios------------//
-import VehiculosPage from "../../Pages/VehiculosPage.jsx";
-import GaleriaVehiculosPage from "../../Pages/GaleriaVehiculosPage.jsx";
-import AsignacionChoferePage from "../../Pages/AsignacionChoferePage.jsx";
+import VehiculosPage from "../../Pages/ServicioPage/VehiculosPage.jsx";
+import GaleriaVehiculosPage from "../../Pages/ServicioPage/GaleriaVehiculosPage.jsx";
+import AsignacionChoferePage from "../../Pages/ServicioPage/AsignacionChoferePage.jsx";
 
 
 import "./Homed.css"

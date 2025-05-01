@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { format } from 'date-fns';
-import { registerReques } from '../api/auth';
+import { registerReques } from '../../api/auth';
 import { useNavigate } from 'react-router-dom';
-import "../Css/RegistroClientPage.css";
+import "../../Css/RegistroClientPage.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../Css/ContraseñaPage.css';
+import '../../Css/ContraseñaPage.css';
 
 function ContraseñaPage() {
     const [showPassword, setShowPassword] = useState(false);

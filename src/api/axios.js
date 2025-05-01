@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-    baseURL: 'https://backend-tms-qh89.onrender.com',
+    baseURL: 'https://backendsi2-mudanza.onrender.com',
     timeout:10000
 })
 
