@@ -25,9 +25,10 @@ export const AuthProvider = ({ children }) => {
     const signin = async (user) => {
         try {
             const res = await loginRequest(user);
-            // setUser(res.data.usuario);
+            setUser(res.data.user)
             console.log(res.data);
             localStorage.setItem('token', res.data.token);
+            localStorage.setItem('user',JSON.stringify(res.data.user));
         } catch (err) {
             throw err; 
           }
@@ -55,18 +56,19 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
     async function checklogin() {
         const token = localStorage.getItem('token');
+        const savedUser = localStorage.getItem("user");
         if (!token) {
             setLoading(false);
             return;
         }
         try {
             setLoading(true);
-            const res = await vericarToken(token);
-            if (!res.dat) {
-                setLoading(false);
-                return;
-            }
-            setUser(res.data);
+            // const res = await vericarToken(token);
+            // if (!res.dat) {
+            //     setLoading(false);
+            //     return;
+            // }
+            setUser(JSON.parse(savedUser));
             setLoading(false);
         } catch (error) {
             console.error(error);

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../../Css/PerfilDeUsuario.css';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
@@ -12,16 +12,31 @@ function PerfilDeUsuario() {
     id: user.id,
     nombre: user.nombre,
     correo: user.email,
-    direccion: 'av/bolivia',
-    telefono: '76672191',
+    direccion: user.direccion,
+    telefono: user.telefono,
     contraseña: '********',
     puntaje: '5',
-    rol: user.rol.nombre
+    rol: user?.rol?.nombre || ''
   });
 
   const handleChange = (e) => {
     setUsuario({ ...usuario, [e.target.name]: e.target.value });
   };
+
+  useEffect(() => {
+    if (user) {
+      setUsuario({
+        id: user.id,
+        nombre: user.nombre || '',
+        correo: user.email || '',
+        direccion: user.direccion || '',
+        telefono: user.telefono || '',
+        contraseña: '********',
+        puntaje: '5',
+        rol: user?.rol?.nombre || ''
+      });
+    }
+  }, [user]);
 
   return (
     <div className='PerfilContenedor'>
@@ -31,7 +46,7 @@ function PerfilDeUsuario() {
         <div className="form-group">
           <label htmlFor="nombre">Nombre</label>
           <input
-            value={usuario.nombre}
+            value={usuario?.nombre || ''}
             type="text"
             name="nombre"
             className={`form-control ${editar ? 'input-editable' : ''}`}
@@ -43,7 +58,7 @@ function PerfilDeUsuario() {
         <div className="form-group">
           <label htmlFor="correo">Correo</label>
           <input
-            value={usuario.correo}
+            value={usuario?.correo || ''}
             type="email"
             name="correo"
             className={`form-control ${editar ? 'input-editable' : ''}`}
@@ -55,7 +70,7 @@ function PerfilDeUsuario() {
         <div className="form-group">
           <label htmlFor="telefono">Teléfono</label>
           <input
-            value={usuario.telefono}
+            value={usuario?.telefono || ''}
             type="text"
             name="telefono"
             className={`form-control ${editar ? 'input-editable' : ''}`}
@@ -67,7 +82,7 @@ function PerfilDeUsuario() {
         <div className="form-group">
           <label htmlFor="direccion">Dirección</label>
           <input
-            value={usuario.direccion}
+            value={usuario?.direccion || ''}
             type="text"
             name="direccion"
             className={`form-control ${editar ? 'input-editable' : ''}`}
@@ -112,7 +127,7 @@ function PerfilDeUsuario() {
         <div className="form-group">
           <label htmlFor="rol">Rol</label>
           <input
-            value={usuario.rol}
+            value={usuario?.rol || ''}
             type="text"
             name="rol"
             className="form-control"
