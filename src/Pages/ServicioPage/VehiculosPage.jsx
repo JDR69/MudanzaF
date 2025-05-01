@@ -6,106 +6,96 @@ import { registerVehiculo, obtenerVehiculo } from '../../api/auth';
 
 function VehiculosPage() {
 
-    const { tipoVehiculo } = useAuth()
+    const { tipoVehiculo } = useAuth();
 
     const [editIndex, setEditIndex] = useState(null);
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
-    const vehiculos2 = [
-        {
-            "Placa": "ABC-123",
-            "TipoVehiculo": "Camión",
-            "PesoDeCarga": 5000,
-            "Estado": "Activo",
-            "Kilometraje": 120000
-        },
-        {
-            "Placa": "XYZ-456",
-            "TipoVehiculo": "Furgoneta",
-            "PesoDeCarga": 2000,
-            "Estado": "En mantenimiento",
-            "Kilometraje": 80000
-        },
-        {
-            "Placa": "JKL-789",
-            "TipoVehiculo": "Pickup",
-            "PesoDeCarga": 1000,
-            "Estado": "Activo",
-            "Kilometraje": 45000
-        }
-    ]
+    const [vehiculos, setVehiculos] = useState([]);
 
     const [formData, setFormData] = useState({
         nombre: '',
-        capacidad: 0 || '',
-        costeKilometraje: 0 || '',
+        capacidad: '',
+        costeKilometraje: '',
         placa: '',
         motor: '',
-        modelo: 0 || '',
-        tipoVehID: 0 || 0, 
-        seguro: 0 || '',
-        estado: 0 || '',
+        modelo: '',
+        tipoVehID: '',
+        seguro: '',
+        estado: '',
     });
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({
-          ...formData,
-          [name]: ['capacidad', 'costeKilometraje', 'modelo', 'tipoVehID', 'seguro', 'estado'].includes(name)
-            ? Number(value)
-            : value,
+            ...formData,
+            [name]: ['capacidad', 'costeKilometraje', 'modelo', 'tipoVehID', 'seguro', 'estado'].includes(name)
+                ? Number(value)
+                : value,
         });
-      };
-      
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setLoading(true); //muestra mientras inserta
+        setLoading(true);
 
         try {
             console.log(formData);
             const res = await registerVehiculo(formData);
             console.log("✅ Vehículo registrado:", res.data);
-            setLoading(false)
             setSuccess(true);
 
             setTimeout(() => {
                 setSuccess(false);
-            }, 2000)
+            }, 2000);
 
+            listarVehiculo(); // refrescar lista después de guardar
         } catch (err) {
-            throw err;
-
+            console.error(err);
         } finally {
-            setLoading(false)
+            setLoading(false);
         }
 
         setFormData({
             nombre: '',
-            capacidad: 0 || '',
-            costeKilometraje: 0 || '',
+            capacidad: '',
+            costeKilometraje: '',
             placa: '',
             motor: '',
-            modelo: 0 || '',
-            tipoVehID: 0 || 0, 
-            seguro: 0 || '',
-            estado: 0 || '',
+            modelo: '',
+            tipoVehID: '',
+            seguro: '',
+            estado: '',
         });
+
+        setEditIndex(null);
     };
 
     const handleEdit = (index) => {
+        const vehiculo = vehiculos[index];
         setEditIndex(index);
-        setFormData(vehiculos2[index]);
+        setFormData({
+            nombre: vehiculo.nombre || '',
+            capacidad: vehiculo.capacidad || '',
+            costeKilometraje: vehiculo.costeKilometraje || '',
+            placa: vehiculo.placa || '',
+            motor: vehiculo.motor || '',
+            modelo: vehiculo.modelo || '',
+            tipoVehID: vehiculo.tipoVehID || '',
+            seguro: vehiculo.seguro || '',
+            estado: vehiculo.estado || '',
+        });
     };
 
-    const listarVehiculo = async() =>{
+    const listarVehiculo = async () => {
         try {
-            const res = obtenerVehiculo();
-            console.log(res.data)
+            const res = await obtenerVehiculo();
+            setVehiculos(res.data);
+            console.log(res.data);
         } catch (error) {
-            console.log(error)
+            console.error(error);
         }
-    }
+    };
 
     return (
         <div className='VehiculosConteiner'>
@@ -114,6 +104,7 @@ function VehiculosPage() {
                     <h1>Registro de Vehiculos</h1>
                     <i className="bi bi-truck"></i>
                 </div>
+
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label htmlFor="nombre">Nombre del Vehiculo</label>
@@ -153,7 +144,7 @@ function VehiculosPage() {
                         <input type="number" name="capacidad" className='form-control' value={formData.capacidad} onChange={handleChange} required />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="Estado">Estado del Vehiculo</label>
+                        <label htmlFor="estado">Estado del Vehiculo</label>
                         <select name="estado" className='form-control' value={formData.estado} onChange={handleChange} required>
                             <option value="">Seleccione</option>
                             <option value={1}>Disponible</option>
@@ -164,7 +155,7 @@ function VehiculosPage() {
                         <label htmlFor="seguro">Contiene seguro el vehiculo</label>
                         <select name="seguro" className='form-control' value={formData.seguro} onChange={handleChange} required>
                             <option value="">Seleccione</option>
-                            <option value={1}>Si</option>
+                            <option value={1}>Sí</option>
                             <option value={0}>No</option>
                         </select>
                     </div>
@@ -172,19 +163,23 @@ function VehiculosPage() {
                         <label htmlFor="costeKilometraje">Coste Kilometraje</label>
                         <input type="number" name="costeKilometraje" className='form-control' value={formData.costeKilometraje} onChange={handleChange} required />
                     </div>
-                    <div className="text-center">
+
+                    <div className="text-center d-flex gap-2 justify-content-center">
                         <button type="submit" className="btn btn-primary">
                             {editIndex !== null ? 'Actualizar Vehiculo' : 'Agregar Vehiculo'}
                         </button>
+                        <button type="button" className="btn btn-primary" onClick={listarVehiculo}>
+                            Listar
+                        </button>
                     </div>
                 </form>
-                <button onClick={listarVehiculo}>listar</button>
+
                 <div className='tablaVehiculos'>
                     <h2 className="mt-4">Lista de Vehículos</h2>
                     <table className="vehiculos-table">
                         <thead>
                             <tr>
-                                <th>Modelo</th>
+                                <th>Nombre</th>
                                 <th>Placa</th>
                                 <th>Tipo Vehiculo</th>
                                 <th>Peso de Carga</th>
@@ -195,15 +190,15 @@ function VehiculosPage() {
                             </tr>
                         </thead>
                         <tbody>
-                            {vehiculos2.map((vehiculo, index) => (
+                            {vehiculos.map((vehiculo, index) => (
                                 <tr key={index}>
-                                    <td>AWAI</td>
-                                    <td>{vehiculo.Placa}</td>
-                                    <td>{vehiculo.TipoVehiculo}</td>
-                                    <td>{vehiculo.PesoDeCarga}</td>
-                                    <td>2500</td>
-                                    <td>{vehiculo.Estado}</td>
-                                    <td>{vehiculo.Kilometraje}</td>
+                                    <td>{vehiculo.nombre}</td>
+                                    <td>{vehiculo.placa}</td>
+                                    <td>{vehiculo.tipoVehiculoNombre || 'N/A'}</td>
+                                    <td>{vehiculo.pesoCarga || 'N/A'}</td>
+                                    <td>{vehiculo.capacidad}</td>
+                                    <td>{vehiculo.estado === 1 ? 'Disponible' : 'Deshabilitado'}</td>
+                                    <td>{vehiculo.costeKilometraje}</td>
                                     <td>
                                         <button className="btn btn-warning" onClick={() => handleEdit(index)}>Editar</button>
                                     </td>
@@ -213,6 +208,7 @@ function VehiculosPage() {
                     </table>
                 </div>
             </div>
+
             {loading && (
                 <div className="loading-overlay">
                     <div className="spinner-border" role="status">
@@ -221,15 +217,13 @@ function VehiculosPage() {
                 </div>
             )}
 
-            {
-                success && (
-                    <div className="loading-overlay">
-                        <div className="alert alert-success" role="alert">
-                            ¡Vehículo guardado exitosamente! ✅
-                        </div>
+            {success && (
+                <div className="loading-overlay">
+                    <div className="alert alert-success" role="alert">
+                        ¡Vehículo guardado exitosamente! ✅
                     </div>
-                )
-            }
+                </div>
+            )}
         </div>
     );
 }
