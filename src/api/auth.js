@@ -9,7 +9,10 @@ export const loginRequest = data => instance.post(`/api/auth/login`,data,{
     withCredentials:true
 })
 
-export const registerReques = data => instance.post(`/api/cliente/registrar`,data,{
+export const registerReques = data => instance.post(`/api/auth/register`,data,{
+    headers: {
+        "Content-Type": "application/json"
+      },
     withCredentials: true
 })
 

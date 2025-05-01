@@ -9,21 +9,21 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 function RegistroClientPage() {
 
   const navigate = useNavigate();
-  
+  const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
     nombre: '',
-    username: '',
     email: '',
     telefono: '',
-    fecha_nacimiento: '',
     password: '',
-    foto: null
+    profile_icon: '',
+    direccion: '',
   });
+
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
-    if (name === 'foto') {
-      setFormData({ ...formData, foto: files[0] });
+    if (name === 'profile_icon') {
+      setFormData({ ...formData, profile_icon: files[0] });
     } else {
       setFormData({ ...formData, [name]: value });
     }
@@ -31,41 +31,41 @@ function RegistroClientPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+    const newErrors = {};
+    if (!formData.nombre.trim()) newErrors.nombre = "Campo requerido";
+    if (!formData.email.trim()) newErrors.email = "Campo requerido";
+    if (!formData.telefono.trim()) newErrors.telefono = "Campo requerido";
+    if (!formData.password.trim()) newErrors.password = "Campo requerido";
+    if (!formData.direccion.trim()) newErrors.direccion = "Campo requerido";
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
+    setErrors({});
+
     try {
-      const fechaFormateada = format(new Date(formData.fecha_nacimiento), "dd/MM/yyyy");
-  
-      const data = {
-        nombre: formData.nombre,
-        email: formData.email,
-        telefono: formData.telefono,
-        fecha_nacimiento: fechaFormateada,
-        password: formData.password,
-        url_profile: 'jskdfjsdfjds' // aquí pondrás tu lógica real para la imagen
-      };
-  
-      const response = await registerReques(data);
-  
-      // ✅ axios: la respuesta va en response.data
+
+      const res = await registerReques(formData);
+      console.log(res.data);
       alert("✅ Registro exitoso");
-  
       setFormData({
         nombre: '',
-        username: '',
         email: '',
         telefono: '',
-        fecha_nacimiento: '',
         password: '',
-        foto: null
+        profile_icon: '',
+        direccion: '',
       });
-  
+
       navigate('/login');
-  
+
     } catch (err) {
       console.error("❌ Error en el registro:", err);
-  
+
       // axios puede tener response.data.message
-      const mensaje = err?.response?.data?.message || 'Verifica los campos o intenta más tarde.';
+      const mensaje = err?.response?.data?.error|| 'Verifica los campos o intenta más tarde.';
       alert("Error: " + mensaje);
     }
   };
@@ -78,18 +78,21 @@ function RegistroClientPage() {
           <div className="col-md-6">
             <label className="form-label">Nombre</label>
             <input name="nombre" className="form-control" value={formData.nombre} onChange={handleChange} />
-          </div>
-          <div className="col-md-6">
-            <label className="form-label">Username</label>
-            <input name="username" className="form-control" value={formData.username} onChange={handleChange} />
+            {errors.nombre && <small className="text-danger">{errors.nombre}</small>}
           </div>
           <div className="col-md-6">
             <label className="form-label">Sube una Foto de Perfil</label>
-            <input name="foto" className="form-control" type="file" onChange={handleChange} />
+            <input name="profile_icon" className="form-control" type="file" onChange={handleChange} />
           </div>
           <div className="col-md-6">
             <label className="form-label">Correo Electrónico</label>
             <input name="email" type="email" className="form-control" value={formData.email} onChange={handleChange} />
+            {errors.email && <small className="text-danger">{errors.email}</small>}
+          </div>
+          <div className="col-md-6">
+            <label className="form-label">Direccion</label>
+            <input name="direccion" type="text" className="form-control" value={formData.direccion} onChange={handleChange} />
+            {errors.direccion && <small className="text-danger">{errors.direccion}</small>}
           </div>
         </div>
 
@@ -97,10 +100,7 @@ function RegistroClientPage() {
           <div className="col-md-6">
             <label className="form-label">Teléfono</label>
             <input name="telefono" type="tel" className="form-control" value={formData.telefono} onChange={handleChange} />
-          </div>
-          <div className="col-md-6">
-            <label className="form-label">Fecha de Nacimiento</label>
-            <input name="fecha_nacimiento" type="date" className="form-control" value={formData.fecha_nacimiento} onChange={handleChange} />
+            {errors.telefono && <small className="text-danger">{errors.telefono}</small>}
           </div>
         </div>
 
@@ -108,6 +108,7 @@ function RegistroClientPage() {
           <div className="col-md-6">
             <label className="form-label">Contraseña</label>
             <input name="password" type="password" className="form-control" value={formData.password} onChange={handleChange} />
+            {errors.password && <small className="text-danger">{errors.password}</small>}
           </div>
         </div>
 
