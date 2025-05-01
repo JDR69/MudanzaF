@@ -36,36 +36,36 @@ function VehiculosPage() {
     ]
 
     const [formData, setFormData] = useState({
-        Placa: '',
-        TipoVehiculo: '',
-        PesoDeCarga: '',
-        Estado: '',
-        Coste_Kilometraje: '',
-        Modelo: '',
-        Capacidad_Maxima: ''
+        nombre: '',
+        capacidad: 0 || '',
+        costeKilometraje: 0 || '',
+        placa: '',
+        motor: '',
+        modelo: 0 || '',
+        tipoVehID: 0 || 0, 
+        seguro: 0 || '',
+        estado: 0 || '',
     });
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
+        setFormData({
+          ...formData,
+          [name]: ['capacidad', 'costeKilometraje', 'modelo', 'tipoVehID', 'seguro', 'estado'].includes(name)
+            ? Number(value)
+            : value,
+        });
+      };
+      
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true); //muestra mientras inserta
 
-        const data = {
-            placa: formData.Placa,
-            tipoVehiculoId: Number(formData.TipoVehiculo),
-            peso: Number(formData.PesoDeCarga),
-            estado: true,
-            kilometraje: Number(formData.Coste_Kilometraje),
-            choferId: 1
-        }
-
         try {
-            // const res = await registerVehiculo(data);
-            // console.log("✅ Vehículo registrado:", res.data);
+            console.log(formData);
+            const res = await registerVehiculo(formData);
+            console.log("✅ Vehículo registrado:", res.data);
             setLoading(false)
             setSuccess(true);
 
@@ -75,16 +75,21 @@ function VehiculosPage() {
 
         } catch (err) {
             throw err;
+
+        } finally {
+            setLoading(false)
         }
 
         setFormData({
-            Placa: '',
-            TipoVehiculo: '',
-            PesoDeCarga: '',
-            Estado: '',
-            Coste_Kilometraje: '',
-            Modelo: '',
-            Capacidad_Maxima: ''
+            nombre: '',
+            capacidad: 0 || '',
+            costeKilometraje: 0 || '',
+            placa: '',
+            motor: '',
+            modelo: 0 || '',
+            tipoVehID: 0 || 0, 
+            seguro: 0 || '',
+            estado: 0 || '',
         });
     };
 
@@ -103,19 +108,27 @@ function VehiculosPage() {
                 </div>
                 <form onSubmit={handleSubmit}>
                     <div className="form-group">
-                        <label htmlFor="Placa">Modelo</label>
-                        <input type="text" name="Modelo" className='form-control' value={formData.Modelo} onChange={handleChange} required />
+                        <label htmlFor="nombre">Nombre del Vehiculo</label>
+                        <input type="text" name="nombre" className='form-control' value={formData.nombre} onChange={handleChange} required />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="Placa">Placa</label>
-                        <input type="text" name="Placa" className='form-control' value={formData.Placa} onChange={handleChange} required />
+                        <label htmlFor="modelo">Modelo</label>
+                        <input type="number" name="modelo" className='form-control' value={formData.modelo} onChange={handleChange} required />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="TipoVehiculo">Tipo Vehiculo</label>
-                        {/* <select
-                            name="TipoVehiculo"
+                        <label htmlFor="motor">Motor</label>
+                        <input type="text" name="motor" className='form-control' value={formData.motor} onChange={handleChange} required />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="placa">Placa</label>
+                        <input type="text" name="placa" className='form-control' value={formData.placa} onChange={handleChange} required />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="tipoVehID">Tipo Vehiculo</label>
+                        <select
+                            name="tipoVehID"
                             className="form-control"
-                            value={formData.TipoVehiculo}
+                            value={formData.tipoVehID}
                             onChange={handleChange}
                             required
                         >
@@ -125,27 +138,31 @@ function VehiculosPage() {
                                     {tipo.nombre}
                                 </option>
                             ))}
-                        </select> */}
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="PesoDeCarga">Peso de carga</label>
-                        <input type="number" name="PesoDeCarga" className='form-control' value={formData.PesoDeCarga} onChange={handleChange} required />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="PesoDeCarga">Capacidad Maxima</label>
-                        <input type="number" name="Capacidad_Maxima" className='form-control' value={formData.Capacidad_Maxima} onChange={handleChange} required />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="Estado">Estado del Vehiculo</label>
-                        <select name="Estado" className='form-control' value={formData.Estado} onChange={handleChange} required>
-                            <option value="">Seleccione</option>
-                            <option value="Nuevo">Nuevo</option>
-                            <option value="Usado">Usado</option>
                         </select>
                     </div>
                     <div className="form-group">
-                        <label htmlFor="Kilometraje">Coste Kilometraje</label>
-                        <input type="number" name="Coste_Kilometraje" className='form-control' value={formData.Coste_Kilometraje} onChange={handleChange} required />
+                        <label htmlFor="capacidad">Capacidad Maxima</label>
+                        <input type="number" name="capacidad" className='form-control' value={formData.capacidad} onChange={handleChange} required />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="Estado">Estado del Vehiculo</label>
+                        <select name="estado" className='form-control' value={formData.estado} onChange={handleChange} required>
+                            <option value="">Seleccione</option>
+                            <option value={1}>Disponible</option>
+                            <option value={0}>Deshabilitado</option>
+                        </select>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="seguro">Contiene seguro el vehiculo</label>
+                        <select name="seguro" className='form-control' value={formData.seguro} onChange={handleChange} required>
+                            <option value="">Seleccione</option>
+                            <option value={1}>Si</option>
+                            <option value={0}>No</option>
+                        </select>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="costeKilometraje">Coste Kilometraje</label>
+                        <input type="number" name="costeKilometraje" className='form-control' value={formData.costeKilometraje} onChange={handleChange} required />
                     </div>
                     <div className="text-center">
                         <button type="submit" className="btn btn-primary">

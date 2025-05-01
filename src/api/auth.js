@@ -28,7 +28,7 @@ export const obtenerBitacoraRequest = () => { return instance.get(`/api/bitacora
 })}
 
 
-export const registerVehiculo = (data) => instance.post(`/api/vehiculo/registrar`,
+export const registerVehiculo = (data) => instance.post(`/api/veh/reg`,
     data,{
         headers: {
             "Content-Type": "application/json"
@@ -37,7 +37,7 @@ export const registerVehiculo = (data) => instance.post(`/api/vehiculo/registrar
     }
 )
 
-export const obtenerTipoVehiculo = () => { return instance.get(`/api/vehiculo/get-all-tipo-vehiculo`,{
+export const obtenerTipoVehiculo = () => { return instance.get(`/api/tipoVeh/get`,{
     withCredentials: true,
     timeout: tiempoEspera
 })}

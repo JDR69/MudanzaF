@@ -41,14 +41,12 @@ export const AuthProvider = ({ children }) => {
             const [resRoles,resBitacora, resTipoVehiculo ] = await Promise.all([
                 obtenerRolesRequest(),
                 obtenerBitacoraRequest(),
-                // obtenerTipoVehiculo(),
+                obtenerTipoVehiculo(),
             ])
-            
-            // console.log(resRoles.data)
             setRoles(resRoles.data)
-            // setTipoVehiculo(resTipoVehiculo.data)
-            console.log(resBitacora.data)
             setBitacora(resBitacora.data)
+            console.log(resTipoVehiculo.data)
+            setTipoVehiculo(resTipoVehiculo.data)
         } catch (err) {
             throw err;
         }

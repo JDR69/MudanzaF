@@ -9,7 +9,7 @@ function PrivilegioPage() {
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [privilegios, setPrivilegios] = useState([]);
-    const [rolSeleccionado, setRolSeleccionado] = useState(roles[0].nombre);
+    const [rolSeleccionado, setRolSeleccionado] = useState(roles[0]?.nombre || '');
     const [mensajeExitoso, setMensajeExitoso] = useState("");
 
     useEffect(() => {
@@ -49,6 +49,8 @@ function PrivilegioPage() {
         setRolSeleccionado(event.target.value);
     };
 
+    if(!roles) <h1>cargando....</h1>
+
     return (
         <div className='principalPrivilegio'>
             <h1>Gestión de Privilegios</h1>
@@ -56,11 +58,11 @@ function PrivilegioPage() {
                 <div className='contenedorRol'>
                     <h2>Seleccionar Rol</h2>
                     <select name="rol" id='soyRol' value={rolSeleccionado} onChange={manejarCambioRol}>
-                        <option value="administrador">{roles[0].nombre}</option>
-                        <option value="usuario">{roles[1].nombre}</option>
-                        <option value="cliente">{roles[2].nombre}</option>
-                        <option value="ayudante">{roles[3].nombre}</option>
-                        <option value="chofer">{roles[4].nombre}</option>
+                        <option value="administrador">{roles[0]?.nombre}</option>
+                        <option value="usuario">{roles[1]?.nombre}</option>
+                        <option value="cliente">{roles[2]?.nombre}</option>
+                        {/* <option value="ayudante">{roles[3].nombre}</option>
+                        <option value="chofer">{roles[4].nombre}</option> */}
                     </select>
                 </div>
                 <div className='contenedorPrivilegios'>
