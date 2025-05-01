@@ -1,15 +1,23 @@
 import React, { useState } from 'react';
-import { format } from 'date-fns';
-import { registerReques } from '../../api/auth';
 import { useNavigate } from 'react-router-dom';
+import { registerReques } from '../../api/auth';
+import Cloudinary from '../../Cloudinary';
 import "../../Css/RegistroClientPage.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 function RegistroClientPage() {
-
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
+
+  const {
+    image,
+    loading,
+    message,
+    handleFileChange,
+    uploadImage,
+  } = Cloudinary();
+
   const [formData, setFormData] = useState({
     nombre: '',
     email: '',
@@ -19,14 +27,9 @@ function RegistroClientPage() {
     direccion: '',
   });
 
-
   const handleChange = (e) => {
-    const { name, value, files } = e.target;
-    if (name === 'profile_icon') {
-      setFormData({ ...formData, profile_icon: files[0] });
-    } else {
-      setFormData({ ...formData, [name]: value });
-    }
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = async (e) => {
@@ -46,10 +49,20 @@ function RegistroClientPage() {
     setErrors({});
 
     try {
+      const imageUrl = await uploadImage();
+      if (!imageUrl) {
+        alert("❌ Error al subir la imagen de perfil");
+        return;
+      }
 
-      const res = await registerReques(formData);
+      const res = await registerReques({
+        ...formData,
+        profile_icon: imageUrl,
+      });
+
       console.log(res.data);
       alert("✅ Registro exitoso");
+
       setFormData({
         nombre: '',
         email: '',
@@ -60,12 +73,9 @@ function RegistroClientPage() {
       });
 
       navigate('/login');
-
     } catch (err) {
       console.error("❌ Error en el registro:", err);
-
-      // axios puede tener response.data.message
-      const mensaje = err?.response?.data?.error|| 'Verifica los campos o intenta más tarde.';
+      const mensaje = err?.response?.data?.error || 'Verifica los campos o intenta más tarde.';
       alert("Error: " + mensaje);
     }
   };
@@ -74,23 +84,28 @@ function RegistroClientPage() {
     <div className="formContainer">
       <form className='formRegisterClient' onSubmit={handleSubmit}>
         <h2 className="titulo mb-4">Registro Cliente</h2>
+
         <div className="row mb-3">
           <div className="col-md-6">
             <label className="form-label">Nombre</label>
             <input name="nombre" className="form-control" value={formData.nombre} onChange={handleChange} />
             {errors.nombre && <small className="text-danger">{errors.nombre}</small>}
           </div>
+
           <div className="col-md-6">
             <label className="form-label">Sube una Foto de Perfil</label>
-            <input name="profile_icon" className="form-control" type="file" onChange={handleChange} />
+            <input name="profile_icon" className="form-control" type="file" onChange={(e) => handleFileChange(e.target.files[0])} />
+            {message && <small className="text-info d-block mt-1">{message}</small>}
           </div>
+
           <div className="col-md-6">
             <label className="form-label">Correo Electrónico</label>
             <input name="email" type="email" className="form-control" value={formData.email} onChange={handleChange} />
             {errors.email && <small className="text-danger">{errors.email}</small>}
           </div>
+
           <div className="col-md-6">
-            <label className="form-label">Direccion</label>
+            <label className="form-label">Dirección</label>
             <input name="direccion" type="text" className="form-control" value={formData.direccion} onChange={handleChange} />
             {errors.direccion && <small className="text-danger">{errors.direccion}</small>}
           </div>
@@ -112,7 +127,9 @@ function RegistroClientPage() {
           </div>
         </div>
 
-        <button type="submit" className="btn btn-primary">Confirmar Registro</button>
+        <button type="submit" className="btn btn-primary" disabled={loading}>
+          {loading ? "Subiendo imagen..." : "Confirmar Registro"}
+        </button>
       </form>
     </div>
   );
