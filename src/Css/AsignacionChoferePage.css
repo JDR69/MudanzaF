@@ -98,4 +98,56 @@
     justify-content: center;
     margin-top: 20px;
 }
+
+/* Contenedor de búsqueda */
+.buscar-vehiculo {
+  margin-top: 20px;
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Input de búsqueda */
+.buscar-vehiculo input[type="text"] {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.buscar-vehiculo input[type="text"]:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0,123,255,0.2);
+}
+
+/* Lista de sugerencias */
+.sugerencias-lista {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #ccc;
+  border-top: none;
+  z-index: 10;
+  max-height: 200px;
+  overflow-y: auto;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Elemento individual */
+.sugerencia-item {
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.sugerencia-item:hover {
+  background-color: #f0f0f0;
+}
+
   

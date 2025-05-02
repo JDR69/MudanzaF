@@ -19,7 +19,7 @@ function VehiculosPage() {
         placa: '',
         motor: '',
         modelo: '',
-        tipo: '',
+        tipoVehID: '',
         seguro: '',
         estado: '',
     });
@@ -32,7 +32,7 @@ function VehiculosPage() {
         const { name, value } = e.target;
         setFormData({
             ...formData,
-            [name]: ['capacidad', 'costeKilometraje', 'modelo'].includes(name)
+            [name]: ['capacidad', 'costeKilometraje', 'modelo','estado','tipoVehID','seguro'].includes(name)
                 ? Number(value)
                 : value,
         });
@@ -66,7 +66,7 @@ function VehiculosPage() {
             placa: '',
             motor: '',
             modelo: '',
-            tipo: '',
+            tipoVehID: '',
             seguro: '',
             estado: '',
         });
@@ -84,7 +84,7 @@ function VehiculosPage() {
             placa: vehiculo.placa || '',
             motor: vehiculo.motor || '',
             modelo: vehiculo.modelo || '',
-            tipo: vehiculo.tipo || '',
+            tipoVehID: vehiculo.tipo || '',
             seguro: vehiculo.seguro || '',
             estado: vehiculo.estado || '',
         });
@@ -128,15 +128,15 @@ function VehiculosPage() {
                     <div className="form-group">
                         <label htmlFor="tipo">Tipo Vehiculo</label>
                         <select
-                            name="tipo"
+                            name="tipoVehID"
                             className="form-control"
-                            value={formData.tipo}
+                            value={formData.tipoVehID}
                             onChange={handleChange}
                             required
                         >
                             <option value="">Seleccione</option>
                             {tipoVehiculo.map((tipo) => (
-                                <option key={tipo.id} value={tipo.nombre}>
+                                <option key={tipo.id} value={tipo.id}>
                                     {tipo.nombre}
                                 </option>
                             ))}
@@ -150,16 +150,16 @@ function VehiculosPage() {
                         <label htmlFor="estado">Estado del Vehiculo</label>
                         <select name="estado" className='form-control' value={formData.estado} onChange={handleChange} required>
                             <option value="">Seleccione</option>
-                            <option value="Disponible">Disponible</option>
-                            <option value="Deshabilitado">Deshabilitado</option>
+                            <option value={1}>Disponible</option>
+                            <option value={0}>Deshabilitado</option>
                         </select>
                     </div>
                     <div className="form-group">
                         <label htmlFor="seguro">Contiene seguro el vehiculo</label>
                         <select name="seguro" className='form-control' value={formData.seguro} onChange={handleChange} required>
                             <option value="">Seleccione</option>
-                            <option value="SI">Sí</option>
-                            <option value="NO">No</option>
+                            <option value={1}>Sí</option>
+                            <option value={0}>No</option>
                         </select>
                     </div>
                     <div className="form-group">

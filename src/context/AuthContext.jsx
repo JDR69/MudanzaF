@@ -1,5 +1,5 @@
 import { createContext, useState, useContext, useEffect } from "react";
-import { loginRequest, obtenerBitacoraRequest, obtenerRolesRequest, obtenerTipoVehiculo } from "../api/auth";
+import { loginRequest, obtenerBitacoraRequest, obtenerRolesRequest, obtenerTipoVehiculo, obtenerVehiculo} from "../api/auth";
 
 const AuthContext = createContext();
 
@@ -16,7 +16,8 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
     const [roles, setRoles] = useState([]);
     const [bitacora, setBitacora] = useState([])
-    const [tipoVehiculo, setTipoVehiculo] = useState([])
+    const [tipoVehiculo, setTipoVehiculo] = useState([]);
+    const [vehiculos, setVehiculos] = useState([]);
 
     const setUserData = (data) => {
         setUser(data);
@@ -38,15 +39,18 @@ export const AuthProvider = ({ children }) => {
     const cargarDatos = async () =>{
         try {
 
-            const [resRoles,resBitacora, resTipoVehiculo ] = await Promise.all([
+            const [resRoles,resBitacora, resTipoVehiculo, resVehiculos] = await Promise.all([
                 obtenerRolesRequest(),
                 obtenerBitacoraRequest(),
                 obtenerTipoVehiculo(),
+                obtenerVehiculo(),
             ])
             setRoles(resRoles.data)
             setBitacora(resBitacora.data)
             console.log(resTipoVehiculo.data)
             setTipoVehiculo(resTipoVehiculo.data)
+            setVehiculos(resVehiculos.data)
+            console.log(resVehiculos.data)
         } catch (err) {
             throw err;
         }
@@ -89,7 +93,8 @@ return (
         user,
         roles,
         bitacora,
-        tipoVehiculo
+        tipoVehiculo,
+        vehiculos
     }}>
         {children}
     </AuthContext.Provider>
