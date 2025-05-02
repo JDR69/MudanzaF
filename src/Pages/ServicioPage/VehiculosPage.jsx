@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../../Css/VehiculosPage.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useAuth } from '../../context/AuthContext';
 import { registerVehiculo, obtenerVehiculo } from '../../api/auth';
 
 function VehiculosPage() {
-
     const { tipoVehiculo } = useAuth();
 
     const [editIndex, setEditIndex] = useState(null);
@@ -20,16 +19,20 @@ function VehiculosPage() {
         placa: '',
         motor: '',
         modelo: '',
-        tipoVehID: '',
+        tipo: '',
         seguro: '',
         estado: '',
     });
+
+    useEffect(() => {
+        listarVehiculo();
+    }, []);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({
             ...formData,
-            [name]: ['capacidad', 'costeKilometraje', 'modelo', 'tipoVehID', 'seguro', 'estado'].includes(name)
+            [name]: ['capacidad', 'costeKilometraje', 'modelo'].includes(name)
                 ? Number(value)
                 : value,
         });
@@ -49,7 +52,7 @@ function VehiculosPage() {
                 setSuccess(false);
             }, 2000);
 
-            listarVehiculo(); // refrescar lista después de guardar
+            listarVehiculo();
         } catch (err) {
             console.error(err);
         } finally {
@@ -63,7 +66,7 @@ function VehiculosPage() {
             placa: '',
             motor: '',
             modelo: '',
-            tipoVehID: '',
+            tipo: '',
             seguro: '',
             estado: '',
         });
@@ -81,7 +84,7 @@ function VehiculosPage() {
             placa: vehiculo.placa || '',
             motor: vehiculo.motor || '',
             modelo: vehiculo.modelo || '',
-            tipoVehID: vehiculo.tipoVehID || '',
+            tipo: vehiculo.tipo || '',
             seguro: vehiculo.seguro || '',
             estado: vehiculo.estado || '',
         });
@@ -123,17 +126,17 @@ function VehiculosPage() {
                         <input type="text" name="placa" className='form-control' value={formData.placa} onChange={handleChange} required />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="tipoVehID">Tipo Vehiculo</label>
+                        <label htmlFor="tipo">Tipo Vehiculo</label>
                         <select
-                            name="tipoVehID"
+                            name="tipo"
                             className="form-control"
-                            value={formData.tipoVehID}
+                            value={formData.tipo}
                             onChange={handleChange}
                             required
                         >
                             <option value="">Seleccione</option>
                             {tipoVehiculo.map((tipo) => (
-                                <option key={tipo.id} value={tipo.id}>
+                                <option key={tipo.id} value={tipo.nombre}>
                                     {tipo.nombre}
                                 </option>
                             ))}
@@ -147,16 +150,16 @@ function VehiculosPage() {
                         <label htmlFor="estado">Estado del Vehiculo</label>
                         <select name="estado" className='form-control' value={formData.estado} onChange={handleChange} required>
                             <option value="">Seleccione</option>
-                            <option value={1}>Disponible</option>
-                            <option value={0}>Deshabilitado</option>
+                            <option value="Disponible">Disponible</option>
+                            <option value="Deshabilitado">Deshabilitado</option>
                         </select>
                     </div>
                     <div className="form-group">
                         <label htmlFor="seguro">Contiene seguro el vehiculo</label>
                         <select name="seguro" className='form-control' value={formData.seguro} onChange={handleChange} required>
                             <option value="">Seleccione</option>
-                            <option value={1}>Sí</option>
-                            <option value={0}>No</option>
+                            <option value="SI">Sí</option>
+                            <option value="NO">No</option>
                         </select>
                     </div>
                     <div className="form-group">
@@ -180,7 +183,10 @@ function VehiculosPage() {
                         <thead>
                             <tr>
                                 <th>Nombre</th>
+                                <th>Modelo</th>
+                                <th>Motor</th>
                                 <th>Placa</th>
+                                <th>Seguro</th>
                                 <th>Tipo Vehiculo</th>
                                 <th>Capacidad Max</th>
                                 <th>Estado</th>
@@ -192,10 +198,13 @@ function VehiculosPage() {
                             {vehiculos.map((vehiculo, index) => (
                                 <tr key={index}>
                                     <td>{vehiculo.nombre}</td>
+                                    <td>{vehiculo.modelo}</td>
+                                    <td>{vehiculo.motor}</td>
                                     <td>{vehiculo.placa}</td>
-                                    <td>{vehiculo.tipo || 'N/A'}</td>
-                                      <td>{vehiculo.capacidad}</td>
-                                    <td>{vehiculo.estado === 'Disponible' ? 'Disponible' : 'Deshabilitado'}</td>
+                                    <td>{vehiculo.seguro}</td>
+                                    <td>{vehiculo.tipo}</td>
+                                    <td>{vehiculo.capacidad}</td>
+                                    <td>{vehiculo.estado}</td>
                                     <td>{vehiculo.costeKilometraje}</td>
                                     <td>
                                         <button className="btn btn-warning" onClick={() => handleEdit(index)}>Editar</button>
