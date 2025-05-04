@@ -64,3 +64,17 @@ export const tipoVehiculoRequest = (data) => instance.post( `/api/tipoVeh/reg`,
         withCredentials:true
     }
 )
+
+export const registrarGaleriaVehiculos = (data,id) => instance.post(`/api/veh/regImg/${id}`,
+    data,{
+        headers: {
+            "Content-Type": "application/json"
+          },
+        withCredentials:true
+    }
+)
+
+export const obtenerCatalogoVehiculo = () => { return instance.get(`/api/veh/getCat`,{
+    withCredentials: true,
+    timeout: tiempoEspera
+})}

@@ -8,11 +8,13 @@ import { useAuth } from "../../context/AuthContext";
 import BitacoraPage from "../../Pages/UsuarioPage/BitacoraPage.jsx";
 import PrivilegioPage from "../../Pages/UsuarioPage/PrivilegioPage.jsx";
 import PerfilDeUsuario from "../../Pages/UsuarioPage/PerfilDeUsuario.jsx";
+import UsuariosPage from "../../Pages/UsuarioPage/UsuariosPage.jsx";
 
 //-------------------Servicios------------//
 import VehiculosPage from "../../Pages/ServicioPage/VehiculosPage.jsx";
 import GaleriaVehiculosPage from "../../Pages/ServicioPage/GaleriaVehiculosPage.jsx";
 import AsignacionChoferePage from "../../Pages/ServicioPage/AsignacionChoferePage.jsx";
+import TipoVehiculoPage from "../../Pages/ServicioPage/TipoVehiculoPage.jsx";
 
 
 import "./Homed.css"
@@ -35,6 +37,8 @@ export const Homed = () => {
           <Route path="/vehiculos" element={<VehiculosPage />} />
           <Route path="/galeriaVeh" element={<GaleriaVehiculosPage />} />
           <Route path="/regisChofer" element={<AsignacionChoferePage/>} />
+          <Route path="/usuarios" element={<UsuariosPage/>} />
+          <Route path="/tipoVehiculo" element={<TipoVehiculoPage/>} />
           <Route path="*" element={<div>No encontrado</div>} />
         </Routes>
         <Outlet />

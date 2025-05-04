@@ -173,7 +173,7 @@ const enlaceUsuario = [
   {
     label: "Usuarios",
     icon: <MdOutlineAnalytics />,
-    to: "/dasboard/usuarioGestion", // Corregido a "dashboard"
+    to: "/dasboard/usuarios", // Corregido a "dashboard"
   },
   {
     label: "Perfiles de Usuarios",
@@ -194,9 +194,9 @@ const enlaceServicios = [
     to: "/dasboard/products", // Corregido a "dashboard"
   },
   {
-    label: "Control de Tarifas",
+    label: "Tipo Vehiculo",
     icon: <MdOutlineAnalytics />,
-    to: "/dasboard/categoriaproducto", // Corregido a "dashboard"
+    to: "/dasboard/tipoVehiculo", // Corregido a "dashboard"
   },
   {
     label: "Tipo Emabalage",

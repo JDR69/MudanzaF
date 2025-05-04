@@ -3,45 +3,100 @@ import React, { useState } from 'react';
 import Cloudinary from '../../Cloudinary';
 import '../../Css/GaleriaVehiculosPage.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useAuth } from '../../context/AuthContext';
+import { registrarGaleriaVehiculos } from '../../api/auth';
 
 function GaleriaVehiculosPage() {
     const { loading, message, image, handleFileChange, uploadImage } = Cloudinary();
-    const [placa, setPlaca] = useState('');
-    const [imagenes, setImagenes] = useState([]); // ← Aquí guardaremos todas las imágenes
+    const { vehiculos, catalogoVehiculos } = useAuth();
+    const [imagenes, setImagenes] = useState([]);
+    const [vehiculoSeleccionado, setVehiculoSeleccionado] = useState(null);
+    const [busqueda, setBusqueda] = useState('');
+    const [imagenNueva, setImagenNueva] = useState([]);
 
-    const handleUpload = async () => {
+
+    const imagenBackend = 1;
+    const imagenActualizada = 2;
+
+    const handleUpload = async (tipoImg) => {
         try {
-            const url = await uploadImage(); // 🚀 ahora esperamos la URL
-            if (url) {
-                setImagenes((prev) => [...prev, url]); // la agregamos directamente
+            const url = await uploadImage();
+            if (tipoImg === imagenBackend) {
+                setImagenes((prev) => [...prev, url]);
+            } else {
+                setImagenNueva((prev) => [...prev, url]);
             }
         } catch (error) {
             console.error("Error al subir imagen:", error);
         }
     };
 
+    const handlePlacaChange = (e) => {
+        const placaIngresada = e.target.value;
+        setBusqueda(placaIngresada);
+
+        const encontrado = vehiculos.find((v) =>
+            v.placa.toLowerCase().trim() === placaIngresada.toLowerCase().trim()
+        );
+        setVehiculoSeleccionado(encontrado || null);
+    };
+
+    const filtrados = vehiculos.filter(
+        (v) =>
+            v.placa.toLowerCase().includes(busqueda.toLowerCase()) ||
+            v.modelo.toString().toLowerCase().includes(busqueda.toLowerCase())
+    );
+
+    const agregarVehiculo = (vehiculo) => {
+
+        const encontrado = catalogoVehiculos.find((v) =>
+            v.id === vehiculo.id
+        );
+        if (encontrado && encontrado.img.length > 0) {
+            setVehiculoSeleccionado(encontrado);
+            setBusqueda('');
+        } else {
+
+            setVehiculoSeleccionado(vehiculo);
+            setBusqueda('');
+
+        }
+    };
+
+    const handleActualizarImagen = async () => {
+        const data = {
+            imagenes: imagenNueva
+        };
+
+
+        try {
+            const res = await registrarGaleriaVehiculos(data, vehiculoSeleccionado.id);
+            console.log(res)
+            alert("✅ Vehiculo registrado correctamente.");
+            setImagenes([]);
+            setVehiculoSeleccionado(null);
+            setBusqueda('');
+        } catch (error) {
+            console.error(error);
+            alert('❌ Error al registrar el vehiculo.');
+        }
+    };
 
     const handleEnviarAlBackend = async () => {
         const data = {
-            placa,
-            imagenes
+            imagenes: imagenes
         };
 
         try {
-            const res = await fetch('TU_BACKEND_URL/guardar-fotos', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
-            });
-
-            if (res.ok) {
-                alert('✅ Fotos enviadas correctamente.');
-            } else {
-                alert('❌ Error al enviar fotos.');
-            }
+            const res = await registrarGaleriaVehiculos(data, vehiculoSeleccionado.id);
+            console.log(res)
+            alert("✅ Vehiculo registrado correctamente.");
+            setImagenes([]);
+            setVehiculoSeleccionado(null);
+            setBusqueda('');
         } catch (error) {
             console.error(error);
-            alert('❌ Error en la comunicación con el backend.');
+            alert('❌ Error al registrar el vehiculo.');
         }
     };
 
@@ -49,73 +104,148 @@ function GaleriaVehiculosPage() {
         setImagenes((prev) => prev.filter((_, i) => i !== index));
     };
 
-
     return (
         <div className='GaleriaConteiner'>
             <div className='GaleriaConteiner2'>
                 <h1>Galería de Vehículos</h1>
 
-                <div className="form-group">
-                    <label htmlFor="Placa">Placa</label>
-                    <input
-                        type="text"
-                        name="Placa"
-                        className='form-control'
-                        required
-                        value={placa}
-                        onChange={(e) => setPlaca(e.target.value)}
-                    />
+                <div className='GaleriaConteiner3'>
+
+                    <div className="form-group">
+                        <label htmlFor="Placa">Placa</label>
+                        <input
+                            type="text"
+                            name="busqueda"
+                            className='form-control'
+                            required
+                            value={busqueda}
+                            onChange={handlePlacaChange}
+                            placeholder="Ingrese la placa"
+                        />
+                    </div>
+                    {busqueda && filtrados.length > 0 && (
+                        <div className="sugerencias-lista2">
+                            {filtrados.map((v) => (
+                                <div key={v.id} className="sugerencia2" onClick={() => agregarVehiculo(v)}>
+                                    {v.placa} - {v.modelo}
+                                </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
 
-                <div className="form-group">
-                    <label>Selecciona una imagen</label>
-                    <input
-                        type="file"
-                        name="file"
-                        className="form-control"
-                        onChange={(e) => handleFileChange(e.target.files[0])}
-                    />
-                </div>
 
-                <button className="btn btn-primary mt-2" onClick={handleUpload}>
-                    Subir Imagen
-                </button>
+                {vehiculoSeleccionado?.img?.length > 0 ? (
+                    <div className="mt-3">
+                        <p><strong>Nombre:</strong> {vehiculoSeleccionado.nombre}</p>
+                        <p><strong>Tipo:</strong> {vehiculoSeleccionado.tipo}</p>
+                    </div>
+                ): (
+                    <div className="mt-3">
+                        <p><strong>Placa:</strong> {vehiculoSeleccionado?.placa}</p>
+                        <p><strong>Motor:</strong> {vehiculoSeleccionado?.motor}</p>
+                        <p><strong>Modelo:</strong> {vehiculoSeleccionado?.modelo}</p>
+                        <p><strong>Tipo:</strong> {vehiculoSeleccionado?.tipo}</p>
+                    </div>
+                )}
 
-                {loading && <p>Cargando imagen...</p>}
 
-                {/* Tabla de imágenes subidas */}
-                {imagenes.length > 0 && (
-                    <div className="mt-4">
-                        <h2>Imágenes Subidas</h2>
-                        <table className="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Imagen</th>
-                                    <th>URL</th>
-                                    <th>Acciones</th> {/* ← nueva columna para botones */}
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {imagenes.map((img, index) => (
-                                    <tr key={index}>
-                                        <td>{index + 1}</td>
-                                        <td><img src={img} alt={`Imagen ${index + 1}`} style={{ width: '100px' }} /></td>
-                                        <td><a href={img} target="_blank" rel="noopener noreferrer">{img}</a></td>
-                                        <td>
-                                            <button className="btn btn-danger btn-sm" onClick={() => handleEliminarImagen(index)}>
-                                                Eliminar
-                                            </button>
-                                        </td>
+                {vehiculoSeleccionado?.img?.length > 0 ? (
+                    <div className="conteinerImagenVehiculo">
+                        <div className='actualizarImagen'>
+                            <label > Seleccion una nueva imagen</label>
+                            <input
+                                type="file"
+                                name="file"
+                                className="form-control"
+                                onChange={(e) => handleFileChange(e.target.files[0])}
+                            />
+                            <button className="btn btn-primary mt-2" onClick={() => handleUpload(imagenActualizada)}>
+                                Subir Imagen
+                            </button>
+                        </div>
+                        <div className='tablaImagenes'>
+                            <table className="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Imagen</th>
+                                        <th>Acciones</th>
                                     </tr>
-                                ))}
-                            </tbody>
+                                </thead>
+                                <tbody>
+                                    {
+                                        vehiculoSeleccionado?.img.map((img) => {
+                                            return (
+                                                <tr key={img.id}>
+                                                    <td>{img.id}</td>
+                                                    <td><img src={img.dir_imagen} style={{ width: '100px' }} alt="" /></td>
+                                                    <td>
+                                                        <button id='Eliminar' onClick={() => handleEliminarImagen(img.id)}>
+                                                            Eliminar
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            )
+                                        })
+                                    }
+                                </tbody>
+                            </table>
+                            <button className="btn btn-primary  mt-2" onClick={handleActualizarImagen}>Guardar Actualización</button>
+                        </div>
+                    </div>
+                ) : (
+                    <div>
+                        <div className="form-group mt-4">
+                            <label>Selecciona una imagen</label>
+                            <input
+                                type="file"
+                                name="file"
+                                className="form-control"
+                                onChange={(e) => handleFileChange(e.target.files[0])}
+                            />
+                        </div>
 
-                        </table>
-
-                        <button className="btn btn-success" onClick={handleEnviarAlBackend}>
-                            Enviar Imágenes al Backend
+                        <button className="btn btn-primary mt-2" onClick={() => handleUpload(imagenBackend)}>
+                            Subir Imagen
                         </button>
+
+                        {loading && <p>Cargando imagen...</p>}
+
+                        {imagenes.length > 0 && (
+                            <div className="mt-4">
+                                <h2>Imágenes Subidas</h2>
+                                <table className="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Imagen</th>
+                                            <th>URL</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {imagenes.map((img, index) => (
+                                            <tr key={index}>
+                                                <td>{index + 1}</td>
+                                                <td><img src={img} alt={`Imagen ${index + 1}`} style={{ width: '100px' }} /></td>
+                                                <td><a href={img} target="_blank" rel="noopener noreferrer">{img}</a></td>
+                                                <td>
+                                                    <button id='Eliminar' onClick={() => handleEliminarImagen(index)}>
+                                                        Eliminar
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+
+                                <button className="btn btn-success" onClick={handleEnviarAlBackend}>
+                                    Enviar Imágenes al Backend
+                                </button>
+                            </div>
+                        )}
+
                     </div>
                 )}
             </div>

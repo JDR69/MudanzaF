@@ -17,6 +17,9 @@ const AsignacionChoferePage = () => {
     password: '',
     carnet: '',
     direccion: '',
+    telefono: '',
+    estado: 1,
+    url: ''
   });
 
   const [nuevoChofer, setNuevoChofer] = useState({
@@ -25,7 +28,7 @@ const AsignacionChoferePage = () => {
     email: '',
     carnet: '',
     direccion: '',
-    contraseña: '',
+    telefono: '',
     estado: 1,
     url: ''
   });
@@ -38,16 +41,18 @@ const AsignacionChoferePage = () => {
       carnet: "11317191",
       contraseña: "12345678",
       direccion: "AV.BOLIVIA",
+      telefono: "12345678",
       estado: 1,
       url: "https://randomuser.me/api/portraits/men/32.jpg"
     },
     {
       id: 2,
-      nombre: "Laura",
+      nombre: "Laura",  
       email: "laura@gmail.com",
       carnet: "12456233",
       contraseña: "laura2025",
       direccion: "CALLE SUCRE",
+      telefono: "12345678",
       estado: 1,
       url: "http://psta.com/laura"
     },
@@ -58,6 +63,7 @@ const AsignacionChoferePage = () => {
       carnet: "13578942",
       contraseña: "carlos123",
       direccion: "AV.SANTA CRUZ",
+      telefono: "12345678",
       estado: 1,
       url: "http://psta.com/carlos"
     },
@@ -67,6 +73,7 @@ const AsignacionChoferePage = () => {
       email: "maria@gmail.com",
       carnet: "12678954",
       contraseña: "maria2024",
+      telefono: "12345678",
       direccion: "ZONA NORTE",
       estado: 0,
       url: "http://psta.com/maria"
@@ -78,6 +85,7 @@ const AsignacionChoferePage = () => {
       carnet: "14785236",
       contraseña: "josechofer",
       direccion: "AV. BANZER",
+      telefono: "12345678",
       estado: 1,
       url: "http://psta.com/jose"
     },
@@ -85,9 +93,10 @@ const AsignacionChoferePage = () => {
       id: 6,
       nombre: "Ana",
       email: "ana@gmail.com",
-      carnet: "15896324",
+      carnet: "15896324", 
       contraseña: "ana12345",
       direccion: "CALLE 21 DE MAYO",
+      telefono: "12345678",
       estado: 0,
       url: "http://psta.com/ana"
     }
@@ -128,18 +137,31 @@ const AsignacionChoferePage = () => {
     e.preventDefault();
 
     try {
+      const url = await uploadImage();
+      if(url){
+        formData.url = url;
+      }
+    } catch (error) {
+      alert("Error al subir imagen");
+      return;
+    }
+
+    try {
       const data = {
         dirrecion: formData.direccion,
         estado: true,
         ci: formData.carnet,
         nombre: formData.nombre,
         email: formData.email,
+        telefono: formData.telefono,
         password: formData.password,
-        url_profile: "ffdsfdsfdsf", // o image.url si lo subiste
+        url_profile: formData.url || null,
         vehiculos: nuevoVehiculos.map(v => v.id), // enviar ids de vehículos asignados
       };
 
-      const res = await registerChofer(data);
+      console.log(data);
+
+      // const res = await registerChofer(data);
       alert("✅ Chofer registrado correctamente");
 
       setFormData({
@@ -148,6 +170,7 @@ const AsignacionChoferePage = () => {
         password: '',
         carnet: '',
         direccion: '',
+        telefono: '',
       });
       setNuevoVehiculos([]);
     } catch (err) {
@@ -193,6 +216,14 @@ const AsignacionChoferePage = () => {
               name="email"
               placeholder="Correo electrónico"
               value={formData.email}
+              onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
+              required
+            />
+            <input
+              type="number"
+              name="telefono"
+              placeholder="Telefono"
+              value={formData.telefono}
               onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
               required
             />
