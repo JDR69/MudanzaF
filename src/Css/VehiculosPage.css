@@ -1,15 +1,14 @@
 .VehiculosConteiner {
-    width: 100%;
+    width: auto;
     padding: 20px;
     display: flex; 
     justify-content: center; 
+    flex-wrap: wrap;
     align-items: center; 
     flex-direction: column;
+    overflow: hidden;
 }
 
-.form-group {
-    margin-bottom: 15px;
-}
 .mb-3{
     width: 100%;
     display: flex;
@@ -102,3 +101,13 @@
     font-weight: bold;
 }
 
+.form-group2{
+    width: auto;
+}
+
+.VehiculosConteiner2{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+}

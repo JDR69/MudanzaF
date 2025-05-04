@@ -11,6 +11,7 @@ const AsignacionChoferePage = () => {
   const [nuevoVehiculos, setNuevoVehiculos] = useState([]);
   const [estado, setEstado] = useState('En Línea');
   const [busqueda, setBusqueda] = useState('');
+  const [listarChoferes, setListarChoferes] = useState(false);
   const [formData, setFormData] = useState({
     nombre: '',
     email: '',
@@ -47,7 +48,7 @@ const AsignacionChoferePage = () => {
     },
     {
       id: 2,
-      nombre: "Laura",  
+      nombre: "Laura",
       email: "laura@gmail.com",
       carnet: "12456233",
       contraseña: "laura2025",
@@ -93,7 +94,7 @@ const AsignacionChoferePage = () => {
       id: 6,
       nombre: "Ana",
       email: "ana@gmail.com",
-      carnet: "15896324", 
+      carnet: "15896324",
       contraseña: "ana12345",
       direccion: "CALLE 21 DE MAYO",
       telefono: "12345678",
@@ -138,7 +139,7 @@ const AsignacionChoferePage = () => {
 
     try {
       const url = await uploadImage();
-      if(url){
+      if (url) {
         formData.url = url;
       }
     } catch (error) {
@@ -179,282 +180,306 @@ const AsignacionChoferePage = () => {
     }
   };
 
+  const handleCambioAgregar = () => {
+    setEditar(true);
+    setListarChoferes(false);
+  }
+
+  const handleCambioListar = () => {
+    setEditar(true);
+    setListarChoferes(true);
+  }
+
+  const handleCambiEditar = () => {
+    setEditar(!editar);
+    setListarChoferes(false);
+  }
+
   return (
     <div className="container-chofer">
-      <div className="form-check form-switch">
-        <input
-          className="form-check-input"
-          type="checkbox"
-          role="switch"
-          id="switchCheckChecked"
-          checked={editar}
-          onChange={(e) => setEditar(e.target.checked)}
-        />
-        <label className="form-check-label" htmlFor="switchCheckChecked">
-          {editar ? 'Modo edición desactivado' : 'Modo edición activado'}
-        </label>
-      </div>
-
-      {editar ? (
-        <div>
-          <div className="titulo-chofer">
-            <i className="bi bi-person-fill-check icon-titulo"></i>
-            <h2>Asignación de nuevo Chofer</h2>
-          </div>
-
-          <form className="formulario-chofer" onSubmit={onSubmit}>
-            <input
-              type="text"
-              name="nombre"
-              placeholder="Nombre completo"
-              value={formData.nombre}
-              onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
-              required
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="Correo electrónico"
-              value={formData.email}
-              onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
-              required
-            />
-            <input
-              type="number"
-              name="telefono"
-              placeholder="Telefono"
-              value={formData.telefono}
-              onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
-              required
-            />
-            <input
-              type="password"
-              name="password"
-              placeholder="Contraseña"
-              value={formData.password}
-              onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
-              required
-            />
-            <input
-              type="file"
-              name="file"
-              className="form-control"
-              onChange={(e) => handleFileChange(e.target.files[0])}
-            />
-            <input
-              type="text"
-              name="carnet"
-              placeholder="Carnet de Identidad"
-              value={formData.carnet}
-              onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
-            />
-            <input
-              type="text"
-              name="direccion"
-              placeholder="Dirección / Vivienda"
-              value={formData.direccion}
-              onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
-            />
-            <select value={estado} onChange={(e) => setEstado(e.target.value)}>
-              <option value="En Línea">En Línea</option>
-              <option value="Fuera de Línea">Fuera de Línea</option>
-            </select>
-
-            <div className="registerChofer">
-              <button className="btn btn-success" type="submit">Registrar</button>
-            </div>
-          </form>
-
-          <div className="buscar-vehiculo">
-            <input
-              type="text"
-              placeholder="Buscar por placa o modelo"
-              value={busqueda}
-              onChange={(e) => setBusqueda(e.target.value)}
-            />
-            {busqueda && filtrados.length > 0 && (
-              <div className="sugerencias-lista">
-                {filtrados.map((v) => (
-                  <div key={v.id} className="sugerencia-item" onClick={() => agregarVehiculo(v)}>
-                    {v.placa}   {v.modelo}
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-
-
-          <h4>Vehículos asignados al chofer</h4>
-          <table className="tabla-moviles">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Placa</th>
-                <th>Modelo</th>
-                <th>Acción</th>
-              </tr>
-            </thead>
-            <tbody>
-              {nuevoVehiculos.map((v) => (
-                <tr key={v.id}>
-                  <td>{v.id}</td>
-                  <td>{v.placa}</td>
-                  <td>{v.modelo}</td>
-                  <td>
-                    <button className="btn btn-danger" onClick={() => quitarVehiculo(v.id)}>
-                      Quitar
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+      <div className='opcionesList'>
+        <button onClick={handleCambioAgregar}>Agregar Chofer</button>
+        <button onClick={handleCambioListar}>Listar Choferes</button>
+        <div className="form-check form-switch">
+          <input
+            className="form-check-input"
+            type="checkbox"
+            role="switch"
+            checked={editar}
+            onChange={handleCambiEditar}
+          />
+          <label className="form-check-label" >
+            {editar ? 'Modo edición desactivado' : 'Modo edición activado'}
+          </label>
         </div>
-      ) :
-        (
+      </div>
+      {listarChoferes ===false ? (
+      <div>
+        {editar ? (
           <div>
-            <div className="buscar-vehiculo">
-              <h1>Buscar por el Codigo del Chofer</h1>
+            <div className="titulo-chofer">
+              <i className="bi bi-person-fill-check icon-titulo"></i>
+              <h2>Asignación de nuevo Chofer</h2>
+            </div>
+
+            <form className="formulario-chofer" onSubmit={onSubmit}>
               <input
                 type="text"
-                placeholder="Buscar CI"
+                name="nombre"
+                placeholder="Nombre completo"
+                value={formData.nombre}
+                onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
+                required
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="Correo electrónico"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
+                required
+              />
+              <input
+                type="number"
+                name="telefono"
+                placeholder="Telefono"
+                value={formData.telefono}
+                onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
+                required
+              />
+              <input
+                type="password"
+                name="password"
+                placeholder="Contraseña"
+                value={formData.password}
+                onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
+                required
+              />
+              <input
+                type="file"
+                name="file"
+                className="form-control"
+                onChange={(e) => handleFileChange(e.target.files[0])}
+              />
+              <input
+                type="text"
+                name="carnet"
+                placeholder="Carnet de Identidad"
+                value={formData.carnet}
+                onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
+              />
+              <input
+                type="text"
+                name="direccion"
+                placeholder="Dirección / Vivienda"
+                value={formData.direccion}
+                onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
+              />
+              <select value={estado} onChange={(e) => setEstado(e.target.value)}>
+                <option value="En Línea">En Línea</option>
+                <option value="Fuera de Línea">Fuera de Línea</option>
+              </select>
+
+              <div className="registerChofer">
+                <button className="btn btn-success" type="submit">Registrar</button>
+              </div>
+            </form>
+
+            <div className="buscar-vehiculo">
+              <input
+                type="text"
+                placeholder="Buscar por placa o modelo"
                 value={busqueda}
                 onChange={(e) => setBusqueda(e.target.value)}
               />
-              {busqueda && filtrarChofer.length > 0 && (
+              {busqueda && filtrados.length > 0 && (
                 <div className="sugerencias-lista">
-                  {filtrarChofer.map((c) => (
-                    <div key={c.id} className="sugerencia-item" onClick={() => agregarChofer(c)}>
-                      {c.carnet}
+                  {filtrados.map((v) => (
+                    <div key={v.id} className="sugerencia-item" onClick={() => agregarVehiculo(v)}>
+                      {v.placa}   {v.modelo}
                     </div>
                   ))}
                 </div>
               )}
             </div>
 
+
+            <h4>Vehículos asignados al chofer</h4>
+            <table className="tabla-moviles">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Placa</th>
+                  <th>Modelo</th>
+                  <th>Acción</th>
+                </tr>
+              </thead>
+              <tbody>
+                {nuevoVehiculos.map((v) => (
+                  <tr key={v.id}>
+                    <td>{v.id}</td>
+                    <td>{v.placa}</td>
+                    <td>{v.modelo}</td>
+                    <td>
+                      <button className="btn btn-danger" onClick={() => quitarVehiculo(v.id)}>
+                        Quitar
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ) :
+          (
             <div>
-              <div className="titulo-chofer">
-                <i className="bi bi-person-fill-check icon-titulo"></i>
-                <h2>Informacion sobre el Chofer</h2>
-              </div>
-              <div className="imagen-perfil-container">
-                {nuevoChofer?.url && (
-                  <img
-                    src={nuevoChofer.url}
-                    alt="Foto de perfil"
-                    className="imagen-perfil"
-                  />
-                )}
-              </div>
-
-
-              <form className="formulario-chofer" onSubmit={onSubmit}>
-                <input
-                  type="text"
-                  name="nombre"
-                  placeholder="Nombre completo"
-                  value={nuevoChofer.nombre}
-                  onChange={(e) => setNuevoChofer({ ...formData, [e.target.name]: e.target.value })}
-                  required
-                />
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Correo electrónico"
-                  value={nuevoChofer.email}
-                  onChange={(e) => setNuevoChofer({ ...formData, [e.target.name]: e.target.value })}
-                  required
-                />
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="Contraseña/si es necesario"
-                  value={formData.password}
-                  onChange={(e) => setNuevoChofer({ ...formData, [e.target.name]: e.target.value })}
-                  required
-                />
-                <input
-                  type="file"
-                  name="file"
-                  className="form-control"
-                  onChange={(e) => handleFileChange(e.target.files[0])}
-                />
-                <input
-                  type="text"
-                  name="carnet"
-                  placeholder="Carnet de Identidad"
-                  value={nuevoChofer.carnet}
-                  onChange={(e) => setNuevoChofer({ ...formData, [e.target.name]: e.target.value })}
-                />
-                <input
-                  type="text"
-                  name="direccion"
-                  placeholder="Dirección / Vivienda"
-                  value={nuevoChofer.direccion}
-                  onChange={(e) => setNuevoChofer({ ...formData, [e.target.name]: e.target.value })}
-                />
-                <select
-                  value={nuevoChofer.estado}
-                  onChange={(e) =>
-                    setNuevoChofer({ ...nuevoChofer, estado: parseInt(e.target.value) })
-                  }
-                >
-                  <option value={1}>En Línea</option>
-                  <option value={0}>Fuera de Línea</option>
-                </select>
-
-
-                <div className="registerChofer">
-                  <button className="btn btn-success" type="submit">Actualizar</button>
-                </div>
-              </form>
-
               <div className="buscar-vehiculo">
+                <h1>Buscar por el Codigo del Chofer</h1>
                 <input
                   type="text"
-                  placeholder="Buscar por placa o modelo"
+                  placeholder="Buscar CI"
                   value={busqueda}
                   onChange={(e) => setBusqueda(e.target.value)}
                 />
-                {busqueda && filtrados.length > 0 && (
+                {busqueda && filtrarChofer.length > 0 && (
                   <div className="sugerencias-lista">
-                    {filtrados.map((v) => (
-                      <div key={v.id} className="sugerencia-item" onClick={() => agregarVehiculo(v)}>
-                        {v.placa}   {v.modelo}
+                    {filtrarChofer.map((c) => (
+                      <div key={c.id} className="sugerencia-item" onClick={() => agregarChofer(c)}>
+                        {c.carnet}
                       </div>
                     ))}
                   </div>
                 )}
               </div>
 
-              <h4>Vehiculos Concedidos</h4>
-              <table className="tabla-moviles">
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Placa</th>
-                    <th>Modelo</th>
-                    <th>Acción</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {nuevoVehiculos.map((v) => (
-                    <tr key={v.id}>
-                      <td>{v.id}</td>
-                      <td>{v.placa}</td>
-                      <td>{v.modelo}</td>
-                      <td>
-                        <button className="btn btn-danger" onClick={() => quitarVehiculo(v.id)}>
-                          Quitar
-                        </button>
-                      </td>
+              <div>
+                <div className="titulo-chofer">
+                  <i className="bi bi-person-fill-check icon-titulo"></i>
+                  <h2>Informacion sobre el Chofer</h2>
+                </div>
+                <div className="imagen-perfil-container">
+                  {nuevoChofer?.url && (
+                    <img
+                      src={nuevoChofer.url}
+                      alt="Foto de perfil"
+                      className="imagen-perfil"
+                    />
+                  )}
+                </div>
+
+
+                <form className="formulario-chofer" onSubmit={onSubmit}>
+                  <input
+                    type="text"
+                    name="nombre"
+                    placeholder="Nombre completo"
+                    value={nuevoChofer.nombre}
+                    onChange={(e) => setNuevoChofer({ ...formData, [e.target.name]: e.target.value })}
+                    required
+                  />
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Correo electrónico"
+                    value={nuevoChofer.email}
+                    onChange={(e) => setNuevoChofer({ ...formData, [e.target.name]: e.target.value })}
+                    required
+                  />
+                  <input
+                    type="password"
+                    name="password"
+                    placeholder="Contraseña/si es necesario"
+                    value={formData.password}
+                    onChange={(e) => setNuevoChofer({ ...formData, [e.target.name]: e.target.value })}
+                    required
+                  />
+                  <input
+                    type="file"
+                    name="file"
+                    className="form-control"
+                    onChange={(e) => handleFileChange(e.target.files[0])}
+                  />
+                  <input
+                    type="text"
+                    name="carnet"
+                    placeholder="Carnet de Identidad"
+                    value={nuevoChofer.carnet}
+                    onChange={(e) => setNuevoChofer({ ...formData, [e.target.name]: e.target.value })}
+                  />
+                  <input
+                    type="text"
+                    name="direccion"
+                    placeholder="Dirección / Vivienda"
+                    value={nuevoChofer.direccion}
+                    onChange={(e) => setNuevoChofer({ ...formData, [e.target.name]: e.target.value })}
+                  />
+                  <select
+                    value={nuevoChofer.estado}
+                    onChange={(e) =>
+                      setNuevoChofer({ ...nuevoChofer, estado: parseInt(e.target.value) })
+                    }
+                  >
+                    <option value={1}>En Línea</option>
+                    <option value={0}>Fuera de Línea</option>
+                  </select>
+
+
+                  <div className="registerChofer">
+                    <button className="btn btn-success" type="submit">Actualizar</button>
+                  </div>
+                </form>
+
+                <div className="buscar-vehiculo">
+                  <input
+                    type="text"
+                    placeholder="Buscar por placa o modelo"
+                    value={busqueda}
+                    onChange={(e) => setBusqueda(e.target.value)}
+                  />
+                  {busqueda && filtrados.length > 0 && (
+                    <div className="sugerencias-lista">
+                      {filtrados.map((v) => (
+                        <div key={v.id} className="sugerencia-item" onClick={() => agregarVehiculo(v)}>
+                          {v.placa}   {v.modelo}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                <h4>Vehiculos Concedidos</h4>
+                <table className="tabla-moviles">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Placa</th>
+                      <th>Modelo</th>
+                      <th>Acción</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {nuevoVehiculos.map((v) => (
+                      <tr key={v.id}>
+                        <td>{v.id}</td>
+                        <td>{v.placa}</td>
+                        <td>{v.modelo}</td>
+                        <td>
+                          <button className="btn btn-danger" onClick={() => quitarVehiculo(v.id)}>
+                            Quitar
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
-          </div>
-        )}
+          )}
+      </div> ) : (
+        <div>
+          <h2>Lista de Choferes</h2>
+        </div>
+      )}
 
     </div>
   );

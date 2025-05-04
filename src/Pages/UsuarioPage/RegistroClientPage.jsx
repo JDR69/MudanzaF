@@ -86,25 +86,25 @@ function RegistroClientPage() {
         <h2 className="titulo mb-4">Registro Cliente</h2>
 
         <div className="row mb-3">
-          <div className="col-md-6">
+          <div className="col-md">
             <label className="form-label">Nombre</label>
             <input name="nombre" className="form-control" value={formData.nombre} onChange={handleChange} />
             {errors.nombre && <small className="text-danger">{errors.nombre}</small>}
           </div>
 
-          <div className="col-md-6">
+          <div className="col-md">
             <label className="form-label">Sube una Foto de Perfil</label>
             <input name="profile_icon" className="form-control" type="file" onChange={(e) => handleFileChange(e.target.files[0])} />
             {message && <small className="text-info d-block mt-1">{message}</small>}
           </div>
 
-          <div className="col-md-6">
+          <div className="col-md">
             <label className="form-label">Correo Electrónico</label>
             <input name="email" type="email" className="form-control" value={formData.email} onChange={handleChange} />
             {errors.email && <small className="text-danger">{errors.email}</small>}
           </div>
 
-          <div className="col-md-6">
+          <div className="col-md">
             <label className="form-label">Dirección</label>
             <input name="direccion" type="text" className="form-control" value={formData.direccion} onChange={handleChange} />
             {errors.direccion && <small className="text-danger">{errors.direccion}</small>}
@@ -112,7 +112,7 @@ function RegistroClientPage() {
         </div>
 
         <div className="row mb-3">
-          <div className="col-md-6">
+          <div className="col-md">
             <label className="form-label">Teléfono</label>
             <input name="telefono" type="tel" className="form-control" value={formData.telefono} onChange={handleChange} />
             {errors.telefono && <small className="text-danger">{errors.telefono}</small>}
@@ -120,7 +120,7 @@ function RegistroClientPage() {
         </div>
 
         <div className="row mb-3">
-          <div className="col-md-6">
+          <div className="col-md">
             <label className="form-label">Contraseña</label>
             <input name="password" type="password" className="form-control" value={formData.password} onChange={handleChange} />
             {errors.password && <small className="text-danger">{errors.password}</small>}

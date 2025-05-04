@@ -138,23 +138,23 @@ function VehiculosPage() {
                 </div>
 
                 <form onSubmit={handleSubmit}>
-                    <div className="form-group">
+                    <div className="form-group2">
                         <label htmlFor="nombre">Nombre del Vehiculo</label>
                         <input type="text" name="nombre" className='form-control' value={formData.nombre} onChange={handleChange} required />
                     </div>
-                    <div className="form-group">
+                    <div className="form-group2">
                         <label htmlFor="modelo">Modelo</label>
                         <input type="number" name="modelo" className='form-control' value={formData.modelo} onChange={handleChange} required />
                     </div>
-                    <div className="form-group">
+                    <div className="form-group2">
                         <label htmlFor="motor">Motor</label>
                         <input type="text" name="motor" className='form-control' value={formData.motor} onChange={handleChange} required />
                     </div>
-                    <div className="form-group">
+                    <div className="form-group2">
                         <label htmlFor="placa">Placa</label>
                         <input type="text" name="placa" className='form-control' value={formData.placa} onChange={handleChange} required />
                     </div>
-                    <div className="form-group">
+                    <div className="form-group2">
                         <label htmlFor="tipo">Tipo Vehiculo</label>
                         <select
                             name="tipoVehID"
@@ -171,11 +171,11 @@ function VehiculosPage() {
                             ))}
                         </select>
                     </div>
-                    <div className="form-group">
+                    <div className="form-group2">
                         <label htmlFor="capacidad">Capacidad Maxima</label>
                         <input type="number" name="capacidad" className='form-control' value={formData.capacidad} onChange={handleChange} required />
                     </div>
-                    <div className="form-group">
+                    <div className="form-group2">
                         <label htmlFor="estado">Estado del Vehiculo</label>
                         <select name="estado" className='form-control' value={formData.estado} onChange={handleChange} required>
                             <option value="">Seleccione</option>
@@ -183,7 +183,7 @@ function VehiculosPage() {
                             <option value={0}>Deshabilitado</option>
                         </select>
                     </div>
-                    <div className="form-group">
+                    <div className="form-group2">
                         <label htmlFor="seguro">Contiene seguro el vehiculo</label>
                         <select name="seguro" className='form-control' value={formData.seguro} onChange={handleChange} required>
                             <option value="">Seleccione</option>
@@ -191,7 +191,7 @@ function VehiculosPage() {
                             <option value={0}>No</option>
                         </select>
                     </div>
-                    <div className="form-group">
+                    <div className="form-group2 ">
                         <label htmlFor="costeKilometraje">Coste Kilometraje</label>
                         <input type="number" name="costeKilometraje" className='form-control' value={formData.costeKilometraje} onChange={handleChange} required />
                     </div>
