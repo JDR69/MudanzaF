@@ -74,6 +74,16 @@ export const actualizarTipoVehiculo = (data,id) => instance.put(`/api/tipoVeh/up
     }
 )
 
+export const eliminarTipoVehiculo = (id) => instance.delete(`/api/tipoVeh/del/${id}`,
+    {
+        headers: {
+            "Content-Type": "application/json"
+          },
+        withCredentials:true
+    }
+)
+
+
 export const registrarGaleriaVehiculos = (data,id) => instance.post(`/api/veh/regImg/${id}`,
     data,{
         headers: {

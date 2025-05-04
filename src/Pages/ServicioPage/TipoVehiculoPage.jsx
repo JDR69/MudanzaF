@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { tipoVehiculoRequest, actualizarTipoVehiculo } from '../../api/auth';
+import { tipoVehiculoRequest, actualizarTipoVehiculo, eliminarTipoVehiculo } from '../../api/auth';
 import "../../Css/TipoVehiculoPage.css";
 import { useAuth } from '../../context/AuthContext';
 
@@ -69,8 +69,8 @@ const TipoVehiculoPage = () => {
 
   const eliminarParaElBackend = async () => {
     try {
-      // const res = await eliminarTipoVehiculo(id);
-      // console.log(res.data)
+      const res = await eliminarTipoVehiculo(id);
+      console.log(res.data)
       alert("✅ Tipo de vehiculo eliminado correctamente.");
       window.location.reload();
       setMostrarEliminar(false);
