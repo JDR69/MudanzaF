@@ -3,6 +3,9 @@ import '../../Css/VehiculosPage.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useAuth } from '../../context/AuthContext';
 import { registerVehiculo, obtenerVehiculo } from '../../api/auth';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
+import * as XLSX from 'xlsx';
 
 function VehiculosPage() {
     const { tipoVehiculo } = useAuth();
@@ -11,6 +14,10 @@ function VehiculosPage() {
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
     const [vehiculos, setVehiculos] = useState([]);
+
+    const [filterNombre, setFilterNombre] = useState('');
+    const [filterEstado, setFilterEstado] = useState('');
+    const [filterTipo, setFilterTipo] = useState('');
 
     const [formData, setFormData] = useState({
         nombre: '',
@@ -32,7 +39,7 @@ function VehiculosPage() {
         const { name, value } = e.target;
         setFormData({
             ...formData,
-            [name]: ['capacidad', 'costeKilometraje', 'modelo','estado','tipoVehID','seguro'].includes(name)
+            [name]: ['capacidad', 'costeKilometraje', 'modelo', 'estado', 'tipoVehID', 'seguro'].includes(name)
                 ? Number(value)
                 : value,
         });
@@ -43,15 +50,10 @@ function VehiculosPage() {
         setLoading(true);
 
         try {
-            console.log(formData);
             const res = await registerVehiculo(formData);
             console.log("✅ Vehículo registrado:", res.data);
             setSuccess(true);
-
-            setTimeout(() => {
-                setSuccess(false);
-            }, 2000);
-
+            setTimeout(() => setSuccess(false), 2000);
             listarVehiculo();
         } catch (err) {
             console.error(err);
@@ -94,11 +96,38 @@ function VehiculosPage() {
         try {
             const res = await obtenerVehiculo();
             setVehiculos(res.data);
-            console.log(res.data);
         } catch (error) {
             console.error(error);
         }
     };
+
+    const handleExportPDF = () => {
+        const doc = new jsPDF();
+        doc.text('Reporte de Vehículos', 14, 10);
+        doc.autoTable({
+            startY: 20,
+            head: [['Nombre', 'Modelo', 'Motor', 'Placa', 'Seguro', 'Tipo', 'Capacidad', 'Estado', 'Coste']],
+            body: filteredVehiculos.map(v => [
+                v.nombre, v.modelo, v.motor, v.placa, v.seguro ? 'Sí' : 'No',
+                v.tipo, v.capacidad, v.estado === 1 ? 'Disponible' : 'Deshabilitado', v.costeKilometraje
+            ]),
+        });
+        doc.save('vehiculos.pdf');
+    };
+
+    const handleExportExcel = () => {
+        const ws = XLSX.utils.json_to_sheet(filteredVehiculos);
+        const wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, 'Vehículos');
+        XLSX.writeFile(wb, 'vehiculos.xlsx');
+    };
+
+    const filteredVehiculos = vehiculos.filter((v) => {
+        const matchNombre = v.nombre.toLowerCase().includes(filterNombre.toLowerCase());
+        const matchEstado = filterEstado === '' || String(v.estado) === filterEstado;
+        const matchTipo = filterTipo === '' || String(v.tipoVehID) === filterTipo;    
+        return matchNombre && matchEstado && matchTipo;
+    });
 
     return (
         <div className='VehiculosConteiner'>
@@ -167,7 +196,7 @@ function VehiculosPage() {
                         <input type="number" name="costeKilometraje" className='form-control' value={formData.costeKilometraje} onChange={handleChange} required />
                     </div>
 
-                    <div className="text-center d-flex gap-2 justify-content-center">
+                    <div className="text-center">
                         <button type="submit" className="btn btn-primary">
                             {editIndex !== null ? 'Actualizar Vehiculo' : 'Agregar Vehiculo'}
                         </button>
@@ -176,6 +205,52 @@ function VehiculosPage() {
                         </button>
                     </div>
                 </form>
+
+                <div className="VehiculosConteiner2">
+                    <div>
+                        <label>Buscar por nombre:</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            value={filterNombre}
+                            onChange={(e) => setFilterNombre(e.target.value)}
+                        />
+                    </div>
+                    <div>
+                        <label>Filtrar por estado:</label>
+                        <select
+                            className="form-control"
+                            value={filterEstado}
+                            onChange={(e) => setFilterEstado(e.target.value)}
+                        >
+                            <option value="">Todos</option>
+                            <option value="1">Disponible</option>
+                            <option value="0">Deshabilitado</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Filtrar por tipo de vehículo:</label>
+                        <select
+                            className="form-control"
+                            value={filterTipo}
+                            onChange={(e) => setFilterTipo(e.target.value)}
+                        >
+                            <option value="">Todos</option>
+                            {tipoVehiculo.map((tipo) => (
+                                <option key={tipo.id} value={tipo.id}>{tipo.nombre}</option>
+                            ))}
+                        </select>
+                    </div>
+                    <div className="botones-reportes">
+                        <button className="btn btn-danger" onClick={handleExportPDF}>
+                            Reporte PDF
+                        </button>
+                        <button className="btn btn-success" onClick={handleExportExcel}>
+                            Reporte Excel
+                        </button>
+                    </div>
+
+                </div>
 
                 <div className='tablaVehiculos'>
                     <h2 className="mt-4">Lista de Vehículos</h2>
@@ -195,16 +270,16 @@ function VehiculosPage() {
                             </tr>
                         </thead>
                         <tbody>
-                            {vehiculos.map((vehiculo, index) => (
+                            {filteredVehiculos.map((vehiculo, index) => (
                                 <tr key={index}>
                                     <td>{vehiculo.nombre}</td>
                                     <td>{vehiculo.modelo}</td>
                                     <td>{vehiculo.motor}</td>
                                     <td>{vehiculo.placa}</td>
-                                    <td>{vehiculo.seguro}</td>
+                                    <td>{vehiculo.seguro ? 'Sí' : 'No'}</td>
                                     <td>{vehiculo.tipo}</td>
                                     <td>{vehiculo.capacidad}</td>
-                                    <td>{vehiculo.estado}</td>
+                                    <td>{vehiculo.estado === 1 ? 'Disponible' : 'Deshabilitado'}</td>
                                     <td>{vehiculo.costeKilometraje}</td>
                                     <td>
                                         <button className="btn btn-warning" onClick={() => handleEdit(index)}>Editar</button>

@@ -10,18 +10,26 @@
 .form-group {
     margin-bottom: 15px;
 }
-
-/* FORM */
-.VehiculosConteiner2 {
-    width: 80%;
-    gap: 20px;
+.mb-3{
+    width: 100%;
     display: flex;
     flex-direction: column;
 }
-
+/* FORM */
 .VehiculosConteiner2 button {
-    width: 50%;
+    display: inline-block;
+    margin-right: 10px;
+    width: auto;
 }
+
+
+.VehiculosConteiner2 .botones-reportes {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
 
 .vehiculos-table {
     width: 100%;
@@ -55,12 +63,7 @@
     margin: 1px; 
 }
 
-.acciones {
-    display: flex; 
-    justify-content: center; 
-    gap: 10px; 
-    width: 100%; 
-}
+
 .tituloVehiculos{
     display: flex;
     flex-direction: row-reverse;
