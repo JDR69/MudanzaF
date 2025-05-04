@@ -65,6 +65,15 @@ export const tipoVehiculoRequest = (data) => instance.post( `/api/tipoVeh/reg`,
     }
 )
 
+export const actualizarTipoVehiculo = (data,id) => instance.put(`/api/tipoVeh/upd/${id}`,
+    data,{
+        headers: {
+            "Content-Type": "application/json"
+          },
+        withCredentials:true
+    }
+)
+
 export const registrarGaleriaVehiculos = (data,id) => instance.post(`/api/veh/regImg/${id}`,
     data,{
         headers: {

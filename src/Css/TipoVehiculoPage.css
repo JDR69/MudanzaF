@@ -179,9 +179,9 @@
   }
 
   .vistaActualizar {
-    position: fixed;
-    top: 50%;
-    left: 50%;
+    position: absolute;
+    top: 60%;
+    left: 60%;
     transform: translate(-50%, -50%);
     background-color: white;
     margin-top: 0;
