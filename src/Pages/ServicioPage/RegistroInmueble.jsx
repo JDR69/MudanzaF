@@ -1,38 +1,69 @@
 import React, { useState } from 'react';
 import '../../Css/RegistroInmueble.css';
+import { registrarCategoriaInmueble, obtenerCategoriasRequest } from '../../api/auth';
+
 
 function RegistroInmueble() {
     const [categorias, setCategorias] = useState([]);
     const [nuevaCategoria, setNuevaCategoria] = useState('');
-    const [fragilidadCategoria, setFragilidadCategoria] = useState(false);
+    const [descripcionCategoria, setDescripcionCategoria] = useState('');
+    const [estadoCategoria, setestadoCategoria] = useState('');
 
     const [productoNombre, setProductoNombre] = useState('');
-    const [fragilidadProducto, setFragilidadProducto] = useState(false);
+    const [estadoProducto, setestadoProducto] = useState('Disponible');
     const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('');
-    const [productos, setProductos] = useState([]); // Nuevo estado para productos
+    const [productos, setProductos] = useState([]);
 
     const [mostrarCategorias, setMostrarCategorias] = useState(false);
     const [mostrarProductos, setMostrarProductos] = useState(false);
 
-    const registrarCategoria = () => {
+    const registrarCategoria = async () => {
         if (nuevaCategoria.trim() !== '') {
-            setCategorias([...categorias, { nombre: nuevaCategoria, fragilidad: fragilidadCategoria }]);
-            setNuevaCategoria('');
-            setFragilidadCategoria(false);
+            const nueva = {
+                nombre: nuevaCategoria,
+                descripcion: descripcionCategoria,
+                estado: estadoCategoria
+            };
+            try {
+                await registrarCategoriaInmueble(nueva);
+                setCategorias([...categorias, nueva]);
+                setNuevaCategoria('');
+                setDescripcionCategoria('');
+                setestadoCategoria('no disponible');
+                console.log(nueva);
+            } catch (error) {
+                console.log("Error al registrar categoría:", error);
+            }
         }
     };
 
-    const registrarProducto = () => {
+    const registrarProducto = async () => {
         if (productoNombre.trim() !== '' && categoriaSeleccionada !== '') {
-            const nuevoProducto = {
+            const nuevo = {
                 nombre: productoNombre,
-                fragilidad: fragilidadProducto,
+                estado: estadoProducto,
                 categoria: categoriaSeleccionada
             };
-            setProductos([...productos, nuevoProducto]); // Guardar en el array productos
-            setProductoNombre('');
-            setFragilidadProducto(false);
-            setCategoriaSeleccionada('');
+
+            try {
+                await registrarProductoRequest(nuevo);
+                setProductos([...productos, nuevo]);
+                setProductoNombre('');
+                setestadoProducto('Disponible');
+                setCategoriaSeleccionada('');
+            } catch (error) {
+                console.error("Error al registrar producto:", error);
+            }
+        }
+    };
+
+    const listarCategorias = async () => {
+        try {
+            const response = await obtenerCategoriasRequest();
+            setCategorias(response.data);
+            setMostrarCategorias(true);
+        } catch (error) {
+            console.error("Error al obtener categorías:", error);
         }
     };
 
@@ -51,24 +82,31 @@ function RegistroInmueble() {
                             value={nuevaCategoria}
                             onChange={(e) => setNuevaCategoria(e.target.value)}
                         />
-                        <div className="form-check-inline">
-                            <input
-                                className="form-check-input"
-                                type="checkbox"
-                                id="fragilidadCategoria"
-                                checked={fragilidadCategoria}
-                                onChange={(e) => setFragilidadCategoria(e.target.checked)}
-                            />
-                            <label className="form-check-label" htmlFor="fragilidadCategoria">
-                                Fragilidad
-                            </label>
-                        </div>
+                        <input
+                            className="form-control"
+                            id="descripcionCategoria"
+                            placeholder="Descripción de la categoría"
+                            value={descripcionCategoria}
+                            onChange={(e) => setDescripcionCategoria(e.target.value)}
+                        />
+                        <select
+                            className="form-select"
+                            id="estadoCategoria"
+                            value={estadoCategoria}
+                            onChange={(e) => setestadoCategoria(e.target.value)}
+                        >
+                            <option value="Disponible">Disponible</option>
+                            <option value="No disponible">No disponible</option>
+                        </select>
                     </div>
                 </div>
 
                 <div className="button-group">
                     <button className="btn btn-primary" onClick={registrarCategoria}>Registrar Categoría</button>
-                    <button className="btn btn-secondary" onClick={() => setMostrarCategorias(!mostrarCategorias)}>Listar Categorías</button>
+                    <button className="btn btn-secondary" onClick={listarCategorias}>
+                        Listar Categorías
+                    </button>
+
                 </div>
 
                 {mostrarCategorias && (
@@ -77,14 +115,16 @@ function RegistroInmueble() {
                             <thead>
                                 <tr>
                                     <th>Nombre</th>
-                                    <th>Fragilidad</th>
+                                    <th>Descripción</th>
+                                    <th>estado</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {categorias.map((cat, index) => (
                                     <tr key={index}>
                                         <td>{cat.nombre}</td>
-                                        <td>{cat.fragilidad ? 'Sí' : 'No'}</td>
+                                        <td>{cat.descripcion}</td>
+                                        <td>{cat.estado}</td>
                                     </tr>
                                 ))}
                             </tbody>
@@ -94,7 +134,7 @@ function RegistroInmueble() {
             </div>
 
             <div className='RegistroInmuebleProductos'>
-                <h2>Registrar Productos</h2>
+                <h2>Registrar Items</h2>
                 <div className="form-row">
                     <div className="input-check-group">
                         <input
@@ -104,18 +144,15 @@ function RegistroInmueble() {
                             value={productoNombre}
                             onChange={(e) => setProductoNombre(e.target.value)}
                         />
-                        <div className="form-check-inline">
-                            <input
-                                className="form-check-input"
-                                type="checkbox"
-                                id="fragilidadProducto"
-                                checked={fragilidadProducto}
-                                onChange={(e) => setFragilidadProducto(e.target.checked)}
-                            />
-                            <label className="form-check-label" htmlFor="fragilidadProducto">
-                                Fragilidad
-                            </label>
-                        </div>
+                        <select
+                            className="form-select"
+                            id="estadoProducto"
+                            value={estadoProducto}
+                            onChange={(e) => setestadoProducto(e.target.value)}
+                        >
+                            <option value="Disponible">Disponible</option>
+                            <option value="No disponible">No disponible</option>
+                        </select>
                     </div>
                     <select
                         className="form-select"
@@ -143,7 +180,7 @@ function RegistroInmueble() {
                             <thead>
                                 <tr>
                                     <th>Nombre</th>
-                                    <th>Fragilidad</th>
+                                    <th>estado</th>
                                     <th>Categoría</th>
                                 </tr>
                             </thead>
@@ -151,7 +188,7 @@ function RegistroInmueble() {
                                 {productos.map((prod, index) => (
                                     <tr key={index}>
                                         <td>{prod.nombre}</td>
-                                        <td>{prod.fragilidad ? 'Sí' : 'No'}</td>
+                                        <td>{prod.estado}</td>
                                         <td>{prod.categoria}</td>
                                     </tr>
                                 ))}

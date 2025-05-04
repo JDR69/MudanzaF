@@ -27,6 +27,7 @@
 }
 
 .input-check-group {
+    width: 50%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -76,11 +77,10 @@
 
 .btn {
     width: auto;
-    white-space: nowrap;
 }
 
 #categoriaProducto {
-    width: 30%;
+    width: 50%;
     min-width: 200px;
 }
 

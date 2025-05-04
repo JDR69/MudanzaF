@@ -78,3 +78,19 @@ export const obtenerCatalogoVehiculo = () => { return instance.get(`/api/veh/get
     withCredentials: true,
     timeout: tiempoEspera
 })}
+
+
+export const registrarCategoriaInmueble = (data) => instance.post(`/api/categorias/registrar`,
+    data,{
+        headers: {
+            "Content-Type": "application/json"  },
+        withCredentials: true,
+        timeout: tiempoEspera
+    }
+);
+
+
+export const obtenerCategoriasRequest = () => instance.get(`/api/categorias/get`, {
+    withCredentials: true,
+    timeout: tiempoEspera
+});
