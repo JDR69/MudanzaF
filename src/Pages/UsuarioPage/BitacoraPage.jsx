@@ -23,7 +23,6 @@ const BitacoraPage = () => {
                                     <th>Dirección IP</th>
                                     <th>Fecha</th>
                                     <th>Hora</th>
-                                    <th>Acción</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -31,7 +30,6 @@ const BitacoraPage = () => {
                                     bitacoras.map((bitacora) => (
                                         <tr key={bitacora.id}>
                                             <td>{bitacora.id}</td>
-                                            <td>{bitacora.id_usuario}</td>
                                             <td>{bitacora.nombre}</td>
                                             <td>{bitacora.email}</td>
                                             <td>{bitacora.ip}</td>
