@@ -15,6 +15,7 @@ import VehiculosPage from "../../Pages/ServicioPage/VehiculosPage.jsx";
 import GaleriaVehiculosPage from "../../Pages/ServicioPage/GaleriaVehiculosPage.jsx";
 import AsignacionChoferePage from "../../Pages/ServicioPage/AsignacionChoferePage.jsx";
 import TipoVehiculoPage from "../../Pages/ServicioPage/TipoVehiculoPage.jsx";
+import RegistroInmueble from "../../Pages/ServicioPage/RegistroInmueble.jsx";
 
 
 import "./Homed.css"
@@ -39,6 +40,8 @@ export const Homed = () => {
           <Route path="/regisChofer" element={<AsignacionChoferePage/>} />
           <Route path="/usuarios" element={<UsuariosPage/>} />
           <Route path="/tipoVehiculo" element={<TipoVehiculoPage/>} />
+          <Route path="/registroInmueble" element={<RegistroInmueble/>} />
+          
           <Route path="*" element={<div>No encontrado</div>} />
         </Routes>
         <Outlet />

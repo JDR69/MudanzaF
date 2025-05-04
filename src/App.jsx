@@ -22,7 +22,6 @@ import SeguroEmpresaPage from "./Pages/SeguroEmpresaPage";
 
 //------------PAGINA SERVICIO-----------------//
 import GestionInmueblePage from "./Pages/ServicioPage/GestionInmueblePage";
-import RegistroInmueble from "./Pages/ServicioPage/RegistroInmueble";
 //---------------------------------------------
 import { Homed } from "./Components/Homed/Homed"
 import UsuariosPage from "./Pages/UsuarioPage/UsuariosPage";
@@ -58,7 +57,7 @@ function Main() {
         <Route path="/register" element={<RegistroClientPage/>}/>
         <Route path="/seguroEmpresa" element={<SeguroEmpresaPage/>}/>
         <Route path="/gestionInmueble" element={<GestionInmueblePage/>}/>
-        <Route path="/registroInmueble" element={<RegistroInmueble/>}/>
+     
       {/* 
         <Route path="/vehiculos" element={<VehiculosPage/>}/>
         <Route path="/aa" element={<Cloudinary/>}/>
@@ -71,7 +70,7 @@ function Main() {
         <Route path="/informacion" element={<InformacionPage/>}/>
         <Route path="/gestionInmueble" element={<GestionInmueblePage/>}/>
         <Route path="/registroInmueble" element={<RegistroInmueble/>}/>
-
+         <Route path="/registroInmueble" element={<RegistroInmueble/>}/>
 
         {/* <Route path="/catalogo" element={<CatalogoVehiculoPage/>}/> */}
         <Route path="/dasboard/*" element={<Homed/>}/>

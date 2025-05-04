@@ -201,7 +201,7 @@ const enlaceServicios = [
   {
     label: "Tipo Emabalage",
     icon: <MdOutlineAnalytics />,
-    to: "/dasboard/organizacion-productos", // Corregido a "dashboard"
+    to: "/dasboard/registroInmueble", // Corregido a "dashboard"
   },
   {
     label: "Vehiculos",
