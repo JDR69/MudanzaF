@@ -181,3 +181,31 @@ export const eliminarSeguroBackend = (id) => instance.delete(`/api/seguro/del/${
         withCredentials:true
     }
 )
+
+export const registrarMaterial = (data) => instance.post(`/api/materiales/registrar`,
+    data,{
+        headers: {
+            "Content-Type": "application/json"
+          },
+        withCredentials:true
+    }
+)
+
+export const obtenerMateriales = () => { return instance.get(`/api/materiales/get`,{
+    withCredentials: true,
+    timeout: tiempoEspera
+})}
+
+export const registarInmueble = (data) => instance.post(`/api/inmuebles/registrar`,
+    data,{
+        headers: {
+            "Content-Type": "application/json"
+          },
+        withCredentials:true
+    }
+)
+
+export const obtenerInmuebles = () => { return instance.get(`/api/inmuebles/get`,{
+    withCredentials: true,
+    timeout: tiempoEspera
+})}
