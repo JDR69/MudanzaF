@@ -9,6 +9,7 @@ import BitacoraPage from "../../Pages/UsuarioPage/BitacoraPage.jsx";
 import PrivilegioPage from "../../Pages/UsuarioPage/PrivilegioPage.jsx";
 import PerfilDeUsuario from "../../Pages/UsuarioPage/PerfilDeUsuario.jsx";
 import UsuariosPage from "../../Pages/UsuarioPage/UsuariosPage.jsx";
+import SeguroEmpresaPage from "../../Pages/SeguroEmpresaPage.jsx";
 
 //-------------------Servicios------------//
 import VehiculosPage from "../../Pages/ServicioPage/VehiculosPage.jsx";
@@ -41,6 +42,7 @@ export const Homed = () => {
           <Route path="/usuarios" element={<UsuariosPage/>} />
           <Route path="/tipoVehiculo" element={<TipoVehiculoPage/>} />
           <Route path="/registroInmueble" element={<RegistroInmueble/>} />
+          <Route path="/seguros" element={<SeguroEmpresaPage/>} />
           
           <Route path="*" element={<div>No encontrado</div>} />
         </Routes>

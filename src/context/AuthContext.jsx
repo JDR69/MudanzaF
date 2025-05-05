@@ -1,5 +1,13 @@
 import { createContext, useState, useContext, useEffect } from "react";
-import { loginRequest, obtenerBitacoraRequest, obtenerRolesRequest, obtenerTipoVehiculo, obtenerVehiculo, obtenerCatalogoVehiculo} from "../api/auth";
+import { loginRequest, 
+    obtenerBitacoraRequest, 
+    obtenerRolesRequest, 
+    obtenerTipoVehiculo,
+    obtenerVehiculo,
+    obtenerCatalogoVehiculo,
+    obtenerChofer,
+    obtenerSeguros
+} from "../api/auth";
 
 const AuthContext = createContext();
 
@@ -19,6 +27,8 @@ export const AuthProvider = ({ children }) => {
     const [tipoVehiculo, setTipoVehiculo] = useState([]);
     const [vehiculos, setVehiculos] = useState([]);
     const [catalogoVehiculos, setCatalogoVehiculos] = useState([]);
+    const [choferes, setChoferes] = useState([]);
+    const [seguros, setSeguros] = useState([]);
 
     const setUserData = (data) => {
         setUser(data);
@@ -40,12 +50,13 @@ export const AuthProvider = ({ children }) => {
     const cargarDatos = async () =>{
         try {
 
-            const [resRoles,resBitacora, resTipoVehiculo, resVehiculos, resCatalogoVehiculos] = await Promise.all([
+            const [resRoles,resBitacora, resTipoVehiculo, resVehiculos, resCatalogoVehiculos,resSeguros] = await Promise.all([
                 obtenerRolesRequest(),
                 obtenerBitacoraRequest(),
                 obtenerTipoVehiculo(),
                 obtenerVehiculo(),
-                obtenerCatalogoVehiculo()
+                obtenerCatalogoVehiculo(),
+                obtenerSeguros(),
             ])
             setRoles(resRoles.data)
             setBitacora(resBitacora.data)
@@ -54,6 +65,18 @@ export const AuthProvider = ({ children }) => {
             setVehiculos(resVehiculos.data)
             console.log(resVehiculos.data)
             setCatalogoVehiculos(resCatalogoVehiculos.data)
+            console.log(resSeguros.data)
+            setSeguros(resSeguros.data)
+        } catch (err) {
+            throw err;
+        }
+    }
+
+    const cargarChoferes = async () => {
+        try {
+            const res = await obtenerChofer();
+            console.log(res.data)
+            setChoferes(res.data)
         } catch (err) {
             throw err;
         }
@@ -76,6 +99,7 @@ export const AuthProvider = ({ children }) => {
             //     return;
             // }
             cargarDatos();
+            cargarChoferes();
             setUser(JSON.parse(savedUser));
             setLoading(false);
         } catch (error) {
@@ -98,7 +122,10 @@ return (
         bitacora,
         tipoVehiculo,
         vehiculos,
-        catalogoVehiculos
+        catalogoVehiculos,
+        choferes,
+        cargarChoferes,
+        seguros
     }}>
         {children}
     </AuthContext.Provider>

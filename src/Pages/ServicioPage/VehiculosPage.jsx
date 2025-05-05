@@ -26,7 +26,7 @@ function VehiculosPage() {
         placa: '',
         motor: '',
         modelo: '',
-        tipoVehID: '',
+        tipo: '',
         seguro: '',
         estado: '',
     });
@@ -68,7 +68,7 @@ function VehiculosPage() {
             placa: '',
             motor: '',
             modelo: '',
-            tipoVehID: '',
+            tipo: '',
             seguro: '',
             estado: '',
         });
@@ -86,7 +86,7 @@ function VehiculosPage() {
             placa: vehiculo.placa || '',
             motor: vehiculo.motor || '',
             modelo: vehiculo.modelo || '',
-            tipoVehID: vehiculo.tipo || '',
+            tipo: vehiculo.tipo || '',
             seguro: vehiculo.seguro || '',
             estado: vehiculo.estado || '',
         });
@@ -125,7 +125,7 @@ function VehiculosPage() {
     const filteredVehiculos = vehiculos.filter((v) => {
         const matchNombre = v.nombre.toLowerCase().includes(filterNombre.toLowerCase());
         const matchEstado = filterEstado === '' || String(v.estado) === filterEstado;
-        const matchTipo = filterTipo === '' || String(v.tipoVehID) === filterTipo;    
+        const matchTipo = filterTipo === '' || String(v.tipo) === filterTipo;    
         return matchNombre && matchEstado && matchTipo;
     });
 
@@ -157,15 +157,15 @@ function VehiculosPage() {
                     <div className="form-group2">
                         <label htmlFor="tipo">Tipo Vehiculo</label>
                         <select
-                            name="tipoVehID"
+                            name="tipo"
                             className="form-control"
-                            value={formData.tipoVehID}
+                            value={formData.tipo}
                             onChange={handleChange}
                             required
                         >
-                            <option value="">Seleccione</option>
+                            <option value="tipo">Seleccione</option>
                             {tipoVehiculo.map((tipo) => (
-                                <option key={tipo.id} value={tipo.id}>
+                                <option key={tipo.id} value={tipo.nombre}>
                                     {tipo.nombre}
                                 </option>
                             ))}
@@ -179,16 +179,16 @@ function VehiculosPage() {
                         <label htmlFor="estado">Estado del Vehiculo</label>
                         <select name="estado" className='form-control' value={formData.estado} onChange={handleChange} required>
                             <option value="">Seleccione</option>
-                            <option value={1}>Disponible</option>
-                            <option value={0}>Deshabilitado</option>
+                            <option value="Disponible">Disponible</option>
+                            <option value="No Disponible">Deshabilitado</option>
                         </select>
                     </div>
                     <div className="form-group2">
                         <label htmlFor="seguro">Contiene seguro el vehiculo</label>
                         <select name="seguro" className='form-control' value={formData.seguro} onChange={handleChange} required>
                             <option value="">Seleccione</option>
-                            <option value={1}>Sí</option>
-                            <option value={0}>No</option>
+                            <option value="SI">Sí</option>
+                            <option value="NO">No</option>
                         </select>
                     </div>
                     <div className="form-group2 ">
@@ -224,8 +224,8 @@ function VehiculosPage() {
                             onChange={(e) => setFilterEstado(e.target.value)}
                         >
                             <option value="">Todos</option>
-                            <option value="1">Disponible</option>
-                            <option value="0">Deshabilitado</option>
+                            <option value="Disponible">Disponible</option>
+                            <option value="No Disponible">Deshabilitado</option>
                         </select>
                     </div>
                     <div>
@@ -237,7 +237,7 @@ function VehiculosPage() {
                         >
                             <option value="">Todos</option>
                             {tipoVehiculo.map((tipo) => (
-                                <option key={tipo.id} value={tipo.id}>{tipo.nombre}</option>
+                                <option key={tipo.id} value={tipo.nombre}>{tipo.nombre}</option>
                             ))}
                         </select>
                     </div>
@@ -279,7 +279,7 @@ function VehiculosPage() {
                                     <td>{vehiculo.seguro ? 'Sí' : 'No'}</td>
                                     <td>{vehiculo.tipo}</td>
                                     <td>{vehiculo.capacidad}</td>
-                                    <td>{vehiculo.estado === 1 ? 'Disponible' : 'Deshabilitado'}</td>
+                                    <td>{vehiculo.estado === "Disponible" ? 'Disponible' : 'Deshabilitado'}</td>
                                     <td>{vehiculo.costeKilometraje}</td>
                                     <td>
                                         <button className="btn btn-warning" onClick={() => handleEdit(index)}>Editar</button>

@@ -20,6 +20,7 @@ const TipoVehiculoPage = () => {
   const handleMostrarListar = () => {
     setVerListarTipoVehiculo(true);
     setVerAgregarTipoVehiculo(false);
+    window.location.reload();
   };
 
   const handleCerrarVistas = () => {

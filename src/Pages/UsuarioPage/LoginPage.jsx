@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
 
-    const { signin, cargarDatos } = useAuth();
+    const { signin, cargarDatos, cargarChoferes} = useAuth();
     const navigate = useNavigate();
 
 
@@ -30,8 +30,9 @@ const LoginPage = () => {
         onSubmit: async (values) => {
             try {
                 console.log(values)
-                await cargarDatos();
                 await signin(values); 
+                await cargarDatos();
+                await cargarChoferes();
                 navigate("/dasboard/homeda"); 
             } catch (error) {
                 console.error(error)

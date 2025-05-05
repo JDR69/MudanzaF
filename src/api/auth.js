@@ -47,7 +47,7 @@ export const obtenerVehiculo = () => { return instance.get(`/api/veh/get`,{
     timeout: tiempoEspera
 })}
 
-export const registerChofer = (data) => instance.post(`/api/chofer/registrar`,
+export const registerChofer = (data) => instance.post(`/api/chofer/reg`,
     data,{
         headers: {
             "Content-Type": "application/json"
@@ -55,6 +55,39 @@ export const registerChofer = (data) => instance.post(`/api/chofer/registrar`,
         withCredentials:true
     }
 )
+
+export const actualizarDatosDelChofer = (data,id) => instance.put(`/api/chofer/${id}/update`,
+    data,{
+        headers: {
+            "Content-Type": "application/json"
+          },
+        withCredentials:true
+    }
+)
+
+export const obtenerChofer = () => { return instance.get(`/api/chofer/get-all`  ,{
+    withCredentials: true,
+    timeout: tiempoEspera
+})}
+
+export const concederVehiculo = (data,id) => instance.post(`/api/chofer/${id}/asignar`,
+    data,{
+        headers: {
+            "Content-Type": "application/json"
+          },
+        withCredentials:true
+    }
+)
+
+export const eliminarConcecido = (data, id) =>
+    instance.delete(`/api/chofer/${id}/eliminar-asignacion`, {
+      data: data,
+      headers: {
+        "Content-Type": "application/json"
+      },
+      withCredentials: true
+    });
+  
 
 export const tipoVehiculoRequest = (data) => instance.post( `/api/tipoVeh/reg`,
     data,{
@@ -113,3 +146,38 @@ export const obtenerCategoriasRequest = () => instance.get(`/api/categorias/get`
     withCredentials: true,
     timeout: tiempoEspera
 });
+
+
+
+
+export const insertarNuevoSeguro = (data) => instance.post(`/api/seguro/reg`,
+    data,{
+        headers: {
+            "Content-Type": "application/json"
+          },
+        withCredentials:true
+    }
+)
+
+export const obtenerSeguros = () => { return instance.get(`/api/seguro/get`,{
+    withCredentials: true,
+    timeout: tiempoEspera
+})}
+
+export const actualizarSeguroBackend = (data,id) => instance.patch(`/api/seguro/upd/${id}`,
+    data,{
+        headers: {
+            "Content-Type": "application/json"
+          },
+        withCredentials:true
+    }
+)
+
+export const eliminarSeguroBackend = (id) => instance.delete(`/api/seguro/del/${id}`,
+    {
+        headers: {
+            "Content-Type": "application/json"
+          },
+        withCredentials:true
+    }
+)

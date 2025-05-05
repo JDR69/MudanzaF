@@ -98,7 +98,7 @@ function RegistroClientPage() {
             {message && <small className="text-info d-block mt-1">{message}</small>}
           </div>
 
-          <div className="col-md">
+          <div className="col-md-6">
             <label className="form-label">Correo Electrónico</label>
             <input name="email" type="email" className="form-control" value={formData.email} onChange={handleChange} />
             {errors.email && <small className="text-danger">{errors.email}</small>}

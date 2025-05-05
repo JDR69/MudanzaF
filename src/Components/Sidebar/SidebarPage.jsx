@@ -185,6 +185,11 @@ const enlaceUsuario = [
     icon: <AiOutlineApartment />,
     to: "/dasboard/bitacora", // Corregido a "dashboard"
   },
+  {
+    label: "Seguros",
+    icon: <AiOutlineApartment />,
+    to: "/dasboard/seguros", // Corregido a "dashboard"
+  },
 ];
 
 const enlaceServicios = [

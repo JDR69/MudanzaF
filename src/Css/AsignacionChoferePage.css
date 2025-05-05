@@ -1,110 +1,114 @@
 .container-chofer {
-    padding: 30px;
-    max-width: 900px;
-    margin: auto;
-    font-family: 'Segoe UI', sans-serif;
-    color: #333;
-  }
-  
-  .titulo-chofer {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    justify-content: center;
-    margin-bottom: 30px;
-  }
-  
-  .icon-titulo {
-    font-size: 45px;
-    color: #2b7a78;
-  }
-  
-  .formulario-chofer {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    margin-bottom: 30px;
-  }
-  
+  padding: 30px;
+  max-width: 900px;
+  margin: auto;
+  font-family: 'Segoe UI', sans-serif;
+  color: #333;
+}
+
+.titulo-chofer {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.icon-titulo {
+  font-size: 45px;
+  color: #2b7a78;
+}
+
+.formulario-chofer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.formulario-chofer input,
+.formulario-chofer select {
+  flex: 1 1 calc(50% - 20px);
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background: #f9f9f9;
+  transition: 0.3s;
+}
+
+.formulario-chofer input:focus,
+.formulario-chofer select:focus {
+  outline: none;
+  border-color: #2b7a78;
+  background: #fff;
+}
+
+.buscar-vehiculo {
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.buscar-vehiculo input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+}
+
+.tabla-moviles {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.tabla-moviles th,
+.tabla-moviles td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.tabla-moviles th {
+  background-color: #f4f4f4;
+}
+
+.btn-quitar {
+  padding: 6px 12px;
+  background-color: #e63946;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-quitar:hover {
+  background-color: #d62828;
+}
+
+@media (max-width: 600px) {
+
   .formulario-chofer input,
   .formulario-chofer select {
-    flex: 1 1 calc(50% - 20px);
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background: #f9f9f9;
-    transition: 0.3s;
+    flex: 1 1 100%;
   }
-  
-  .formulario-chofer input:focus,
-  .formulario-chofer select:focus {
-    outline: none;
-    border-color: #2b7a78;
-    background: #fff;
-  }
-  
-  .buscar-vehiculo {
-    margin-top: 40px;
-    margin-bottom: 20px;
-  }
-  
-  .buscar-vehiculo input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #aaa;
-    border-radius: 6px;
-  }
-  
-  .tabla-moviles {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  
-  .tabla-moviles th,
-  .tabla-moviles td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .tabla-moviles th {
-    background-color: #f4f4f4;
-  }
-  
-  .btn-quitar {
-    padding: 6px 12px;
-    background-color: #e63946;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .btn-quitar:hover {
-    background-color: #d62828;
-  }
-  
-  @media (max-width: 600px) {
-    .formulario-chofer input,
-    .formulario-chofer select {
-      flex: 1 1 100%;
-    }
-  }
+}
 
-.registerChofer{
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    margin-top: 20px;
+.registerChofer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-top: 20px;
 }
 
 /* Contenedor de búsqueda */
 .buscar-vehiculo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   margin-top: 20px;
   position: relative;
   width: 100%;
-  max-width: 400px;
 }
 
 /* Input de búsqueda */
@@ -120,7 +124,7 @@
 
 .buscar-vehiculo input[type="text"]:focus {
   border-color: #007bff;
-  box-shadow: 0 0 0 2px rgba(0,123,255,0.2);
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
 }
 
 /* Lista de sugerencias */
@@ -150,14 +154,14 @@
   background-color: #f0f0f0;
 }
 
-.opcionesList{
+.opcionesList {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 15px;
 }
 
-.opcionesList button{
+.opcionesList button {
   width: 130px;
   padding: 0;
   margin: 0;
@@ -170,8 +174,59 @@
   color: #007bff;
 }
 
-.form-check-label{
+.opcionesList button:hover {
+  color: #ff0000;
+}
+
+.form-check-label {
   width: 200px;
 }
 
-  
+.imagenchofer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.imagenchofer {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  margin-top: 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  width: 400px;
+}
+
+.imagenchofer img{
+  width: 50%;
+}
+.imagenchofer button{
+  width: 50px;
+  background-color: #d62828;
+  color: #ccc;
+  font-weight: bold;
+}
+
+.NuevoVehiculoConcedido{
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+  margin:10px
+}
+
+.NuevoVehiculoConcedido #conceder{
+  width: 100%;
+  background-color: #46c016fc;
+  color: #ffffff;
+  font-weight: bold;
+}
+
