@@ -4,8 +4,11 @@ import './index.css'
 import App from './App.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
-
-
+import './Css/ComponentesComplets.css';
+import './Css/SelectsCompletsBoostrap.css';
+import './Css/BottonsComplest.css';
+import './Css/SubmenuComplets.css';
+import './Css/formFlotantes.css';
 createRoot(document.getElementById('root')).render(
     <App />
 )

@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import '../../Css/PrivilegioPage.css'
 import { useAuth } from '../../context/AuthContext';
 
 function PrivilegioPage() {
 
-    
     const {roles} = useAuth();
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -52,29 +50,29 @@ function PrivilegioPage() {
     if(!roles) <h1>cargando....</h1>
 
     return (
-        <div className='principalPrivilegio'>
+        <div className='contenedoresPrincipales'>
             <h1>Gestión de Privilegios</h1>
-            <div className='contenedorPrivilegios'>
-                <div className='contenedorRol'>
+            <div className='contenedorHijo'>
+                <div >
                     <h2>Seleccionar Rol</h2>
-                    <select name="rol" id='soyRol' value={rolSeleccionado} onChange={manejarCambioRol}>
-                        <option value="administrador">{roles[0]?.nombre}</option>
-                        <option value="usuario">{roles[1]?.nombre}</option>
-                        <option value="cliente">{roles[2]?.nombre}</option>
+                    <select name="rol" className="form-control" value={rolSeleccionado} onChange={manejarCambioRol}>
+                        <option value="administrador" id="opciones">{roles[0]?.nombre}</option>
+                        <option value="usuario" id="opciones">{roles[1]?.nombre}</option>
+                        <option value="cliente" id="opciones">{roles[2]?.nombre}</option>
                         {/* <option value="ayudante">{roles[3].nombre}</option>
                         <option value="chofer">{roles[4].nombre}</option> */}
                     </select>
                 </div>
-                <div className='contenedorPrivilegios'>
-                    <button onClick={toggleMenu} className="toggle-menu">
+                <div className="contenedorHijoDos" >
+                    <button onClick={toggleMenu} className="btn-Menu">
                         Privilegios {isMenuOpen ? "▲" : "▼"}
                     </button>
                     {isMenuOpen && (
-                        <div className="submenu">
-                            <ul className="privileges-list">
+                        <div className='submenu'>
+                            <ul>
                                 {privilegios.map((privilegio) => (
-                                    <li key={privilegio.id} className="privilege-item">
-                                        <span className="privilege-name">{privilegio.Descripcion}</span>
+                                    <li key={privilegio.id} className="seleccion-privilegio" >
+                                        <span>{privilegio.Descripcion}</span>
                                         <button
                                             onClick={() => manejarCambio(privilegio.id)}
                                             className={`privilege-button ${privilegio.Estado ? 'active' : 'inactive'}`}
@@ -84,7 +82,7 @@ function PrivilegioPage() {
                                     </li>
                                 ))}
                             </ul>
-                            <button onClick={() => setMensajeExitoso("Cambios guardados exitosamente")} className="save-changes">
+                            <button onClick={() => setMensajeExitoso("Cambios guardados exitosamente")} className='btn-success'>
                                 Guardar Cambios
                             </button>
                         </div>
@@ -93,8 +91,9 @@ function PrivilegioPage() {
             </div>
             {/* Mostrar el mensaje de éxito si existe */}
             {mensajeExitoso && (
-                <div className="mensaje-exito">
+                <div className="form-flotante">
                     {mensajeExitoso}
+                    <button onClick={() => setMensajeExitoso('')} className="inactive">Cerrar</button>
                 </div>
             )}
         </div>

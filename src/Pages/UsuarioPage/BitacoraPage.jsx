@@ -38,7 +38,7 @@ const BitacoraPage = () => {
         });
 
     return (
-        <div className="bitacora-container">
+        <div className='contenedoresPrincipales'>
             <h2>Registros de acciones en el Sistema</h2>
 
             <div className="filters">

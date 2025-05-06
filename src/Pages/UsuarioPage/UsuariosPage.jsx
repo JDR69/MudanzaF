@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../../Css/UsuariosPage.css';
-import {jsPDF} from 'jspdf';
+import { jsPDF } from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
@@ -51,11 +51,11 @@ function UsuariosPage() {
             alert("No hay usuarios para exportar.");
             return;
         }
-    
+
         const doc = new jsPDF();
         doc.setFontSize(16);
         doc.text("Reporte de Usuarios", 14, 16);
-    
+
         const columns = ["ID", "Nombre", "Email", "Teléfono", "Dirección", "Rol"];
         const rows = usuariosFiltrados.map(u => [
             u.id,
@@ -65,16 +65,16 @@ function UsuariosPage() {
             u.direccion,
             u.rol?.nombre || ""
         ]);
-    
+
         autoTable(doc, {
             head: [columns],
             body: rows,
             startY: 20
         });
-    
+
         doc.save('reporte_usuarios.pdf');
     };
-    
+
 
 
     const exportarExcel = () => {
@@ -97,14 +97,14 @@ function UsuariosPage() {
     const rolesUnicos = [...new Set(listaUsuarios.map(u => u.rol.nombre))];
 
     return (
-        <div className='UsuariosContainer'>
-            <div className='UsuariosContainerForm'>
-                <h1>Usuarios</h1>
-                <div className="acciones-container">
-                    <button onClick={handleListarUsuarios} className="btn btn-primary">Listar Usuarios</button>
-                    <button onClick={exportarPDF} className="btn btn-danger">Exportar PDF</button>
-                    <button onClick={exportarExcel} className="btn btn-success">Exportar Excel</button>
-            
+        <div className='contenedoresPrincipales'>
+            <h1>Usuarios</h1>
+            <div className='contenedorHijo'>
+                <div className="contenedorHijoFila">
+                    <button onClick={handleListarUsuarios} className="btn-primary">Listar Usuarios</button>
+                    <button onClick={exportarPDF} className="btn-danger">Exportar PDF</button>
+                    <button onClick={exportarExcel} className="btn-success">Exportar Excel</button>
+
                     <input
                         type="text"
                         placeholder="Buscar por nombre"
@@ -118,7 +118,7 @@ function UsuariosPage() {
                             <option key={index} value={rol}>{rol}</option>
                         ))}
                     </select>
-                       </div>
+                </div>
 
                 <table className="usuarios-table">
                     <thead>

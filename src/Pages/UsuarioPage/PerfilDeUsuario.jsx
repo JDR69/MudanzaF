@@ -39,7 +39,7 @@ function PerfilDeUsuario() {
   }, [user]);
 
   return (
-    <div className='PerfilContenedor'>
+    <div className='contenedoresPrincipales'>
       <div className='PerfilConteiner'>
         <h1>Perfil del Usuario</h1>
 
