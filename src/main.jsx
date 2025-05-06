@@ -9,6 +9,7 @@ import './Css/SelectsCompletsBoostrap.css';
 import './Css/BottonsComplest.css';
 import './Css/SubmenuComplets.css';
 import './Css/formFlotantes.css';
+import './Css/TablasComplets.css';
 createRoot(document.getElementById('root')).render(
     <App />
 )

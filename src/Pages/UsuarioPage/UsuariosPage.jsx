@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import '../../Css/UsuariosPage.css';
 import { jsPDF } from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import * as XLSX from 'xlsx';
@@ -112,53 +111,54 @@ function UsuariosPage() {
                         onChange={(e) => setBusqueda(e.target.value)}
                         className="form-control"
                     />
-                    <select value={filtroRol} onChange={(e) => setFiltroRol(e.target.value)} className="form-select">
-                        <option value="">Todos los Roles</option>
+                    <select value={filtroRol} onChange={(e) => setFiltroRol(e.target.value)} className='form-control'>
+                        <option value="">Seleccion un Rol </option>
                         {rolesUnicos.map((rol, index) => (
                             <option key={index} value={rol}>{rol}</option>
                         ))}
                     </select>
                 </div>
 
-                <table className="usuarios-table">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Correo</th>
-                            <th>Teléfono</th>
-                            <th>Dirección</th>
-                            <th>Rol</th>
-                            <th>Imagen</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {usuariosFiltrados.length > 0 ? (
-                            usuariosFiltrados.map((usuario) => (
-                                <tr key={usuario.id}>
-                                    <td>{usuario.id}</td>
-                                    <td>{usuario.nombre}</td>
-                                    <td>{usuario.email}</td>
-                                    <td>{usuario.telefono}</td>
-                                    <td>{usuario.direccion}</td>
-                                    <td>{usuario.rol.nombre}</td>
-                                    <td>
-                                        <img
-                                            src={usuario.profile_icon}
-                                            alt="Perfil"
-                                            className="imagen-miniatura"
-                                            onClick={() => setImagenExpandida(usuario.profile_icon)}
-                                        />
-                                    </td>
-                                </tr>
-                            ))
-                        ) : (
+                <div className='dimensionTable'>
+                    <table className="table-striped">
+                        <thead>
                             <tr>
-                                <td colSpan="7">No hay usuarios que coincidan.</td>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Correo</th>
+                                <th>Teléfono</th>
+                                <th>Dirección</th>
+                                <th>Rol</th>
+                                <th>Imagen</th>
                             </tr>
-                        )}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {usuariosFiltrados.length > 0 ? (
+                                usuariosFiltrados.map((usuario) => (
+                                    <tr key={usuario.id}>
+                                        <td>{usuario.id}</td>
+                                        <td>{usuario.nombre}</td>
+                                        <td>{usuario.email}</td>
+                                        <td>{usuario.telefono}</td>
+                                        <td>{usuario.direccion}</td>
+                                        <td>{usuario.rol.nombre}</td>
+                                        <td>
+                                            <img
+                                                src={usuario.profile_icon}
+                                                alt="Perfil"
+                                            />
+                                        </td>
+                                    </tr>
+                                ))
+                            ) : (
+                                <tr>
+                                    <td colSpan="7">No hay usuarios que coincidan.</td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </table>
+
+                </div>
             </div>
 
             {imagenExpandida && (

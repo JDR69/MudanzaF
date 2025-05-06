@@ -1,0 +1,16 @@
+.dimensionTable{
+    width: 100%;
+    border-collapse: collapse;
+    overflow: auto;
+}
+
+.table-striped{
+    border: 1px solid #ddd;
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+}
+
+.table-striped img{
+    width: 50px;
+}
