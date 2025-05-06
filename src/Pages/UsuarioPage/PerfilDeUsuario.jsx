@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import '../../Css/PerfilDeUsuario.css';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 
@@ -40,11 +39,10 @@ function PerfilDeUsuario() {
 
   return (
     <div className='contenedoresPrincipales'>
-      <div className='PerfilConteiner'>
-        <h1>Perfil del Usuario</h1>
-
+      <h1>Perfil del Usuario</h1>
+      <div className='contenedorHijo-auxi'>
         {usuario.profile_icon && (
-          <div className="imagen-perfil-container">
+          <div id="auxi-hijo">
             <img
               src={usuario.profile_icon}
               alt="Foto de perfil"
@@ -54,56 +52,56 @@ function PerfilDeUsuario() {
           </div>
         )}
 
-        <div className="form-group">
+        <div className='contenedorHijoDos' >
           <label htmlFor="nombre">Nombre</label>
           <input
             value={usuario?.nombre || ''}
             type="text"
             name="nombre"
-            className={`form-control ${editar ? 'input-editable' : ''}`}
             onChange={handleChange}
+            className='input-perfil'
             readOnly={!editar}
           />
         </div>
 
-        <div className="form-group">
+        <div className='contenedorHijoDos' >
           <label htmlFor="correo">Correo</label>
           <input
             value={usuario?.correo || ''}
             type="email"
             name="correo"
-            className={`form-control ${editar ? 'input-editable' : ''}`}
             onChange={handleChange}
+            className='input-perfil'
             readOnly={!editar}
           />
         </div>
 
-        <div className="form-group">
+        <div className='contenedorHijoDos' >
           <label htmlFor="telefono">Teléfono</label>
           <input
             value={usuario?.telefono || ''}
             type="text"
             name="telefono"
-            className={`form-control ${editar ? 'input-editable' : ''}`}
+            className='input-perfil'
             onChange={handleChange}
             readOnly={!editar}
           />
         </div>
 
-        <div className="form-group">
+        <div className='contenedorHijoDos' >
           <label htmlFor="direccion">Dirección</label>
           <input
             value={usuario?.direccion || ''}
             type="text"
             name="direccion"
-            className={`form-control ${editar ? 'input-editable' : ''}`}
+            className='input-perfil'
             onChange={handleChange}
             readOnly={!editar}
           />
         </div>
 
         {editar ? (
-          <div className="form-group">
+          <div className='contenedorHijoDos' >
             <label>Contraseña</label>
             <p>
               <Link to="/dasboard/password" style={{ color: '#007bff' }}>
@@ -112,26 +110,26 @@ function PerfilDeUsuario() {
             </p>
           </div>
         ) : (
-          <div className="form-group">
+          <div className='contenedorHijoDos' >
             <label htmlFor="contraseña">Contraseña</label>
             <input
               value={usuario.contraseña}
               type="password"
               name="contraseña"
-              className="form-control"
+              className='input-perfil'
               readOnly
             />
           </div>
         )}
 
-        <div className="form-group">
+        <div className='contenedorHijoDos' >
           <label htmlFor="rol">Rol</label>
           <input
             value={usuario?.rol || ''}
             type="text"
-            name="rol"
-            className="form-control"
+            name="rol"  
             readOnly
+            className='input-perfil'
           />
         </div>
 

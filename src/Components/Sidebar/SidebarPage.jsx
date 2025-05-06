@@ -183,7 +183,7 @@ const enlaceUsuario = [
   {
     label: "Bitacora",
     icon: <AiOutlineApartment />,
-    to: "/dasboard/bitacora", // Corregido a "dashboard"
+    to: "/dasboard/verificacion", // Corregido a "dashboard"
   },
   {
     label: "Seguros",

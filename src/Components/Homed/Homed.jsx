@@ -19,6 +19,8 @@ import AsignacionChoferePage from "../../Pages/ServicioPage/AsignacionChoferePag
 import TipoVehiculoPage from "../../Pages/ServicioPage/TipoVehiculoPage.jsx";
 import RegistroInmueble from "../../Pages/ServicioPage/RegistroInmueble.jsx";
 
+//------------------Verificacion----------//
+import VerificacionPage from "../../Pages/VerificacionPage.jsx";
 
 import "./Homed.css"
 
@@ -45,6 +47,7 @@ export const Homed = () => {
           <Route path="/registroInmueble" element={<RegistroInmueble/>} />
           <Route path="/seguros" element={<SeguroEmpresaPage/>} />
           <Route path="/password" element={<ContraseñaPage/>} />
+          <Route path="/verificacion" element={<VerificacionPage/>} />
           
           <Route path="*" element={<div>No encontrado</div>} />
         </Routes>

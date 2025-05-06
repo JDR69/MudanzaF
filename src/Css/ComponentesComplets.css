@@ -50,6 +50,23 @@
   flex-wrap: wrap;
 }
 
+.contenedorHijo-auxi img{
+  width: 250px;
+}
+
+
+.contenedorHijo-auxi{
+  display: flex;
+  flex-direction: column;
+  gap:0px;
+  width: 400px;
+}
+#auxi-hijo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 @media (max-width: 768px) {
   .contenedoresPrincipales {
     padding-left: 5%;
@@ -70,5 +87,12 @@
 
   .contenedoresPrincipales h1 {
     font-size: 2rem;
+  }
+
+  .contenedorHijo-auxi{
+    width: auto;
+  }
+  .contenedorHijo-auxi img{
+    width: 150px;
   }
 }

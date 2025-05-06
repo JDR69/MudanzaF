@@ -64,7 +64,7 @@ function PrivilegioPage() {
                     </select>
                 </div>
                 <div className="contenedorHijoDos" >
-                    <button onClick={toggleMenu} className="btn-Menu">
+                    <button onClick={toggleMenu} className="btn btn-Menu">
                         Privilegios {isMenuOpen ? "▲" : "▼"}
                     </button>
                     {isMenuOpen && (
@@ -82,7 +82,7 @@ function PrivilegioPage() {
                                     </li>
                                 ))}
                             </ul>
-                            <button onClick={() => setMensajeExitoso("Cambios guardados exitosamente")} className='btn-success'>
+                            <button onClick={() => setMensajeExitoso("Cambios guardados exitosamente")} className='btn btn-success'>
                                 Guardar Cambios
                             </button>
                         </div>

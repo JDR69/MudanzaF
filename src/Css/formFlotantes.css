@@ -1,12 +1,25 @@
-.form-flotante{
+.form-gris {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.form-flotante {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 5px;
-  }
-  
-  .form-flotante{
+}
+
+.form-flotante {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -20,4 +33,4 @@
     z-index: 1000;
     width: auto;
     min-height: 150px;
-  }
+}

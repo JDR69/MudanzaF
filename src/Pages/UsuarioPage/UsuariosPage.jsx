@@ -100,9 +100,9 @@ function UsuariosPage() {
             <h1>Usuarios</h1>
             <div className='contenedorHijo'>
                 <div className="contenedorHijoFila">
-                    <button onClick={handleListarUsuarios} className="btn-primary">Listar Usuarios</button>
-                    <button onClick={exportarPDF} className="btn-danger">Exportar PDF</button>
-                    <button onClick={exportarExcel} className="btn-success">Exportar Excel</button>
+                    <button onClick={handleListarUsuarios} className="btn btn-primary">Listar Usuarios</button>
+                    <button onClick={exportarPDF} className="btn btn-danger">Exportar PDF</button>
+                    <button onClick={exportarExcel} className="btn btn-success">Exportar Excel</button>
 
                     <input
                         type="text"
