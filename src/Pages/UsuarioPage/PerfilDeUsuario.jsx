@@ -106,7 +106,7 @@ function PerfilDeUsuario() {
           <div className="form-group">
             <label>Contraseña</label>
             <p>
-              <Link to="/contraseña" style={{ color: '#007bff' }}>
+              <Link to="/dasboard/password" style={{ color: '#007bff' }}>
                 Click aquí para cambiar contraseña
               </Link>
             </p>

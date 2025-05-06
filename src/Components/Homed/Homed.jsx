@@ -10,6 +10,7 @@ import PrivilegioPage from "../../Pages/UsuarioPage/PrivilegioPage.jsx";
 import PerfilDeUsuario from "../../Pages/UsuarioPage/PerfilDeUsuario.jsx";
 import UsuariosPage from "../../Pages/UsuarioPage/UsuariosPage.jsx";
 import SeguroEmpresaPage from "../../Pages/SeguroEmpresaPage.jsx";
+import ContraseñaPage from "../../Pages/UsuarioPage/ContraseñaPage.jsx";
 
 //-------------------Servicios------------//
 import VehiculosPage from "../../Pages/ServicioPage/VehiculosPage.jsx";
@@ -43,6 +44,7 @@ export const Homed = () => {
           <Route path="/tipoVehiculo" element={<TipoVehiculoPage/>} />
           <Route path="/registroInmueble" element={<RegistroInmueble/>} />
           <Route path="/seguros" element={<SeguroEmpresaPage/>} />
+          <Route path="/password" element={<ContraseñaPage/>} />
           
           <Route path="*" element={<div>No encontrado</div>} />
         </Routes>

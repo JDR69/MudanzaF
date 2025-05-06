@@ -125,7 +125,7 @@ function RegistroInmueble() {
 
     const listarProductos = async () => {
         try {
-            const response = await obtenerProductos();
+            const response = await obtenerInmuebles();
             setProductos(response.data);
             console.log(response.data);
             setMostrarProductos(true);
@@ -277,7 +277,7 @@ function RegistroInmueble() {
                                     <tr key={index}>
                                         <td>{prod.nombre}</td>
                                         <td>{prod.estado}</td>
-                                        <td>{prod.categoria}</td>
+                                        <td>{prod.categoria[0].nombre}</td>
                                     </tr>
                                 ))}
                             </tbody>

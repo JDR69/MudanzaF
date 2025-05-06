@@ -20,9 +20,6 @@ const CustomNavbar = () => {
             <Nav.Link as={Link} to="/">
               Inicio
             </Nav.Link>
-            <Nav.Link as={Link} to="/productos">
-              Productos
-            </Nav.Link>
             <Nav.Link as={Link} to="/catalogo-vehiculos">
               Catálogo
             </Nav.Link>
@@ -49,9 +46,6 @@ const CustomNavbar = () => {
             </Nav.Link>
             <Nav.Link as={Link} to="/register">
               Registrarse
-            </Nav.Link>
-            <Nav.Link as={Link} to="/carrito">
-              🛒 Carrito
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>

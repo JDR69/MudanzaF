@@ -39,7 +39,7 @@ function VehiculosPage() {
         const { name, value } = e.target;
         setFormData({
             ...formData,
-            [name]: ['capacidad', 'costeKilometraje', 'modelo', 'estado', 'tipoVehID', 'seguro'].includes(name)
+            [name]: ['capacidad', 'costeKilometraje', 'modelo', 'tipoVehID'].includes(name)
                 ? Number(value)
                 : value,
         });
