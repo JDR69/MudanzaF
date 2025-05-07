@@ -1,28 +1,35 @@
 import React, { useState } from 'react';
 import '../../Css/RegistroInmueble.css';
-import { registrarCategoriaInmueble, 
-    obtenerCategoriasRequest,
-     registrarMaterial,
-    obtenerMateriales,
-    registarInmueble,
-    obtenerInmuebles } from '../../api/auth';
+import {
+    registrarCategoriaInmueble,
+    registrarMaterial,
+    registarInmueble
+} from '../../api/auth';
+import { useAuth } from '../../context/AuthContext';
 
 
 function RegistroInmueble() {
-    const [categorias, setCategorias] = useState([]);
+
+    const {
+        inmuebles,
+        setInmuebles,
+        categorias,
+        setCategorias,
+        materiales,
+        setMateriales } = useAuth();
+
     const [nuevaCategoria, setNuevaCategoria] = useState('');
     const [descripcionCategoria, setDescripcionCategoria] = useState('');
     const [estadoCategoria, setestadoCategoria] = useState('Disponible');
 
     const [productoNombre, setProductoNombre] = useState('');
     const [pesoProducto, setPesoProducto] = useState(0);
-    const [materialSeleccionado, setMaterialSeleccionado] =useState('');
+    const [materialSeleccionado, setMaterialSeleccionado] = useState('');
     const [estadoProducto, setestadoProducto] = useState('Disponible');
     const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('');
     const [productos, setProductos] = useState([]);
 
 
-    const [materiales, setMateriales] = useState([]);
     const [materialNombre, setMaterialNombre] = useState('');
     const [descripcionMaterial, setDescripcionMaterial] = useState('');
     const [precioMaterial, setPrecioMaterial] = useState(0);
@@ -78,15 +85,7 @@ function RegistroInmueble() {
         }
     };
 
-    const listarCategorias = async () => {
-        try {
-            const response = await obtenerCategoriasRequest();
-            setCategorias(response.data);
-            setMostrarCategorias(true);
-        } catch (error) {
-            console.error("Error al obtener categorías:", error);
-        }
-    };
+
 
     const registrarMaterialBackend = async () => {
         const nuevo = {
@@ -112,27 +111,18 @@ function RegistroInmueble() {
         }
     };
 
+    const listarCategorias = async () => {
+        setMostrarCategorias(true);
+    };
+
     const listarMateriales = async () => {
-        try {
-            const response = await obtenerMateriales();
-            setMateriales(response.data);
-            console.log(response.data);
-            setMostrarMateriales(true);
-        } catch (error) {
-            console.error("Error al obtener materiales:", error);
-        }
+        setMostrarMateriales(true);
     };
 
     const listarProductos = async () => {
-        try {
-            const response = await obtenerInmuebles();
-            setProductos(response.data);
-            console.log(response.data);
-            setMostrarProductos(true);
-        } catch (error) {
-            console.error("Error al obtener productos:", error);
-        }
+        setMostrarProductos(true);
     };
+
 
     return (
         <div className='containerRegistroInmueble'>
@@ -168,22 +158,23 @@ function RegistroInmueble() {
                     </div>
                 </div>
 
-                <div className="button-group">
+                <div className="contenedorButtons">
                     <button className="btn btn-primary" onClick={registrarCategoria}>Registrar Categoría</button>
-                    <button className="btn btn-secondary" onClick={listarCategorias}>
+                    <button className="btn btn-primary" onClick={listarCategorias}>
                         Listar Categorías
                     </button>
 
                 </div>
 
                 {mostrarCategorias && (
-                    <div className="tableCategoriasContainer">
-                        <table className="tableCategorias">
+                    <div className="dimensionTable">
+                        <table className="table-striped">
                             <thead>
                                 <tr>
                                     <th>Nombre</th>
                                     <th>Descripción</th>
                                     <th>estado</th>
+                                    <th>Accion</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -192,6 +183,10 @@ function RegistroInmueble() {
                                         <td>{cat.nombre}</td>
                                         <td>{cat.descripcion}</td>
                                         <td>{cat.estado}</td>
+                                        <td>
+                                            <button className="btn btn-primary" ><i className="bi bi-pencil-square"></i></button>
+                                            <button className="btn btn-danger" ><i className="bi bi-trash3-fill"></i></button>
+                                        </td>
                                     </tr>
                                 ))}
                             </tbody>
@@ -220,8 +215,7 @@ function RegistroInmueble() {
                             onChange={(e) => setPesoProducto(e.target.value)}
                         />
                         <select
-                            className="form-select"
-                            id="materialProducto"
+                            className="form-control"
                             value={materialSeleccionado}
                             onChange={(e) => setMaterialSeleccionado(e.target.value)}
                         >
@@ -244,7 +238,7 @@ function RegistroInmueble() {
                     </div>
                     <select
                         className="form-select"
-                        id="categoriaProducto"
+                        id="estadoProducto"
                         value={categoriaSeleccionada}
                         onChange={(e) => setCategoriaSeleccionada(e.target.value)}
                     >
@@ -257,27 +251,36 @@ function RegistroInmueble() {
                     </select>
                 </div>
 
-                <div className="button-group">
+                <div className="contenedorButtons">
                     <button className="btn btn-primary" onClick={registrarProducto}>Registrar Producto</button>
-                    <button className="btn btn-secondary" onClick={listarProductos}>Listar Productos</button>
+                    <button className="btn btn-primary" onClick={listarProductos}>Listar Productos</button>
                 </div>
 
                 {mostrarProductos && (
-                    <div className="tableProductosContainer">
-                        <table className="tableProductos">
+                    <div className="dimensionTable">
+                        <table className="table-striped">
                             <thead>
                                 <tr>
                                     <th>Nombre</th>
+                                    <th>Peso</th>
                                     <th>estado</th>
                                     <th>Categoría</th>
+                                    <th>Material</th>
+                                    <th>Accion</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {productos.map((prod, index) => (
+                                {inmuebles.map((prod, index) => (
                                     <tr key={index}>
                                         <td>{prod.nombre}</td>
-                                        <td>{prod.estado}</td>
-                                        <td>{prod.categoria[0].nombre}</td>
+                                        <td>{prod.estado === true ? "Disponible" : "No disponible"}</td>
+                                        <td>{prod.peso}</td>
+                                        <td>{prod.categoria.nombre}</td>
+                                        <td>{prod.material.nombre}</td>
+                                        <td>
+                                            <button className="btn btn-primary" ><i className="bi bi-pencil-square"></i></button>
+                                            <button className="btn btn-danger" ><i className="bi bi-trash3-fill"></i></button>
+                                        </td>
                                     </tr>
                                 ))}
                             </tbody>
@@ -333,19 +336,23 @@ function RegistroInmueble() {
                     </div>
                 </div>
 
-                <div className="button-group">
+                <div className="contenedorButtons">
                     <button className="btn btn-primary" onClick={registrarMaterialBackend}>Registrar Material</button>
-                    <button className="btn btn-secondary" onClick={listarMateriales}>Listar Materiales</button>
+                    <button className="btn btn-primary" onClick={listarMateriales}>Listar Materiales</button>
                 </div>
 
                 {mostrarMateriales && (
-                    <div className="tableProductosContainer">
-                        <table className="tableProductos">
+                    <div className="dimensionTable">
+                        <table className="table-striped">
                             <thead>
                                 <tr>
                                     <th>Nombre</th>
                                     <th>estado</th>
                                     <th>Descripción</th>
+                                    <th>Coste</th>
+                                    <th>Stock</th>
+                                    <th>Unidad de medida</th>
+                                    <th>Accion</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -354,6 +361,13 @@ function RegistroInmueble() {
                                         <td>{prod.nombre}</td>
                                         <td>{prod.estado}</td>
                                         <td>{prod.descripcion}</td>
+                                        <td>{prod.coste}</td>
+                                        <td>{prod.stock}</td>
+                                        <td>{prod.unidad_medida}</td>
+                                        <td>
+                                            <button className="btn btn-primary" ><i className="bi bi-pencil-square"></i></button>
+                                            <button className="btn btn-danger" ><i className="bi bi-trash3-fill"></i></button>
+                                        </td>
                                     </tr>
                                 ))}
                             </tbody>

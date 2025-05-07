@@ -6,7 +6,11 @@ import { loginRequest,
     obtenerVehiculo,
     obtenerCatalogoVehiculo,
     obtenerChofer,
-    obtenerSeguros
+    obtenerSeguros,
+    obtenerCategoriasRequest,
+    obtenerMateriales,
+    obtenerInmuebles
+
 } from "../api/auth";
 
 const AuthContext = createContext();
@@ -29,6 +33,9 @@ export const AuthProvider = ({ children }) => {
     const [catalogoVehiculos, setCatalogoVehiculos] = useState([]);
     const [choferes, setChoferes] = useState([]);
     const [seguros, setSeguros] = useState([]);
+    const [inmuebles, setInmuebles] = useState([]);
+    const [categorias, setCategorias] = useState([]);
+    const [materiales, setMateriales] = useState([]);
 
     const setUserData = (data) => {
         setUser(data);
@@ -50,23 +57,29 @@ export const AuthProvider = ({ children }) => {
     const cargarDatos = async () =>{
         try {
 
-            const [resRoles,resBitacora, resTipoVehiculo, resVehiculos, resCatalogoVehiculos,resSeguros] = await Promise.all([
+            const [resRoles,resBitacora, resTipoVehiculo, resVehiculos, resCatalogoVehiculos,resSeguros,resInmuebles,resCategorias,resMateriales] = await Promise.all([
                 obtenerRolesRequest(),
                 obtenerBitacoraRequest(),
                 obtenerTipoVehiculo(),
                 obtenerVehiculo(),
                 obtenerCatalogoVehiculo(),
                 obtenerSeguros(),
+                obtenerInmuebles(),
+                obtenerCategoriasRequest(),
+                obtenerMateriales()
             ])
             setRoles(resRoles.data)
             setBitacora(resBitacora.data)
-            console.log(resTipoVehiculo.data)
             setTipoVehiculo(resTipoVehiculo.data)
             setVehiculos(resVehiculos.data)
-            console.log(resVehiculos.data)
             setCatalogoVehiculos(resCatalogoVehiculos.data)
-            console.log(resSeguros.data)
             setSeguros(resSeguros.data)
+            console.log(resInmuebles.data)
+            setInmuebles(resInmuebles.data)
+            console.log(resCategorias.data)
+            setCategorias(resCategorias.data)
+            console.log(resMateriales.data)
+            setMateriales(resMateriales.data)
         } catch (err) {
             throw err;
         }
@@ -125,7 +138,16 @@ return (
         catalogoVehiculos,
         choferes,
         cargarChoferes,
-        seguros
+        seguros,
+
+        inmuebles,
+        setInmuebles,
+        categorias,
+        setCategorias,
+        materiales,
+        setMateriales
+
+
     }}>
         {children}
     </AuthContext.Provider>

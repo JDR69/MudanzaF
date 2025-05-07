@@ -1,15 +1,18 @@
 .btn-primary {
   text-align: center;
+  margin: 0;
   width: auto;
 }
 
 .btn-success {
   text-align: center;
+  margin: 0;
   width: auto;
 }
 
 .btn-danger {
   text-align: center;
+  margin: 0;
   width: auto;
   background-color: red;
   color: white;

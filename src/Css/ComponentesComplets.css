@@ -75,6 +75,19 @@
   align-items: center;
 }
 
+.contenedorButtons{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.contenedorButtons button{
+  width: auto;
+}
+
 @media (max-width: 768px) {
   .contenedoresPrincipales {
     padding-left: 5%;
@@ -103,4 +116,13 @@
   .contenedorHijo-auxi img{
     width: 150px;
   }
+
+  .contenedorButtons{
+    gap: 5px;
+  }
+  .contenedorButtons button{
+    font-size: 0.6rem;
+    width: 100%;
+    margin: 0;
+  };
 }

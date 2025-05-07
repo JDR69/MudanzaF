@@ -5,47 +5,74 @@
     overflow: auto;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  }
-  
-  .table-striped {
+}
+
+.table-striped {
     width: 100%;
     border-collapse: collapse;
-  }
-  
-  .table-striped th,
-  .table-striped td {
-    padding: 12px 16px;
+}
+
+.table-striped th,
+.table-striped td {
+    padding: 5px;
     text-align: left;
     border-bottom: 1px solid #e0e0e0;
-  }
-  
-  .table-striped th {
+    color: black;
+    font-weight:500 ;
+    font-size: 12px;
+}
+
+.table-striped th {
     background-color: #3277f7;
     color: white;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-  }
-  
-  .table-striped tr:nth-child(even) {
+}
+
+.table-striped tr:nth-child(even) {
     background-color: #f9f9f9;
-  }
-  
-  .table-striped tr:hover {
-    background-color: #eef2f7;
+}
+
+.table-striped tr:hover {
+    background-color: #5dd3ed;
     transition: background-color 0.3s ease;
-  }
-  
-  .table-striped img {
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.table-striped img {
     width: 40px;
     height: auto;
     border-radius: 4px;
     object-fit: cover;
-  }
+}
+
+.table-striped th,
+.table-striped td {
+    padding: 5px;
+    text-align: left;
+    border-bottom: 1px solid #998e8e;
+    border-right: 1px solid #9e8f8f;
+}
+
+.table-striped th:last-child,
+.table-striped td:last-child {
+  border-right: none;
+}
+
 
 @media (max-width: 768px) {
-    .table-striped button{
+    .table-striped button {
         width: auto;
     }
+
+    .table-striped td {
+        font-size: 10px;
+    }
+
+    .table-striped th {
+        font-size: 10px;
+    }
 }
-  
