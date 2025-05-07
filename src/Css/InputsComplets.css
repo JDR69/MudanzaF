@@ -4,3 +4,10 @@
     border: 3px solid #ddd;
     padding: 5px;
 }
+
+.label-perfil{
+    font-weight: bold;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+}
