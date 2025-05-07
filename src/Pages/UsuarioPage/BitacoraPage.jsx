@@ -39,22 +39,22 @@ const BitacoraPage = () => {
 
     return (
         <div className='contenedoresPrincipales'>
-            <h2>Registros de acciones en el Sistema</h2>
+            <h1>Registros de acciones en el Sistema</h1>
 
-            <div className="filters">
+            <div className='contenedorHijoFila'>
                 <input
-                className="form-control"
+                    className="form-control"
                     type="text"
                     placeholder="Buscar por nombre"
                     value={searchName}
                     onChange={e => setSearchName(e.target.value)}
                 />
-                <select onChange={e => setSortByDate(e.target.value)} value={sortByDate}    className="form-control">
-                    
+                <select onChange={e => setSortByDate(e.target.value)} value={sortByDate} className="form-control">
+
                     <option value="asc">Fecha Ascendente</option>
                     <option value="desc">Fecha Descendente</option>
                 </select>
-                   <button  className="btn btn-danger" onClick={handleExportPDF}>Exportar PDF</button>
+                <button className="btn btn-danger" onClick={handleExportPDF}>Exportar PDF</button>
                 <button className="btn btn-success" onClick={handleExportExcel}>Exportar Excel</button>
             </div>
 

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { tipoVehiculoRequest, actualizarTipoVehiculo, eliminarTipoVehiculo } from '../../api/auth';
-import "../../Css/TipoVehiculoPage.css";
 import { useAuth } from '../../context/AuthContext';
 
 const TipoVehiculoPage = () => {
@@ -10,7 +9,7 @@ const TipoVehiculoPage = () => {
   const [verAgregarTipoVehiculo, setVerAgregarTipoVehiculo] = useState(false);
   const [verListarTipoVehiculo, setVerListarTipoVehiculo] = useState(true);
   const [mostrarActualizar, setMostrarActualizar] = useState(false);
-  const [mostarEliminar,setMostrarEliminar] = useState(false);
+  const [mostarEliminar, setMostrarEliminar] = useState(false);
 
   const handleMostrarAgregar = () => {
     setVerAgregarTipoVehiculo(true);
@@ -55,8 +54,8 @@ const TipoVehiculoPage = () => {
       const data = {
         nombre: nombre
       }
-      console.log(data,id)
-      const res = await actualizarTipoVehiculo(data,id);
+      console.log(data, id)
+      const res = await actualizarTipoVehiculo(data, id);
       console.log(res.data)
       alert("✅ Tipo de vehiculo actualizado correctamente.");
       window.location.reload();
@@ -100,51 +99,52 @@ const TipoVehiculoPage = () => {
   };
 
   return (
-    <div className="tipo-vehiculo-container" >
-      <div className='formularioTipoVehiculo'>
+    <div className='contenedoresPrincipales' >
+      <h1>Tipos de vehiculos</h1>
+      <div className='contenedorHijoDos'>
         <div>
-          <h1>Tipos de vehiculos</h1>
-          <div className='botonesTipoVehiculo'>
+          <div className='contenedorHijoFila' >
             <button
               onClick={handleMostrarAgregar}
-              className={verAgregarTipoVehiculo ? 'active' : ''}
+              className={verAgregarTipoVehiculo ? 'btn btn-success' : 'btn btn-primary'}
             >
               Agregar
             </button>
             <button
               onClick={handleMostrarListar}
-              className={verListarTipoVehiculo ? 'active' : ''}
+              className={verListarTipoVehiculo ? 'btn btn-success' : 'btn btn-primary'}
             >
               Listar
             </button>
           </div>
         </div>
         {verAgregarTipoVehiculo && (
-          <div className="vista-container">
-            <div className="vista-header">
-              <h2>Ingrese el Tipo de Vehiculo</h2>
+          <div className='contenedorHijoDos'>
+            <div>
+              <h3>Ingrese el Tipo de Vehiculo</h3>
             </div>
-            <div className="vista-content">
+            <div >
               <input
                 type="text"
                 value={nombre}
+                className='input-perfil'
                 onChange={(e) => setNombre(e.target.value)}
                 placeholder="Nombre del tipo de vehículo"
               />
-              <div className="vista-buttons">
-                <button onClick={TipoVehiculo}>Guardar</button>
-                <button onClick={handleCerrarVistas}>Cancelar</button>
+              <div className='contenedorHijoFila'>
+                <button onClick={TipoVehiculo} className='btn btn-success' >Guardar</button>
+                <button onClick={handleCerrarVistas} className='btn btn-primary'>Cancelar</button>
               </div>
             </div>
           </div>
         )}
         {verListarTipoVehiculo && (
-          <div className="vista-container-form">
-            <div className="vista-header">
-              <h2>Lista de Tipos de Vehículos</h2>
+          <div className='contenedorHijo' >
+            <div >
+              <h3>Lista de Tipos de Vehículos</h3>
             </div>
-            <div className="vista-form">
-              <table className="table table-bordered">
+            <div className='dimensionTable'>
+              <table className="table-striped">
                 <thead>
                   <tr>
                     <th>ID</th>
@@ -158,9 +158,9 @@ const TipoVehiculoPage = () => {
                       <tr key={index}>
                         <td>{item.id}</td>
                         <td>{item.nombre}</td>
-                        <td className="botonesTipoVehiculo3">
-                          <button onClick={() => handleMostrarActualizar(item)}><i className="bi bi-pencil-square"></i></button>
-                          <button onClick={() => handleEliminarTipoVehiculo(item)}><i className="bi bi-trash3-fill"></i></button>
+                        <td>
+                          <button className="btn btn-primary" onClick={() => handleMostrarActualizar(item)}><i className="bi bi-pencil-square"></i></button>
+                          <button className="btn btn-danger" onClick={() => handleEliminarTipoVehiculo(item)}><i className="bi bi-trash3-fill"></i></button>
                         </td>
                       </tr>
                     ))
@@ -173,21 +173,22 @@ const TipoVehiculoPage = () => {
       </div>
       {
         mostrarActualizar && (
-          <div className='modal-backdrop'>
-            <div className="vistaActualizar">
-              <div className="vista-header">
-                <h2>Actualizar Tipo de Vehiculo</h2>
+          <div className='form-gris'>
+            <div className="form-flotante">
+              <div className="contenedorHijo">
+                <h3>Actualizar Tipo de Vehiculo</h3>
               </div>
-              <div className="vista-content">
+              <div className="contenedorHijo">
                 <input
                   type="text"
                   value={nombre}
+                  className="input-perfil"
                   onChange={(e) => setNombre(e.target.value)}
                   placeholder="Nombre del tipo de vehículo"
                 />
-                <div className="vista-buttons">
-                  <button onClick={handleActualizarTipoVehiculo}>Guardar</button>
-                  <button onClick={handleCerrarVistasActualizar}>Cancelar</button>
+                <div className="contenedorHijoFila">
+                  <button className="btn btn-primary" onClick={handleActualizarTipoVehiculo}>Guardar</button>
+                  <button className="btn btn-danger" onClick={handleCerrarVistasActualizar}>Cancelar</button>
                 </div>
               </div>
             </div>
@@ -196,15 +197,15 @@ const TipoVehiculoPage = () => {
       }
       {
         mostarEliminar && (
-          <div className='modal-backdrop'>
-            <div className="vistaActualizar">
-              <div className="vista-header">
-                <h2>Estas seguro que quieres eliminar?</h2>
+          <div className='form-gris'>
+            <div className="form-flotante">
+              <div className="contenedorHijo">
+                <h3>Estas seguro que quieres eliminar?</h3>
               </div>
-              <div className="vista-content">
-                <div className="vista-buttons">
-                  <button onClick={eliminarParaElBackend}>Si</button>
-                  <button onClick={handleCerrarVistasEliminar}>No</button>
+              <div className="contenedorHijo">
+                <div className="contenedorHijoFila">
+                  <button className="btn btn-primary" onClick={eliminarParaElBackend}>Si</button>
+                  <button className="btn btn-danger" onClick={handleCerrarVistasEliminar}>No</button>
                 </div>
               </div>
             </div>
