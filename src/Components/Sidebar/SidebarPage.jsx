@@ -30,21 +30,15 @@ export const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   };
 
 
-  const bit = {
-    UsuarioID: null,
-    message: ''
-
-  };
-
   const handleLogout = async () => {
     await logout(); // Llama a logout del contexto
     navigate("/login"); // Redirige al login después de cerrar sesión
   };
 
   return (
-    <div className={`sidebar-container ${sidebarOpen ? "open" : "closed"}`}>
+    <div className={sidebarOpen ? "sidebar-container open" : "sidebar-container closed"}>
       <button className="sidebar-button" onClick={ModSidebaropen}>
-        <AiOutlineLeft />
+        {sidebarOpen ? "<" : ">"}
       </button>
       <div className="logo-content">
         <div className="img-content">
