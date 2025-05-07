@@ -141,14 +141,31 @@ export const registrarCategoriaInmueble = (data) => instance.post(`/api/categori
     }
 );
 
+export const actualizarCategoriaInmuebles = (data,id) => instance.put(`/api/categorias/${id}/update`,
+    data,
+    {
+        headers: {
+            "Content-Type": "application/json"
+          },
+        withCredentials:true
+    }
+)
 
-export const obtenerCategoriasRequest = () => instance.get(`/api/categorias/get`, {
+
+
+export const obtenerCategoriasRequest = () => instance.get(`/api/categorias/get-partial`, {
     withCredentials: true,
     timeout: tiempoEspera
 });
 
-
-
+export const eliminarCategoriaInmuebles = (id) => instance.delete(`/api/categorias/${id}/delete`,
+    {
+        headers: {
+            "Content-Type": "application/json"
+          },
+        withCredentials:true
+    }
+)
 
 export const insertarNuevoSeguro = (data) => instance.post(`/api/seguro/reg`,
     data,{
@@ -191,6 +208,24 @@ export const registrarMaterial = (data) => instance.post(`/api/materiales/regist
     }
 )
 
+export const actualizarMaterialRequest = (data,id) => instance.put(`/api/materiales/${id}/update`,
+    data,{
+        headers:{
+            "Content-Type": "application/json"
+        },
+        withCredentials:true
+    }
+)
+
+export const eliminarMaterialRequest = (id) => instance.delete(`/api/materiales/${id}/delete`,
+    {
+        headers: {
+            "Content-Type": "application/json"
+          },
+        withCredentials:true
+    }
+)
+
 export const obtenerMateriales = () => { return instance.get(`/api/materiales/get`,{
     withCredentials: true,
     timeout: tiempoEspera
@@ -209,3 +244,12 @@ export const obtenerInmuebles = () => { return instance.get(`/api/inmuebles/get`
     withCredentials: true,
     timeout: tiempoEspera
 })}
+
+
+export const bitacoraVerificacionRequest = (data) => instance.post(`/api/bitacora/acceder`,
+    data,{
+        headers: {
+            "Content-Type": "application/json"
+          },
+        withCredentials:true
+    })

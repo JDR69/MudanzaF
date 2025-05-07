@@ -2,7 +2,13 @@ import React, { useState } from 'react';
 import '../../Css/RegistroInmueble.css';
 import {
     registrarCategoriaInmueble,
+    actualizarCategoriaInmuebles,
+    eliminarCategoriaInmuebles,
+
     registrarMaterial,
+    actualizarMaterialRequest,
+    eliminarMaterialRequest,
+
     registarInmueble
 } from '../../api/auth';
 import { useAuth } from '../../context/AuthContext';
@@ -25,7 +31,7 @@ function RegistroInmueble() {
         id: '',
         nombre: '',
         descripcion: '',
-        estado: 'Disponible'
+        estado: ''
     });
     const [idCategoria, setIdCategoria] = useState(0);
     const [mostrarEditarCategoria, setMostrarEditarCategoria] = useState(false);
@@ -56,7 +62,7 @@ function RegistroInmueble() {
         coste: 0,
         unidad_medida: '',
         stock: 0,
-        estado: 'Disponible'
+        estado: ''
     });
     const [idMaterial, setIdMaterial] = useState(0);
     const [mostrarEditarMaterial, setMostrarEditarMaterial] = useState(false);
@@ -79,9 +85,14 @@ function RegistroInmueble() {
             try {
                 await registrarCategoriaInmueble(nueva);
                 setCategorias([...categorias, nueva]);
-                console.log(nueva);
+                setNuevaCategoria({
+                    id: '',
+                    nombre: '',
+                    descripcion: '',
+                    estado: 'Disponible'
+                })
             } catch (error) {
-                console.log("Error al registrar categoría:", error);
+                alert("Error al registrar categoría");
             }
         }
     };
@@ -97,10 +108,22 @@ function RegistroInmueble() {
         setMostrarEditarCategoria(true);
     }
 
-    const ActualizarCategoria = () => {
-        console.log(nuevaCategoria);
-        setCategorias(categorias.map((cat) => cat.id === nuevaCategoria.id ? nuevaCategoria : cat));
-        setMostrarEditarCategoria(false);
+    const ActualizarCategoria = async () => {
+        try {
+
+            const data = {
+                nombre: nuevaCategoria.nombre,
+                descripcion: nuevaCategoria.descripcion,
+                estado: nuevaCategoria.estado
+            }
+
+            const res = await actualizarCategoriaInmuebles(data, nuevaCategoria.id);
+            setCategorias(categorias.map((cat) => cat.id === nuevaCategoria.id ? nuevaCategoria : cat));
+            setMostrarEditarCategoria(false);
+            
+        } catch (error) {
+            alert("Error al actualizar categoría");
+        }
     }
 
 
@@ -109,10 +132,15 @@ function RegistroInmueble() {
         setMostrarEliminarCategoria(true);
     }
 
-    const EliminarCategoriaBackend = () => {
-        console.log(idCategoria);
-        setCategorias(categorias.filter((cat) => cat.id !== idCategoria));
-        setMostrarEliminarCategoria(false);
+    const EliminarCategoriaBackend = async () => {
+        try {
+            const res = await eliminarCategoriaInmuebles(idCategoria);
+            console.log(res.data);
+            setCategorias(categorias.filter((cat) => cat.id !== idCategoria));
+            setMostrarEliminarCategoria(false);
+        } catch (error) {
+            alert("Error al eliminar categoría");
+        }
     }
 
 
@@ -151,14 +179,42 @@ function RegistroInmueble() {
     };
 
     const EditarMaterial = (material) => {
+        console.log(material);
         setNuevoMaterial(material);
         setMostrarEditarMaterial(true);
     }
 
-    const ActualizarMaterial = () => {
-        console.log(nuevoMaterial);
-        setMateriales(materiales.map((mat) => mat.id === nuevoMaterial.id ? nuevoMaterial : mat));
-        setMostrarEditarMaterial(false);
+    const ActualizarMaterial = async () => {
+
+        try {
+
+            const data = {
+                nombre: nuevoMaterial.nombre,
+                estado: nuevoMaterial.estado,
+                coste: parseInt(nuevoMaterial.coste),
+                unidad_medida: nuevoMaterial.unidad_medida,
+                stock: parseInt(nuevoMaterial.stock),
+                descripcion: nuevoMaterial.descripcion
+            }
+
+            const res = await actualizarMaterialRequest(data, nuevoMaterial.id);
+            console.log(res.data);
+            setMateriales(materiales.map((mat) => mat.id === nuevoMaterial.id ? nuevoMaterial : mat));
+            setMostrarEditarMaterial(false);
+            
+        } catch (error) {
+            alert("Error al actualizar material");
+        }finally{
+            setNuevoMaterial({
+                id: '',
+                nombre: '',
+                descripcion: '',
+                coste: 0,
+                unidad_medida: '',
+                stock: 0,
+                estado: 'Disponible'
+            });
+        }
     }
 
     const EliminarMaterial = (id) => {
@@ -166,10 +222,18 @@ function RegistroInmueble() {
         setMostrarEliminarMaterial(true);
     }
 
-    const EliminarMaterialBackend = () => {
-        console.log(idMaterial);
-        setMateriales(materiales.filter((mat) => mat.id !== idMaterial));
-        setMostrarEliminarMaterial(false);
+    const EliminarMaterialBackend = async () => {
+
+        try {
+
+            const res = await eliminarMaterialRequest(idMaterial);
+            console.log(res.data);
+            setMateriales(materiales.filter((mat) => mat.id !== idMaterial));
+            setMostrarEliminarMaterial(false);
+            
+        } catch (error) {
+            alert("Error al eliminar material");
+        }
     }
 
 
@@ -222,6 +286,17 @@ function RegistroInmueble() {
         console.log(nuevoInmueble);
         setInmuebles(inmuebles.map((inm) => inm.id === nuevoInmueble.id ? nuevoInmueble : inm));
         setMostrarEditarInmueble(false);
+    }
+
+    const EliminarInmueble = (id) => {
+        setIdInmueble(id);
+        setMostrarEliminarInmueble(true);
+    }
+
+    const EliminarInmuebleBackend = () => {
+        console.log(idInmueble);
+        setInmuebles(inmuebles.filter((inm) => inm.id !== idInmueble));
+        setMostrarEliminarInmueble(false);
     }
 
 
@@ -322,15 +397,15 @@ function RegistroInmueble() {
                             <label className='label-perfil'>Estado de la categoría</label>
                             <select
                                 className="form-select"
-                                value={nuevaCategoria.estado}
+                                value={nuevaCategoria.estado === 'disponible' ? 'disponible' : 'no disponible'}
                                 onChange={(e) => setNuevaCategoria({ ...nuevaCategoria, estado: e.target.value })}
                             >
-                                <option value="Disponible">Disponible</option>
-                                <option value="No disponible">No disponible</option>
+                                <option value="disponible">Disponible</option>
+                                <option value="no disponible">No disponible</option>
                             </select>
                             <div className="contenedorButtons">
-                                <button className="btn btn-primary" onClick={ActualizarCategoria}>Actualizar</button>
-                                <button className="btn btn-danger" onClick={() => setMostrarEditarCategoria(false)}>Cancelar</button>
+                                <button className="btn btn-primary" type="button" onClick={ActualizarCategoria}>Actualizar</button>
+                                <button className="btn btn-danger" type="button" onClick={() => setMostrarEditarCategoria(false)}>Cancelar</button>
                             </div>
                         </div>
                     </div>
@@ -343,8 +418,8 @@ function RegistroInmueble() {
                         <div className='form-flotante'>
                             <label className='label-perfil'>¿Estas seguro de eliminar la categoría?</label>
                             <div className="contenedorButtons">
-                                <button className="btn btn-primary" onClick={() => EliminarCategoriaBackend()}>Eliminar</button>
-                                <button className="btn btn-danger" onClick={() => setMostrarEliminarCategoria(false)}>Cancelar</button>
+                                <button className="btn btn-primary" type="button" onClick={() => EliminarCategoriaBackend()}>Eliminar</button>
+                                <button className="btn btn-danger" type="button" onClick={() => setMostrarEliminarCategoria(false)}>Cancelar</button>
                             </div>
                         </div>
                     </div>
@@ -651,11 +726,11 @@ function RegistroInmueble() {
                             <label className='label-perfil'>Estado del material</label>
                             <select
                                 className="form-select"
-                                value={nuevoMaterial.estado}
+                                value={nuevoMaterial.estado === 'DISPONIBLE' ? 'DISPONIBLE' : 'NO DISPONIBLE'}
                                 onChange={(e) => setNuevoMaterial({ ...nuevoMaterial, estado: e.target.value })}
                             >
-                                <option value="Disponible">Disponible</option>
-                                <option value="No disponible">No disponible</option>
+                                <option value="DISPONIBLE">DISPONIBLE</option>
+                                <option value="NO DISPONIBLE">NO DISPONIBLE</option>
                             </select>
                             <div className="contenedorButtons">
                                 <button className="btn btn-primary" onClick={ActualizarMaterial}>Actualizar</button>
@@ -675,25 +750,8 @@ function RegistroInmueble() {
                             <h2>Eliminar Material</h2>
                             <p>¿Estas seguro de eliminar el material?</p>
                             <div className="contenedorButtons">
-                                <button className="btn btn-primary" onClick={EliminarMaterialBackend}>Eliminar</button>
-                                <button className="btn btn-danger" onClick={() => setMostrarEliminarMaterial(false)}>Cancelar</button>
-                            </div>
-                        </div>
-                    </div>
-                )
-            }
-
-            {/* AQUI SE ELIMINA LA INFORMACION DE CATEGORIAS */}
-
-            {
-                mostrarEliminarCategoria && (
-                    <div className="form-gris">
-                        <div className='form-flotante'>
-                            <h2>Eliminar Material</h2>
-                            <p>¿Estas seguro de eliminar el material?</p>
-                            <div className="contenedorButtons">
-                                <button className="btn btn-primary" onClick={EliminarMaterialBackend}>Eliminar</button>
-                                <button className="btn btn-danger" onClick={() => setMostrarEliminarMaterial(false)}>Cancelar</button>
+                                <button className="btn btn-primary" type="button" onClick={EliminarMaterialBackend}>Eliminar</button>
+                                <button className="btn btn-danger" type="button" onClick={() => setMostrarEliminarMaterial(false)}>Cancelar</button>
                             </div>
                         </div>
                     </div>
