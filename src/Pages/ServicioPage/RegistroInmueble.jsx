@@ -37,11 +37,10 @@ function RegistroInmueble() {
         id: '',
         nombre: '',
         categoria_id: '',
-        categoria_nombre: '',
+        categoria: {id: '', nombre: ''},
         material_id: '',
-        material_nombre: '',
+        material: {id: '', nombre: ''},
         peso: '',
-        descripcion: '',
         estado: 'Disponible'
     });
     const [idInmueble, setIdInmueble] = useState(0);
@@ -116,36 +115,6 @@ function RegistroInmueble() {
         setMostrarEliminarCategoria(false);
     }
 
-    //CRUD DE PRODUCTOS INMUEBLES
-
-    const registrarProducto = async () => {
-        if (productoNombre.trim() !== '' && categoriaSeleccionada !== '') {
-            const nuevo = {
-                nombre: productoNombre,
-                peso: parseInt(pesoProducto),
-                material_id: parseInt(materialSeleccionado),
-                estado: estadoProducto,
-                categoria_id: parseInt(categoriaSeleccionada)
-            };
-
-            console.log(nuevo);
-
-            try {
-                await registarInmueble(nuevo);
-                setProductos([...productos, nuevo]);
-                setProductoNombre('');
-                setestadoProducto('Disponible');
-                setCategoriaSeleccionada('');
-            } catch (error) {
-                console.error("Error al registrar producto:", error);
-            }
-        }
-    };
-
-    const listarProductos = async () => {
-        setMostrarProductos(true);
-    };
-
 
     //CRUD DE MATERIALES
 
@@ -202,6 +171,59 @@ function RegistroInmueble() {
         setMateriales(materiales.filter((mat) => mat.id !== idMaterial));
         setMostrarEliminarMaterial(false);
     }
+
+
+    //CRUD DE INMUEBLES
+
+    const registrarProducto = async () => {
+        if (productoNombre.trim() !== '' && categoriaSeleccionada !== '') {
+
+            const nuevo = {
+                nombre: nuevoInmueble.nombre,
+                peso: parseInt(nuevoInmueble.peso),
+                material_id: parseInt(nuevoInmueble.material_id),
+                estado: nuevoInmueble.estado,
+                categoria_id: parseInt(nuevoInmueble.categoria_id)
+            };
+
+            console.log(nuevo);
+
+            try {
+                await registarInmueble(nuevo);
+                setInmuebles([...inmuebles, nuevo]);
+                setNuevoInmueble({
+                    id: '',
+                    nombre: '',
+                    categoria_id: '',
+                    categoria: {id: '', nombre: ''},
+                    material_id: '',
+                    material: {id: '', nombre: ''},
+                    peso: '',
+                    estado: 'Disponible'
+                });
+            } catch (error) {
+                console.error("Error al registrar producto:", error);
+            }
+        }
+    };
+
+    const listarProductos = async () => {
+
+        setMostrarProductos(true);
+    };
+
+    const EditarInmueble = (inmueble) => {
+        console.log(inmueble);
+        setNuevoInmueble(inmueble);
+        setMostrarEditarInmueble(true);
+    }
+
+    const ActualizarInmueble = () => {
+        console.log(nuevoInmueble);
+        setInmuebles(inmuebles.map((inm) => inm.id === nuevoInmueble.id ? nuevoInmueble : inm));
+        setMostrarEditarInmueble(false);
+    }
+
 
 
     return (
@@ -339,21 +361,21 @@ function RegistroInmueble() {
                             className="form-control"
                             id="nombreProducto"
                             placeholder="Nombre del producto"
-                            value={productoNombre}
-                            onChange={(e) => setProductoNombre(e.target.value)}
+                            value={nuevoInmueble.nombre}
+                            onChange={(e) => setNuevoInmueble({ ...nuevoInmueble, nombre: e.target.value })}
                         />
                         <label htmlFor="pesoProducto">Peso</label>
                         <input
                             className="form-control"
                             id="pesoProducto"
                             placeholder="Peso del producto"
-                            value={pesoProducto}
-                            onChange={(e) => setPesoProducto(e.target.value)}
+                            value={nuevoInmueble.peso}
+                            onChange={(e) => setNuevoInmueble({ ...nuevoInmueble, peso: e.target.value })}
                         />
                         <select
                             className="form-control"
-                            value={materialSeleccionado}
-                            onChange={(e) => setMaterialSeleccionado(e.target.value)}
+                            value={nuevoInmueble.material_id}
+                            onChange={(e) => setNuevoInmueble({ ...nuevoInmueble, material_id: e.target.value })}
                         >
                             <option value="">Seleccionar material</option>
                             {materiales.map((material, index) => (
@@ -365,8 +387,8 @@ function RegistroInmueble() {
                         <select
                             className="form-select"
                             id="estadoProducto"
-                            value={estadoProducto}
-                            onChange={(e) => setestadoProducto(e.target.value)}
+                            value={nuevoInmueble.estado}
+                            onChange={(e) => setNuevoInmueble({ ...nuevoInmueble, estado: e.target.value })}
                         >
                             <option value="Disponible">Disponible</option>
                             <option value="No disponible">No disponible</option>
@@ -375,8 +397,8 @@ function RegistroInmueble() {
                     <select
                         className="form-select"
                         id="estadoProducto"
-                        value={categoriaSeleccionada}
-                        onChange={(e) => setCategoriaSeleccionada(e.target.value)}
+                        value={nuevoInmueble.categoria_id}
+                        onChange={(e) => setNuevoInmueble({ ...nuevoInmueble, categoria_id: e.target.value })}
                     >
                         <option value="">Seleccione categoría</option>
                         {categorias.map((cat, index) => (
@@ -411,11 +433,11 @@ function RegistroInmueble() {
                                         <td>{prod.nombre}</td>
                                         <td>{prod.estado === true ? "Disponible" : "No disponible"}</td>
                                         <td>{prod.peso}</td>
-                                        <td>{prod.categoria.nombre}</td>
-                                        <td>{prod.material.nombre}</td>
+                                        <td>{prod.categoria?.nombre}</td>
+                                        <td>{prod.material?.nombre}</td>
                                         <td>
-                                            <button className="btn btn-primary" ><i className="bi bi-pencil-square"></i></button>
-                                            <button className="btn btn-danger" ><i className="bi bi-trash3-fill"></i></button>
+                                            <button className="btn btn-primary" onClick={() => EditarInmueble(prod)}><i className="bi bi-pencil-square"></i></button>
+                                            <button className="btn btn-danger" onClick={() => EliminarInmueble(prod.id)}><i className="bi bi-trash3-fill"></i></button>
                                         </td>
                                     </tr>
                                 ))}
@@ -423,11 +445,72 @@ function RegistroInmueble() {
                         </table>
                     </div>
                 )}
-            </div>
 
-            {
-                Mos
-            }
+                { 
+                    mostrarEditarInmueble && (
+                        <div className="form-gris">
+                            <div className='form-flotante'>
+                                <label className='label-perfil'>Nombre del Inmuebles</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="Nombre del Inmuebles"
+                                    value={nuevoInmueble.nombre}
+                                    onChange={(e) => setNuevoInmueble({ ...nuevoInmueble, nombre: e.target.value })}
+                                />
+                                <label className='label-perfil'>Peso del Inmuebles</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="Peso del Inmuebles"
+                                    value={nuevoInmueble.peso}
+                                    onChange={(e) => setNuevoInmueble({ ...nuevoInmueble, peso: e.target.value })}
+                                />
+                                <label className='label-perfil'>Estado del Inmuebles</label>
+                                <select
+                                    className="form-select"
+                                    value={nuevoInmueble.estado === true ? "Disponible" : "No disponible"}
+                                    onChange={(e) => setNuevoInmueble({ ...nuevoInmueble, estado: e.target.value })}
+                                >
+                                    <option value="Disponible">Disponible</option>
+                                    <option value="No disponible">No disponible</option>
+                                </select>
+                                <label className='label-perfil'>Categoria del Inmuebles</label>
+                                <select
+                                    className="form-select"
+                                    value={nuevoInmueble.categoria_id}
+                                    onChange={(e) => setNuevoInmueble({ ...nuevoInmueble, categoria_id: e.target.value })}
+                                >
+                                    <option value="">Seleccione categoria</option>
+                                    {categorias.map((cat, index) => (
+                                        <option key={index} value={cat.id}>
+                                            {cat.nombre}
+                                        </option>
+                                    ))}
+                                </select>
+                                <label className='label-perfil'>Material del Inmuebles</label>
+                                <select
+                                    className="form-select"
+                                    value={nuevoInmueble.material_id}
+                                    onChange={(e) => setNuevoInmueble({ ...nuevoInmueble, material_id: e.target.value })}
+                                >
+                                    <option value="">Seleccione material</option>
+                                    {materiales.map((mat, index) => (
+                                        <option key={index} value={mat.id}>
+                                            {mat.nombre}
+                                        </option>
+                                    ))}
+                                </select>
+                                    <div className="contenedorButtons">
+                                    <button className="btn btn-primary" onClick={ActualizarInmueble}>Editar</button>
+                                    <button className="btn btn-danger" onClick={() => setMostrarEditarInmueble(false)}>Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                }
+                
+            </div>
 
             {/* AQUI TODA LA INFORMACION DE MATERIALES */}
 
