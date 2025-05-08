@@ -19,6 +19,7 @@ import AsignacionChoferePage from "../../Pages/ServicioPage/AsignacionChoferePag
 import TipoVehiculoPage from "../../Pages/ServicioPage/TipoVehiculoPage.jsx";
 import RegistroInmueble from "../../Pages/ServicioPage/RegistroInmueble.jsx";
 import BitacoraVehiculosPage from "../../Pages/ServicioPage/BitacoraVehiculosPage.jsx";
+import InformacionTecnicaVehiculoPage from "../../Pages/ServicioPage/InformacionTecnicaVehiculoPage.jsx";
 
 //------------------Verificacion----------//
 import VerificacionPage from "../../Pages/VerificacionPage.jsx";
@@ -60,6 +61,7 @@ export const Homed = () => {
           <Route path="/password" element={<ContraseñaPage/>} />
           <Route path="/verificacion" element={<VerificacionPage/>} />
           <Route path="/bitacoraVehiculos" element={<BitacoraVehiculosPage/>} />
+          <Route path="/informacionVehicular" element={<InformacionTecnicaVehiculoPage/>} />
           
 
           <Route path="*" element={<div>No encontrado</div>} />

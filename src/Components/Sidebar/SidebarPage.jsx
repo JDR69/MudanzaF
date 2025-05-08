@@ -214,6 +214,11 @@ const enlaceServicios = [
     icon: <MdOutlineAnalytics />,
     to: "/dasboard/bitacoraVehiculos", // Corregido a "dashboard"
   },
+  {
+    label: "Informacion Tecnica Vehicular",
+    icon: <MdOutlineAnalytics />,
+    to: "/dasboard/informacionVehicular", // Corregido a "dashboard"
+  },
 /*  {
     label: "Tipo de Viaje",
     icon: <MdOutlineAnalytics />,
