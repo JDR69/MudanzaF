@@ -8,7 +8,6 @@ export const HomeDas = () => {
   return (
     <div className="containerHome">
       <h1 className="welcomeMessage">Bienvenido: { user?.nombre }</h1>
-
     </div>
   );
 };

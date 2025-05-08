@@ -68,7 +68,6 @@ function GaleriaVehiculosPage() {
             imagenes: imagenNueva
         };
 
-
         try {
             const res = await registrarGaleriaVehiculos(data, vehiculoSeleccionado.id);
             console.log(res)
@@ -102,6 +101,28 @@ function GaleriaVehiculosPage() {
 
     const handleEliminarImagen = (index) => {
         setImagenes((prev) => prev.filter((_, i) => i !== index));
+    };
+
+    const handleEliminarImagenNueva = (index) => {
+        setImagenNueva((prev) => prev.filter((_, i) => i !== index));
+    };
+
+    const handleEliminarImagenBackend = async (indice, id) => {
+        try {
+            // const res = await eliminarGaleriaVehiculos(id);
+            // console.log(res)
+            // alert("✅ Vehiculo eliminado correctamente.");
+            console.log(indice)
+            console.log(id)
+            console.log(vehiculoSeleccionado)
+            setVehiculoSeleccionado((prev) => ({
+                ...prev,
+                img: prev.img.filter((_, i) => i !== indice),
+              }));
+        } catch (error) {
+            console.error(error);
+            alert('❌ Error al eliminar el vehiculo.');
+        }
     };
 
     return (
@@ -145,7 +166,7 @@ function GaleriaVehiculosPage() {
                         <p><strong>Placa:</strong> {vehiculoSeleccionado?.placa}</p>
                         <p><strong>Motor:</strong> {vehiculoSeleccionado?.motor}</p>
                         <p><strong>Modelo:</strong> {vehiculoSeleccionado?.modelo}</p>
-                        <p><strong>Tipo:</strong> {vehiculoSeleccionado?.tipo}</p>
+                        {/* <p><strong>Tipo:</strong> {vehiculoSeleccionado?.tipo}</p> */}
                     </div>
                 )}
 
@@ -175,13 +196,28 @@ function GaleriaVehiculosPage() {
                                 </thead>
                                 <tbody>
                                     {
-                                        vehiculoSeleccionado?.img.map((img) => {
+                                        vehiculoSeleccionado?.img.map((img, index) => {
                                             return (
-                                                <tr key={img.id}>
+                                                <tr key={index}>
                                                     <td>{img.id}</td>
                                                     <td><img src={img.dir_imagen} style={{ width: '100px' }} alt="" /></td>
                                                     <td>
-                                                        <button id='Eliminar' onClick={() => handleEliminarImagen(img.id)}>
+                                                        <button id='Eliminar' onClick={() => handleEliminarImagenBackend(index, img.id)}>
+                                                            Eliminar
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            )
+                                        })
+                                    }
+                                    {
+                                        imagenNueva.map((img, index) => {
+                                            return (
+                                                <tr key={index}>
+                                                    <td>{index + 1}</td>
+                                                    <td><img src={img} style={{ width: '100px' }} alt="" /></td>
+                                                    <td>
+                                                        <button id='Eliminar' onClick={() => handleEliminarImagenNueva(index)}>
                                                             Eliminar
                                                         </button>
                                                     </td>
