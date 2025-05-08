@@ -1,6 +1,6 @@
 :root {
   --sidebar-collapsed-width: 100px;
-  --sidebar-expanded-width: 260px;
+  --sidebar-expanded-width: 240px;
   --transition-speed: 0.3s;
 
   --primary-color: #1e293b; /* Sidebar fondo */
@@ -26,7 +26,7 @@ body {
   display: grid;
   grid-template-columns: var(--sidebar-collapsed-width) auto;
   transition: grid-template-columns var(--transition-speed);
-  min-height: 100vh;
+  min-height: 120vh;
 }
 
 .containe12.active12 {
@@ -64,7 +64,8 @@ body {
 
 /* === Links === */
 .link-container {
-  padding: 0.25rem 1rem;
+  padding: 0.15rem 1rem;
+  white-space: nowrap; 
 }
 
 .links {
@@ -75,7 +76,7 @@ body {
   border-radius: 8px;
   text-decoration: none;
   color: var(--text-light);
-  transition: background var(--transition-speed), color var(--transition-speed);
+  transition: background var(--transition-speed);
 }
 
 .links:hover {
@@ -115,6 +116,7 @@ body {
 .content-container {
   overflow-y: auto;
   background-color: var(--background-main);
+  
 }
 
 

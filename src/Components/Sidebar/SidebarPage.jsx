@@ -40,14 +40,7 @@ export const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
       <button className="sidebar-button" onClick={ModSidebaropen}>
         {sidebarOpen ? "<" : ">"}
       </button>
-      <div className="logo-content">
-        <div className="img-content">
-          {/* Si no necesitas el logo, puedes eliminar esta parte */}
-          {/* <img src={logo} alt="logo_licoreria_bunker" /> */}
-        </div>
-        <h2>{sidebarOpen ? "" : ""}</h2>
-      </div>
-
+     
       {/* Paquete 1 - Adm. Usuario */}
       <div
         className="link-container"
@@ -187,21 +180,18 @@ const enlaceUsuario = [
 ];
 
 const enlaceServicios = [
-  {
-    label: "Inventario de Materiales",
-    icon: <MdOutlineAnalytics />,
-    to: "/dasboard/products", // Corregido a "dashboard"
-  },
+
   {
     label: "Tipo Vehiculo",
     icon: <MdOutlineAnalytics />,
     to: "/dasboard/tipoVehiculo", // Corregido a "dashboard"
   },
   {
-    label: "Tipo Emabalage",
+    label: "Tipo Envalaje",
     icon: <MdOutlineAnalytics />,
     to: "/dasboard/registroInmueble", // Corregido a "dashboard"
   },
+ 
   {
     label: "Vehiculos",
     icon: <MdOutlineAnalytics />,
@@ -212,68 +202,51 @@ const enlaceServicios = [
     icon: <MdOutlineAnalytics />,
     to: "/dasboard/regisChofer", // Corregido a "dashboard"
   },
-  {
-    label: "Cotizaciones",
-    icon: <MdOutlineAnalytics />,
-    to: "/dasboard/notaSalida", // Corregido a "dashboard"
-  },
+ 
   {
     label: "Galeria de vehiculos",
     icon: <MdOutlineAnalytics />,
     to: "/dasboard/galeriaVeh", // Corregido a "dashboard"
   },
   {
-    label: "Bitacora vehiculos",
+    label: "Bitacora de vehiculos",
     icon: <MdOutlineAnalytics />,
-    to: "/dasboard/notaSalia", // Corregido a "dashboard"
+    to: "/dasboard/aa", // Corregido a "dashboard"
+  },
+/*  {
+    label: "Tipo de Viaje",
+    icon: <MdOutlineAnalytics />,
+    to: "/dasboard/registroInmueble", // Corregido a "dashboard"
   },
   {
-    label: "Catalogo de vehiculos",
+    label: "Gestionar Horarios del Personal",
     icon: <MdOutlineAnalytics />,
-    to: "/dasboard/notaSalid", // Corregido a "dashboard"
-  },
-  {
-    label: "Gestion de viajes",
-    icon: <MdOutlineAnalytics />,
-    to: "/dasboard/notaSalid", // Corregido a "dashboard"
+    to: "/dasboard/registroInmueble", // Corregido a "dashboard"
   },
   {
     label: "Promociones",
     icon: <MdOutlineAnalytics />,
-    to: "/dasboard/notaSalid", // Corregido a "dashboard"
-  },
-  {
-    label: "Informacion de vehiculo",
-    icon: <MdOutlineAnalytics />,
-    to: "/dasboard/notaSalid", // Corregido a "dashboard"
-  },
-  {
-    label: "Gastos de Rutas",
-    icon: <MdOutlineAnalytics />,
-    to: "/dasboard/notaSalid", // Corregido a "dashboard"
-  },
-  {
-    label: "Horario del Personal",
-    icon: <MdOutlineAnalytics />,
-    to: "/dasboard/notaSalid", // Corregido a "dashboard"
-  },
+    to: "/dasboard/registroInmueble", // Corregido a "dashboard"
+  },*/
+
 ];
 const Translado = [
-  {
-    label: "Notificar",
+ /* {
+    label: "Facturacion",
     icon: <MdOutlineAnalytics />,
     to: "/dasboard/proveedorRegister", // Corregido a "dashboard"
   },
-  {
-    label: "Comentarios",
+   {
+    label: "Gestionar Incidentes",
     icon: <MdOutlineAnalytics />,
     to: "/dasboard/compras",
   },
   {
-    label: "Lotes",
+    label: "Gestionar Pagos",
     icon: <MdOutlineAnalytics />,
-    to: "/dasboard/lote",
-  }
+    to: "/dasboard/compras",
+  },*/
+
 ];
 const enlacesecundario = [
   {
@@ -289,7 +262,7 @@ const enlacesecundario = [
 ];
 
 const enlaceExperiencia =[
-  {
+ /* {
     label: "Notificaones",
     icon: <MdOutlineAnalytics />,
     to: "/dasboard/apertura",
@@ -309,9 +282,14 @@ const enlaceExperiencia =[
     icon: <MdOutlineAnalytics />,
     to: "/dasboard/comprobantes",
   },
+   {
+    label: "Gestionar Busqueda de Vehiculos",
+    icon: <MdOutlineAnalytics />,
+    to: "/dasboard/detalleFactura",
+  }
   {
     label: "Registros de servicios",
     icon: <MdOutlineAnalytics />,
     to: "/dasboard/detalleFactura",
-  }
+  }*/
 ]
