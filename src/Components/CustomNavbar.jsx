@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
-import { Link } from "react-router-dom"; 
+import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const CustomNavbar = () => {
+  const { user } = useAuth();
+
+ 
+  useEffect(() => {
+    console.log("Estado actual del usuario:", user);
+  }, [user]); // Añade user como dependencia para ver los cambios
+  
+  
   return (
     <Navbar bg="dark" variant="dark" expand="lg" sticky="top" collapseOnSelect>
       <Container>
@@ -20,7 +29,8 @@ const CustomNavbar = () => {
             <Nav.Link as={Link} to="/">
               Inicio
             </Nav.Link>
-            <Nav.Link as={Link} to="/catalogo-vehiculos">
+
+            <Nav.Link as={Link} to="/catalogoVehiculo">
               Catálogo
             </Nav.Link>
 
@@ -41,12 +51,22 @@ const CustomNavbar = () => {
 
           {/* Elementos alineados a la derecha (login, carrito) */}
           <Nav>
-            <Nav.Link as={Link} to="/login">
-              Iniciar Sesión
-            </Nav.Link>
-            <Nav.Link as={Link} to="/register">
-              Registrarse
-            </Nav.Link>
+            {user ? (
+              <>
+                <Nav.Link as={Link} to="/dasboard/homeda">
+                  Dashboard
+                </Nav.Link>
+              </>
+            ) : (
+              <>
+                <Nav.Link as={Link} to="/login">
+                  Iniciar Sesión
+                </Nav.Link>
+                <Nav.Link as={Link} to="/register">
+                  Registrarse
+                </Nav.Link>
+              </>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Container>

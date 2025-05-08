@@ -161,8 +161,14 @@ export const actualizarCategoriaInmuebles = (data,id) => instance.put(`/api/cate
     }
 )
 
+//OBTENER TODAS LAS CATEGORIAS SIN IMPORTAR EL ESTADO
 
+export const obtenerCategoriasCompletaRequest = () => instance.get(`/api/categorias/get`, {
+    withCredentials: true,
+    timeout: tiempoEspera
+});
 
+//OBTENER TODAS LAS CATEGORIAS CON EL ESTADO
 export const obtenerCategoriasRequest = () => instance.get(`/api/categorias/get-partial`, {
     withCredentials: true,
     timeout: tiempoEspera
@@ -236,7 +242,14 @@ export const eliminarMaterialRequest = (id) => instance.delete(`/api/materiales/
     }
 )
 
-export const obtenerMateriales = () => { return instance.get(`/api/materiales/get`,{
+//OBTENER TODOS LOS MATERIALES SIN IMPOTAR EL ESTADO
+export const obtenerMaterialesCompletasRequest = () => { return instance.get(`/api/materiales/get`,{
+    withCredentials: true,
+    timeout: tiempoEspera
+})}
+
+//OBTENER TODOS LOS MATERIALES CON EL ESTADO
+export const obtenerMaterialesRequest = () => { return instance.get(`/api/materiales/get-partial`,{
     withCredentials: true,
     timeout: tiempoEspera
 })}
