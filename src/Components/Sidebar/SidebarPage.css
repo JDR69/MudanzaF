@@ -19,6 +19,7 @@
     box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
     overflow-y: auto;
   }
+
   
   /* === Toggle Button === */
   .sidebar-button {
@@ -158,4 +159,3 @@
     gap: 10px;
     margin-top: 1rem;
   }
-  

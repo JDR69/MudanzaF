@@ -9,8 +9,7 @@ import { loginRequest,
     obtenerSeguros,
     obtenerCategoriasRequest,
     obtenerMateriales,
-    obtenerInmuebles
-
+    obtenerInmuebles,
 } from "../api/auth";
 
 const AuthContext = createContext();
@@ -73,12 +72,10 @@ export const AuthProvider = ({ children }) => {
             setTipoVehiculo(resTipoVehiculo.data)
             setVehiculos(resVehiculos.data)
             setCatalogoVehiculos(resCatalogoVehiculos.data)
+            console.log(resCatalogoVehiculos.data)
             setSeguros(resSeguros.data)
-            console.log(resInmuebles.data)
             setInmuebles(resInmuebles.data)
-            console.log(resCategorias.data)
             setCategorias(resCategorias.data)
-            console.log(resMateriales.data)
             setMateriales(resMateriales.data)
         } catch (err) {
             throw err;
@@ -106,11 +103,6 @@ export const AuthProvider = ({ children }) => {
         }
         try {
             setLoading(true);
-            // const res = await vericarToken(token);
-            // if (!res.dat) {
-            //     setLoading(false);
-            //     return;
-            // }
             cargarDatos();
             cargarChoferes();
             setUser(JSON.parse(savedUser));
