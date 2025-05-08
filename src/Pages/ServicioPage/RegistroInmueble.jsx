@@ -22,7 +22,11 @@ function RegistroInmueble() {
         categorias,
         setCategorias,
         materiales,
-        setMateriales } = useAuth();
+        setMateriales,
+        categoriasActivos,
+        setCategoriasActivos,
+        materialesActivos,
+        setMaterialesActivos } = useAuth();
 
 
     //-------DATOS PARA CATEGORIA------//
@@ -43,9 +47,9 @@ function RegistroInmueble() {
         id: '',
         nombre: '',
         categoria_id: '',
-        categoria: {id: '', nombre: ''},
+        categoria: { id: '', nombre: '' },
         material_id: '',
-        material: {id: '', nombre: ''},
+        material: { id: '', nombre: '' },
         peso: '',
         estado: 'Disponible'
     });
@@ -120,7 +124,7 @@ function RegistroInmueble() {
             const res = await actualizarCategoriaInmuebles(data, nuevaCategoria.id);
             setCategorias(categorias.map((cat) => cat.id === nuevaCategoria.id ? nuevaCategoria : cat));
             setMostrarEditarCategoria(false);
-            
+
         } catch (error) {
             alert("Error al actualizar categoría");
         }
@@ -136,6 +140,7 @@ function RegistroInmueble() {
         try {
             const res = await eliminarCategoriaInmuebles(idCategoria);
             console.log(res.data);
+            setCategoriasActivos(categoriasActivos.filter((cat) => cat.id !== idCategoria));
             setCategorias(categorias.filter((cat) => cat.id !== idCategoria));
             setMostrarEliminarCategoria(false);
         } catch (error) {
@@ -201,10 +206,10 @@ function RegistroInmueble() {
             console.log(res.data);
             setMateriales(materiales.map((mat) => mat.id === nuevoMaterial.id ? nuevoMaterial : mat));
             setMostrarEditarMaterial(false);
-            
+
         } catch (error) {
             alert("Error al actualizar material");
-        }finally{
+        } finally {
             setNuevoMaterial({
                 id: '',
                 nombre: '',
@@ -228,9 +233,10 @@ function RegistroInmueble() {
 
             const res = await eliminarMaterialRequest(idMaterial);
             console.log(res.data);
+            setMaterialesActivos(materialesActivos.filter((mat) => mat.id !== idMaterial));
             setMateriales(materiales.filter((mat) => mat.id !== idMaterial));
             setMostrarEliminarMaterial(false);
-            
+
         } catch (error) {
             alert("Error al eliminar material");
         }
@@ -259,9 +265,9 @@ function RegistroInmueble() {
                     id: '',
                     nombre: '',
                     categoria_id: '',
-                    categoria: {id: '', nombre: ''},
+                    categoria: { id: '', nombre: '' },
                     material_id: '',
-                    material: {id: '', nombre: ''},
+                    material: { id: '', nombre: '' },
                     peso: '',
                     estado: 'Disponible'
                 });
@@ -448,12 +454,12 @@ function RegistroInmueble() {
                             onChange={(e) => setNuevoInmueble({ ...nuevoInmueble, peso: e.target.value })}
                         />
                         <select
-                            className="form-control"
+                            className="form-select"
                             value={nuevoInmueble.material_id}
                             onChange={(e) => setNuevoInmueble({ ...nuevoInmueble, material_id: e.target.value })}
                         >
                             <option value="">Seleccionar material</option>
-                            {materiales.map((material, index) => (
+                            {materialesActivos.map((material, index) => (
                                 <option key={index} value={material.id}>
                                     {material.nombre}
                                 </option>
@@ -468,20 +474,20 @@ function RegistroInmueble() {
                             <option value="Disponible">Disponible</option>
                             <option value="No disponible">No disponible</option>
                         </select>
+                        <select
+                            className="form-select"
+                            id="estadoProducto"
+                            value={nuevoInmueble.categoria_id}
+                            onChange={(e) => setNuevoInmueble({ ...nuevoInmueble, categoria_id: e.target.value })}
+                        >
+                            <option value="">Seleccione categoría</option>
+                            {categoriasActivos.map((cat, index) => (
+                                <option key={index} value={cat.id}>
+                                    {cat.nombre}
+                                </option>
+                            ))}
+                        </select>
                     </div>
-                    <select
-                        className="form-select"
-                        id="estadoProducto"
-                        value={nuevoInmueble.categoria_id}
-                        onChange={(e) => setNuevoInmueble({ ...nuevoInmueble, categoria_id: e.target.value })}
-                    >
-                        <option value="">Seleccione categoría</option>
-                        {categorias.map((cat, index) => (
-                            <option key={index} value={cat.id}>
-                                {cat.nombre}
-                            </option>
-                        ))}
-                    </select>
                 </div>
 
                 <div className="contenedorButtons">
@@ -521,7 +527,7 @@ function RegistroInmueble() {
                     </div>
                 )}
 
-                { 
+                {
                     mostrarEditarInmueble && (
                         <div className="form-gris">
                             <div className='form-flotante'>
@@ -576,7 +582,7 @@ function RegistroInmueble() {
                                         </option>
                                     ))}
                                 </select>
-                                    <div className="contenedorButtons">
+                                <div className="contenedorButtons">
                                     <button className="btn btn-primary" onClick={ActualizarInmueble}>Editar</button>
                                     <button className="btn btn-danger" onClick={() => setMostrarEditarInmueble(false)}>Cancelar</button>
                                 </div>
@@ -584,7 +590,7 @@ function RegistroInmueble() {
                         </div>
                     )
                 }
-                
+
             </div>
 
             {/* AQUI TODA LA INFORMACION DE MATERIALES */}

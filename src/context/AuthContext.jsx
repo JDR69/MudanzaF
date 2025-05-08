@@ -7,8 +7,10 @@ import { loginRequest,
     obtenerCatalogoVehiculo,
     obtenerChofer,
     obtenerSeguros,
+    obtenerCategoriasCompletaRequest,
     obtenerCategoriasRequest,
-    obtenerMateriales,
+    obtenerMaterialesRequest,
+    obtenerMaterialesCompletasRequest,
     obtenerInmuebles,
 } from "../api/auth";
 
@@ -35,6 +37,8 @@ export const AuthProvider = ({ children }) => {
     const [inmuebles, setInmuebles] = useState([]);
     const [categorias, setCategorias] = useState([]);
     const [materiales, setMateriales] = useState([]);
+    const [materialesActivos, setMaterialesActivos] = useState([]);
+    const [categoriasActivos, setCategoriasActivos] = useState([]);
 
     const setUserData = (data) => {
         setUser(data);
@@ -62,7 +66,19 @@ export const AuthProvider = ({ children }) => {
     const cargarDatos = async () =>{
         try {
 
-            const [resRoles,resBitacora, resTipoVehiculo, resVehiculos, resCatalogoVehiculos,resSeguros,resInmuebles,resCategorias,resMateriales] = await Promise.all([
+            const [
+                resRoles,
+                resBitacora,
+                resTipoVehiculo, 
+                resVehiculos, 
+                resCatalogoVehiculos,
+                resSeguros,
+                resInmuebles,
+                resCategorias,
+                resMateriales,
+                resMaterialesActivos,
+                resCategoriasActivos,
+            ] = await Promise.all([
                 obtenerRolesRequest(),
                 obtenerBitacoraRequest(),
                 obtenerTipoVehiculo(),
@@ -70,19 +86,22 @@ export const AuthProvider = ({ children }) => {
                 obtenerCatalogoVehiculo(),
                 obtenerSeguros(),
                 obtenerInmuebles(),
-                obtenerCategoriasRequest(),
-                obtenerMateriales()
+                obtenerCategoriasCompletaRequest(),
+                obtenerMaterialesCompletasRequest(),
+                obtenerMaterialesRequest(),
+                obtenerCategoriasRequest()
             ])
             setRoles(resRoles.data)
             setBitacora(resBitacora.data)
             setTipoVehiculo(resTipoVehiculo.data)
             setVehiculos(resVehiculos.data)
             setCatalogoVehiculos(resCatalogoVehiculos.data)
-            console.log(resCatalogoVehiculos.data)
             setSeguros(resSeguros.data)
             setInmuebles(resInmuebles.data)
             setCategorias(resCategorias.data)
             setMateriales(resMateriales.data)
+            setMaterialesActivos(resMaterialesActivos.data)
+            setCategoriasActivos(resCategoriasActivos.data)
         } catch (err) {
             throw err;
         }
@@ -144,6 +163,10 @@ return (
         setCategorias,
         materiales,
         setMateriales,
+        materialesActivos,
+        setMaterialesActivos,
+        categoriasActivos,
+        setCategoriasActivos,
 
         logout
 
