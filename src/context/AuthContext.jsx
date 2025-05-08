@@ -52,6 +52,12 @@ export const AuthProvider = ({ children }) => {
           }
     }
 
+    const logout = () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        setUser([]);
+    }
+
     
     const cargarDatos = async () =>{
         try {
@@ -137,7 +143,9 @@ return (
         categorias,
         setCategorias,
         materiales,
-        setMateriales
+        setMateriales,
+
+        logout
 
 
     }}>

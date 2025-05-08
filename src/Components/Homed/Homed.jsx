@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import  {Sidebar} from "../Sidebar/SidebarPage.jsx";
-import { Routes, Route, Navigate, Outlet } from "react-router-dom";
+import { Routes, Route, Navigate, Outlet, useNavigate } from "react-router-dom";
 import   {HomeDas}  from "../Home/Homedas";
 import { useAuth } from "../../context/AuthContext";
 
@@ -27,8 +27,17 @@ import "./Homed.css"
 export const Homed = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const { user } = useAuth();
+  const navigate = useNavigate();
 
-  if (!user) return <Navigate to="/login" replace />;
+
+  useEffect(() => {
+
+    const userLocal = localStorage.getItem('user');
+    if (userLocal?.length === 0 || userLocal === null) {
+      console.log("No hay usuario");
+      navigate("/login");
+    }
+  }, []);
 
   return (
     <div className={`containe12 ${sidebarOpen ? "active12" : ""}`}>
