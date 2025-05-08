@@ -33,6 +33,7 @@ export const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const handleLogout = async () => {
     await logout(); // Llama a logout del contexto
     navigate("/login"); // Redirige al login después de cerrar sesión
+    window.location.reload();
   };
 
   return (
