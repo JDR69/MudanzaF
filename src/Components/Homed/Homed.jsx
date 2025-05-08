@@ -18,11 +18,13 @@ import GaleriaVehiculosPage from "../../Pages/ServicioPage/GaleriaVehiculosPage.
 import AsignacionChoferePage from "../../Pages/ServicioPage/AsignacionChoferePage.jsx";
 import TipoVehiculoPage from "../../Pages/ServicioPage/TipoVehiculoPage.jsx";
 import RegistroInmueble from "../../Pages/ServicioPage/RegistroInmueble.jsx";
+import BitacoraVehiculosPage from "../../Pages/ServicioPage/BitacoraVehiculosPage.jsx";
 
 //------------------Verificacion----------//
 import VerificacionPage from "../../Pages/VerificacionPage.jsx";
 
 import "./Homed.css"
+
 
 export const Homed = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -48,7 +50,9 @@ export const Homed = () => {
           <Route path="/seguros" element={<SeguroEmpresaPage/>} />
           <Route path="/password" element={<ContraseñaPage/>} />
           <Route path="/verificacion" element={<VerificacionPage/>} />
+          <Route path="/bitacoraVehiculos" element={<BitacoraVehiculosPage/>} />
           
+
           <Route path="*" element={<div>No encontrado</div>} />
         </Routes>
         <Outlet />

@@ -211,7 +211,7 @@ const enlaceServicios = [
   {
     label: "Bitacora de vehiculos",
     icon: <MdOutlineAnalytics />,
-    to: "/dasboard/aa", // Corregido a "dashboard"
+    to: "/dasboard/bitacoraVehiculos", // Corregido a "dashboard"
   },
 /*  {
     label: "Tipo de Viaje",
