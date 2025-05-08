@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { obtenerVehiculo } from '../../api/auth';
-import { useAuth } from '../../context/AuthContext';
 
 function InformacionTecnicaVehiculoPage() {
     const [vehiculos, setVehiculos] = useState([]);
