@@ -10,11 +10,10 @@
   width: auto;
 }
 
-.btn-danger {
+.btn-danger,.btn-info {
   text-align: center;
   margin: 0;
   width: auto;
-  background-color: red;
   color: white;
 }
 
@@ -51,7 +50,8 @@
   .btn-Menu,
   .btn-success,
   .btn-danger,
-  .btn-primary {
+  .btn-primary,
+  .btn-info {
     width: 100%;
   }
 
