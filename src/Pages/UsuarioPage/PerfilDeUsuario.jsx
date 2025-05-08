@@ -8,14 +8,14 @@ function PerfilDeUsuario() {
 
   const [editar, setEditar] = useState(false);
   const [usuario, setUsuario] = useState({
-    id: user.id,
-    nombre: user.nombre,
-    correo: user.email,
-    direccion: user.direccion,
-    telefono: user.telefono,
+    id: user?.id,
+    nombre: user?.nombre,
+    correo: user?.email,
+    direccion: user?.direccion,
+    telefono: user?.telefono,
     contraseña: '********',
     rol: user?.rol?.nombre || '',
-    profile_icon: user.profile_icon || '',
+    profile_icon: user?.profile_icon || '',
   });
 
   const handleChange = (e) => {
@@ -25,17 +25,21 @@ function PerfilDeUsuario() {
   useEffect(() => {
     if (user) {
       setUsuario({
-        id: user.id,
-        nombre: user.nombre || '',
-        correo: user.email || '',
-        direccion: user.direccion || '',
-        telefono: user.telefono || '',
+        id: user?.id,
+        nombre: user?.nombre || '',
+        correo: user?.email || '',
+        direccion: user?.direccion || '',
+        telefono: user?.telefono || '',
         contraseña: '********',
         rol: user?.rol?.nombre || '',
-        profile_icon: user.profile_icon || '',
+        profile_icon: user?.profile_icon || '',
       });
     }
   }, [user]);
+
+  if (!user) {
+    return <div>No hay usuario</div>;
+  }
 
   return (
     <div className='contenedoresPrincipales'>

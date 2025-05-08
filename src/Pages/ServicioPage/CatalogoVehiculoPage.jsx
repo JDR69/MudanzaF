@@ -22,8 +22,8 @@ const CatalogoVehiculoPage = () => {
             descripcion: 'Todo terreno',
             tipo: 'furgoneta',
             img: [
-                { id: 1, url: './camion2.png' },
-                { id: 2, url: './camion3.png' },
+                { id: 1, url: '../camion2.png' },
+                { id: 2, url: '../camion3.png' },
             ],
         },
         {
@@ -32,8 +32,8 @@ const CatalogoVehiculoPage = () => {
             descripcion: 'Todo terreno',
             tipo: 'camion35',
             img: [
-                { id: 1, url: './ram1.png' },
-                { id: 2, url: './ram2.png' },
+                { id: 1, url: '../ram1.png' },
+                { id: 2, url: '../ram2.png' },
             ],
         },
         {
@@ -42,8 +42,8 @@ const CatalogoVehiculoPage = () => {
             descripcion: 'Carga pesada',
             tipo: 'camion58',
             img: [
-                { id: 1, url: './camion2.png' },
-                { id: 2, url: './camion3.png' },
+                { id: 1, url: '../camion2.png' },
+                { id: 2, url: '../camion3.png' },
             ],
         },
         {
@@ -52,8 +52,8 @@ const CatalogoVehiculoPage = () => {
             descripcion: 'Transporte eficiente',
             tipo: 'torton',
             img: [
-                { id: 1, url: './camion2.png' },
-                { id: 2, url: './camion3.png' },
+                { id: 1, url: '../camion2.png' },
+                { id: 2, url: '../camion3.png' },
             ],
         },
         {
@@ -62,8 +62,8 @@ const CatalogoVehiculoPage = () => {
             descripcion: 'Larga distancia',
             tipo: 'trailer',
             img: [
-                { id: 1, url: './camion2.png' },
-                { id: 2, url: './camion3.png' },
+                { id: 1, url: '../camion2.png' },
+                { id: 2, url: '../camion3.png' },
             ],
         },
         {
@@ -72,8 +72,8 @@ const CatalogoVehiculoPage = () => {
             descripcion: 'Carga especializada',
             tipo: 'plataforma',
             img: [
-                { id: 1, url: './camion2.png' },
-                { id: 2, url: './camion3.png' },
+                { id: 1, url: '../camion2.png' },
+                { id: 2, url: '../camion3.png' },
             ],
         },
     ];
@@ -87,7 +87,7 @@ const CatalogoVehiculoPage = () => {
         <div className="containerCatalago">
             {/* Banner superior */}
             <div className="contextCatalago">
-                <img src="./catalogo.jpg" alt="Catálogo de vehículos" />
+                <img src="../catalogo.jpg" alt="Catálogo de vehículos" />
                 <div className="textosCatalogo">
                     <h2>Te presentamos todos los vehículos disponibles</h2>
                     <h2>⭐⭐⭐⭐⭐</h2>

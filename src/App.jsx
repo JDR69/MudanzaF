@@ -22,6 +22,7 @@ import SeguroEmpresaPage from "./Pages/SeguroEmpresaPage";
 
 //------------PAGINA SERVICIO-----------------//
 import GestionInmueblePage from "./Pages/ServicioPage/GestionInmueblePage";
+import CatalogoVehiculoPage from "./Pages/ServicioPage/CatalogoVehiculoPage";
 //---------------------------------------------
 import { Homed } from "./Components/Homed/Homed"
 import UsuariosPage from "./Pages/UsuarioPage/UsuariosPage";
@@ -57,6 +58,7 @@ function Main() {
         <Route path="/register" element={<RegistroClientPage/>}/>
         <Route path="/seguroEmpresa" element={<SeguroEmpresaPage/>}/>
         <Route path="/gestionInmueble" element={<GestionInmueblePage/>}/>
+        <Route path="/catalogoVehiculo" element={<CatalogoVehiculoPage/>}/>
      
       {/* 
         <Route path="/vehiculos" element={<VehiculosPage/>}/>

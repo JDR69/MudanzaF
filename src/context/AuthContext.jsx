@@ -25,7 +25,7 @@ export const useAuth = () => {
 };
 
 export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState([]);
+    const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [roles, setRoles] = useState([]);
     const [bitacora, setBitacora] = useState([])
@@ -59,7 +59,7 @@ export const AuthProvider = ({ children }) => {
     const logout = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
-        setUser([]);
+        setUser(null);
     }
 
     
@@ -124,6 +124,7 @@ export const AuthProvider = ({ children }) => {
         const savedUser = localStorage.getItem("user");
         if (!token) {
             setLoading(false);
+            setUser(null);
             return;
         }
         try {
