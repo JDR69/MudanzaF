@@ -51,7 +51,7 @@ function RegistroInmueble() {
         material_id: '',
         material: { id: '', nombre: '' },
         peso: '',
-        estado: 'Disponible'
+        estado: ''
     });
     const [idInmueble, setIdInmueble] = useState(0);
     const [mostrarEditarInmueble, setMostrarEditarInmueble] = useState(false);
@@ -93,7 +93,7 @@ function RegistroInmueble() {
                     id: '',
                     nombre: '',
                     descripcion: '',
-                    estado: 'Disponible'
+                    estado: ''
                 })
             } catch (error) {
                 alert("Error al registrar categoría");
@@ -172,7 +172,7 @@ function RegistroInmueble() {
                 coste: 0,
                 unidad_medida: '',
                 stock: 0,
-                estado: 'Disponible'
+                estado: ''
             });
         } catch (error) {
             console.error("Error al registrar material:", error);
@@ -217,7 +217,7 @@ function RegistroInmueble() {
                 coste: 0,
                 unidad_medida: '',
                 stock: 0,
-                estado: 'Disponible'
+                estado: ''
             });
         }
     }
@@ -269,7 +269,7 @@ function RegistroInmueble() {
                     material_id: '',
                     material: { id: '', nombre: '' },
                     peso: '',
-                    estado: 'Disponible'
+                    estado: ''
                 });
             } catch (error) {
                 console.error("Error al registrar producto:", error);
@@ -332,11 +332,12 @@ function RegistroInmueble() {
                             onChange={(e) => setNuevaCategoria({ ...nuevaCategoria, descripcion: e.target.value })}
                         />
                         <select
-                            className="form-select"
+                            className="form-control"
                             id="estadoCategoria"
                             value={nuevaCategoria.estado}
                             onChange={(e) => setNuevaCategoria({ ...nuevaCategoria, estado: e.target.value })}
                         >
+                            <option value="">Seleccione estado</option>
                             <option value="Disponible">Disponible</option>
                             <option value="No disponible">No disponible</option>
                         </select>
@@ -402,7 +403,7 @@ function RegistroInmueble() {
                             />
                             <label className='label-perfil'>Estado de la categoría</label>
                             <select
-                                className="form-select"
+                                className="form-control"
                                 value={nuevaCategoria.estado === 'disponible' ? 'disponible' : 'no disponible'}
                                 onChange={(e) => setNuevaCategoria({ ...nuevaCategoria, estado: e.target.value })}
                             >
@@ -454,7 +455,7 @@ function RegistroInmueble() {
                             onChange={(e) => setNuevoInmueble({ ...nuevoInmueble, peso: e.target.value })}
                         />
                         <select
-                            className="form-select"
+                            className="form-control"
                             value={nuevoInmueble.material_id}
                             onChange={(e) => setNuevoInmueble({ ...nuevoInmueble, material_id: e.target.value })}
                         >
@@ -466,16 +467,17 @@ function RegistroInmueble() {
                             ))}
                         </select>
                         <select
-                            className="form-select"
+                            className="form-control"
                             id="estadoProducto"
                             value={nuevoInmueble.estado}
                             onChange={(e) => setNuevoInmueble({ ...nuevoInmueble, estado: e.target.value })}
                         >
+                            <option value="">Seleccione estado</option>
                             <option value="Disponible">Disponible</option>
                             <option value="No disponible">No disponible</option>
                         </select>
                         <select
-                            className="form-select"
+                            className="form-control"
                             id="estadoProducto"
                             value={nuevoInmueble.categoria_id}
                             onChange={(e) => setNuevoInmueble({ ...nuevoInmueble, categoria_id: e.target.value })}
@@ -549,7 +551,7 @@ function RegistroInmueble() {
                                 />
                                 <label className='label-perfil'>Estado del Inmuebles</label>
                                 <select
-                                    className="form-select"
+                                    className="form-control"
                                     value={nuevoInmueble.estado === true ? "Disponible" : "No disponible"}
                                     onChange={(e) => setNuevoInmueble({ ...nuevoInmueble, estado: e.target.value })}
                                 >
@@ -558,7 +560,7 @@ function RegistroInmueble() {
                                 </select>
                                 <label className='label-perfil'>Categoria del Inmuebles</label>
                                 <select
-                                    className="form-select"
+                                    className="form-control"
                                     value={nuevoInmueble.categoria_id}
                                     onChange={(e) => setNuevoInmueble({ ...nuevoInmueble, categoria_id: e.target.value })}
                                 >
@@ -571,7 +573,7 @@ function RegistroInmueble() {
                                 </select>
                                 <label className='label-perfil'>Material del Inmuebles</label>
                                 <select
-                                    className="form-select"
+                                    className="form-control"
                                     value={nuevoInmueble.material_id}
                                     onChange={(e) => setNuevoInmueble({ ...nuevoInmueble, material_id: e.target.value })}
                                 >
@@ -636,10 +638,11 @@ function RegistroInmueble() {
                             onChange={(e) => setNuevoMaterial({ ...nuevoMaterial, unidad_medida: e.target.value })} />
                         <label className="label-perfil">Estado del material</label>
                         <select
-                            className="form-select"
+                            className="form-control"
                             value={nuevoMaterial.estado}
                             onChange={(e) => setNuevoMaterial({ ...nuevoMaterial, estado: e.target.value })}
                         >
+                            <option value="">Seleccione estado</option>
                             <option value="Disponible">Disponible</option>
                             <option value="No disponible">No disponible</option>
                         </select>
@@ -731,7 +734,7 @@ function RegistroInmueble() {
                             />
                             <label className='label-perfil'>Estado del material</label>
                             <select
-                                className="form-select"
+                                className="form-control"
                                 value={nuevoMaterial.estado === 'DISPONIBLE' ? 'DISPONIBLE' : 'NO DISPONIBLE'}
                                 onChange={(e) => setNuevoMaterial({ ...nuevoMaterial, estado: e.target.value })}
                             >
