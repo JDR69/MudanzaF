@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import '../Css/Home.css';
 
 const slides = [
-  { id: 1, label: "First slide label", description: "Some representative placeholder content for the first slide.", image: "/Login.jpg" },
-  { id: 2, label: "Second slide label", description: "Some representative placeholder content for the second slide.", image: "/Login.jpg" },
-  { id: 3, label: "Third slide label", description: "Some representative placeholder content for the third slide.", image: "/Login.jpg" },
+  { id: 1, label: "First slide label", description: "Some representative placeholder content for the first slide.", image: "/Login.webp" },
+  { id: 2, label: "Second slide label", description: "Some representative placeholder content for the second slide.", image: "/Login.webp" },
+  { id: 3, label: "Third slide label", description: "Some representative placeholder content for the third slide.", image: "/Login.webp" },
 ];
 
 const cards = [

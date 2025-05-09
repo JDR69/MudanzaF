@@ -4,7 +4,7 @@
     align-items: center;
     height: 100vh;
   
-    background-image: url('/Login.jpg'); /* ajusta la ruta */
+    background-image: url('/Login.webp'); /* ajusta la ruta */
     background-size:cover;      /* para que cubra todo */
     background-position: center; /* centrado */
     background-repeat: no-repeat;
