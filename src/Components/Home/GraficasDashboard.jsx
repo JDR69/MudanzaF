@@ -5,7 +5,17 @@ const dataBar = [
   { name: 'Ene', Vehiculos: 10, Usuarios: 5 },
   { name: 'Feb', Vehiculos: 20, Usuarios: 10 },
   { name: 'Mar', Vehiculos: 15, Usuarios: 8 },
+  { name: 'Abr', Vehiculos: 18, Usuarios: 12 },
+  { name: 'May', Vehiculos: 22, Usuarios: 14 },
+  { name: 'Jun', Vehiculos: 25, Usuarios: 16 },
+  { name: 'Jul', Vehiculos: 28, Usuarios: 20 },
+  { name: 'Ago', Vehiculos: 30, Usuarios: 24 },
+  { name: 'Sep', Vehiculos: 26, Usuarios: 19 },
+  { name: 'Oct', Vehiculos: 24, Usuarios: 21 },
+  { name: 'Nov', Vehiculos: 20, Usuarios: 18 },
+  { name: 'Dic', Vehiculos: 22, Usuarios: 20 }
 ];
+
 
 const dataPie = [
   { name: 'Activos', value: 60 },

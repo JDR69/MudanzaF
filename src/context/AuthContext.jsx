@@ -1,6 +1,7 @@
 import { createContext, useState, useContext, useEffect } from "react";
 import { loginRequest, 
     obtenerBitacoraRequest, 
+    obtenerUsuariosRequest,
     obtenerRolesRequest, 
     obtenerTipoVehiculo,
     obtenerVehiculo,
@@ -26,6 +27,7 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
+    const [usuarios, setUsuarios] = useState([]);
     const [loading, setLoading] = useState(true);
     const [roles, setRoles] = useState([]);
     const [bitacora, setBitacora] = useState([])
@@ -78,6 +80,7 @@ export const AuthProvider = ({ children }) => {
                 resMateriales,
                 resMaterialesActivos,
                 resCategoriasActivos,
+                resUsuarios,
             ] = await Promise.all([
                 obtenerRolesRequest(),
                 obtenerBitacoraRequest(),
@@ -89,12 +92,14 @@ export const AuthProvider = ({ children }) => {
                 obtenerCategoriasCompletaRequest(),
                 obtenerMaterialesCompletasRequest(),
                 obtenerMaterialesRequest(),
-                obtenerCategoriasRequest()
+                obtenerCategoriasRequest(),
+                obtenerUsuariosRequest(),
             ])
             setRoles(resRoles.data)
             setBitacora(resBitacora.data)
             setTipoVehiculo(resTipoVehiculo.data)
             setVehiculos(resVehiculos.data)
+            console.log(resCatalogoVehiculos.data)
             setCatalogoVehiculos(resCatalogoVehiculos.data)
             setSeguros(resSeguros.data)
             setInmuebles(resInmuebles.data)
@@ -102,6 +107,7 @@ export const AuthProvider = ({ children }) => {
             setMateriales(resMateriales.data)
             setMaterialesActivos(resMaterialesActivos.data)
             setCategoriasActivos(resCategoriasActivos.data)
+            setUsuarios(resUsuarios.data)
         } catch (err) {
             throw err;
         }
@@ -146,6 +152,10 @@ export const AuthProvider = ({ children }) => {
 return (
     <AuthContext.Provider value={{
         signin,
+        
+        usuarios,
+        setUsuarios,
+
         setUserData,
         cargarDatos,
         user,

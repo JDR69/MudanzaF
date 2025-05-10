@@ -9,6 +9,11 @@ export const loginRequest = data => instance.post(`/api/auth/login`,data,{
       },
     withCredentials:true
 })
+// USUARIOS
+export const obtenerUsuariosRequest = () => { return instance.get(`/api/usuario/getUsers`,{
+    withCredentials:true,
+    timeout: tiempoEspera
+})}
 // REGISTER CLIENTE
 export const registerReques = data => instance.post(`/api/auth/register`,data,{
     headers: {
@@ -135,6 +140,13 @@ export const registrarGaleriaVehiculos = (data,id) => instance.post(`/api/veh/re
         withCredentials:true
     }
 )
+
+export const eliminarVehiculoConcedido = (id) => instance.delete(`/api/veh/delImg/${id}`, {
+    headers: {
+      "Content-Type": "application/json"
+    },
+    withCredentials: true
+  });
 // CATALOGO DE VEHICULOS
 export const obtenerCatalogoVehiculo = () => { return instance.get(`/api/veh/getCat`,{
     withCredentials: true,

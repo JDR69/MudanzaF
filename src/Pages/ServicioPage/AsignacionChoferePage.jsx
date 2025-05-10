@@ -210,6 +210,12 @@ const AsignacionChoferePage = () => {
 
   const handleActualizarChoferBackend = async () => {
     try {
+
+      const nuevaImagen = await uploadImage();
+
+      if(nuevaImagen){
+        nuevoChofer.profile_icon = nuevaImagen;
+      }
       const data = {
         ci: nuevoChofer.chofer.ci ?? null,
         direccion: nuevoChofer.direccion ?? null,
@@ -219,6 +225,7 @@ const AsignacionChoferePage = () => {
         url_profile: nuevoChofer.profile_icon ?? null,
         telefono: nuevoChofer.telefono ?? null
       }
+      console.log(data);
       const res = await actualizarDatosDelChofer(data, nuevoChofer.id);
       alert("✅ Chofer actualizado correctamente");
       window.location.reload();
@@ -423,6 +430,14 @@ const AsignacionChoferePage = () => {
                       required
                     />
                     <input
+                      type='number'
+                      name='telefono'
+                      placeholder='Telefono'
+                      value={nuevoChofer.telefono}
+                      onChange={(e) => setNuevoChofer({ ...nuevoChofer, [e.target.name]: e.target.value })}
+                      required
+                    />
+                    <input
                       type="file"
                       name="file"
                       className="form-control"
@@ -443,9 +458,9 @@ const AsignacionChoferePage = () => {
                       onChange={(e) => setNuevoChofer({ ...nuevoChofer, [e.target.name]: e.target.value })}
                     />
                     <select
-                      value={nuevoChofer.estado}
+                      value={nuevoChofer.chofer?.estado}
                       onChange={(e) =>
-                        setNuevoChofer({ ...nuevoChofer, estado: parseInt(e.target.value) })
+                        setNuevoChofer({ ...nuevoChofer, chofer: { ...nuevoChofer.chofer, estado: parseInt(e.target.value) } })
                       }
                     >
                       <option value={1}>Disponible</option>
@@ -562,7 +577,7 @@ const AsignacionChoferePage = () => {
                   <td>{c.direccion || null}</td>
                   <td>{c.email}</td>
                   <td>{c.telefono}</td>
-                  <td>{c.estado == 1 ? 'En Línea' : 'Fuera de Línea'}</td>
+                  <td>{c.chofer?.estado == 1 ? 'En Línea' : 'Fuera de Línea'}</td>
                   <td>
                     <button className="btn btn-primary" onClick={() => handleMostarImagen(c.profile_icon || null)}>
                       <i className="bi bi-person-vcard-fill"></i>

@@ -3,36 +3,16 @@ import { jsPDF } from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import * as XLSX from 'xlsx';
 import { saveAs } from 'file-saver';
+import { useAuth } from '../../context/AuthContext';
 
-const listaUsuarios = [
-    {
-        id: 1,
-        nombre: 'Juan Pérez',
-        email: 'juan.perez@example.com',
-        telefono: '71234567',
-        direccion: 'Calle Falsa 123',
-        rol: { nombre: 'Administrador' },
-        profile_icon: 'https://randomuser.me/api/portraits/men/32.jpg'
-    },
-    {
-        id: 2,
-        nombre: 'María López',
-        email: 'maria.lopez@example.com',
-        telefono: '76543210',
-        direccion: 'Av. Libertad 456',
-        rol: { nombre: 'Vendedor' },
-        profile_icon: 'https://randomuser.me/api/portraits/women/44.jpg'
-    },
-];
 
 function UsuariosPage() {
-    const [usuarios, setUsuarios] = useState([]);
+    const { usuarios, setUsuarios } = useAuth();
     const [busqueda, setBusqueda] = useState('');
     const [filtroRol, setFiltroRol] = useState('');
     const [imagenExpandida, setImagenExpandida] = useState(null);
 
     const handleListarUsuarios = () => {
-        setUsuarios(listaUsuarios);
     };
 
     const handleCerrarImagen = () => {
@@ -41,7 +21,7 @@ function UsuariosPage() {
 
     const usuariosFiltrados = usuarios.filter((u) => {
         const coincideNombre = u.nombre.toLowerCase().includes(busqueda.toLowerCase());
-        const coincideRol = filtroRol ? u.rol.nombre === filtroRol : true;
+        const coincideRol = filtroRol ? u.rol === filtroRol : true;
         return coincideNombre && coincideRol;
     });
 
@@ -83,7 +63,7 @@ function UsuariosPage() {
             Email: u.email,
             Teléfono: u.telefono,
             Dirección: u.direccion,
-            Rol: u.rol.nombre
+            Rol: u.rol
         }));
         const worksheet = XLSX.utils.json_to_sheet(data);
         const workbook = XLSX.utils.book_new();
@@ -93,7 +73,7 @@ function UsuariosPage() {
         saveAs(file, 'usuarios.xlsx');
     };
 
-    const rolesUnicos = [...new Set(listaUsuarios.map(u => u.rol.nombre))];
+    const rolesUnicos = [...new Set(usuarios.map(u => u.rol))];
 
     return (
         <div className='contenedoresPrincipales'>
@@ -138,13 +118,13 @@ function UsuariosPage() {
                                     <tr key={usuario.id}>
                                         <td>{usuario.id}</td>
                                         <td>{usuario.nombre}</td>
-                                        <td>{usuario.email}</td>
+                                        <td>{usuario.correo}</td>
                                         <td>{usuario.telefono}</td>
                                         <td>{usuario.direccion}</td>
-                                        <td>{usuario.rol.nombre}</td>
+                                        <td>{usuario.rol}</td>
                                         <td>
                                             <img
-                                                src={usuario.profile_icon}
+                                                src={usuario.urlImg}
                                                 alt="Perfil"
                                             />
                                         </td>

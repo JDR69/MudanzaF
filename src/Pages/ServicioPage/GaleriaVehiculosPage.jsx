@@ -4,7 +4,7 @@ import Cloudinary from '../../Cloudinary';
 import '../../Css/GaleriaVehiculosPage.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useAuth } from '../../context/AuthContext';
-import { registrarGaleriaVehiculos } from '../../api/auth';
+import { registrarGaleriaVehiculos,eliminarVehiculoConcedido } from '../../api/auth';
 
 function GaleriaVehiculosPage() {
     const { loading, message, image, handleFileChange, uploadImage } = Cloudinary();
@@ -52,7 +52,7 @@ function GaleriaVehiculosPage() {
         const encontrado = catalogoVehiculos.find((v) =>
             v.id === vehiculo.id
         );
-        if (encontrado && encontrado.img.length > 0) {
+        if (encontrado && encontrado.imagen?.length > 0) {
             setVehiculoSeleccionado(encontrado);
             setBusqueda('');
         } else {
@@ -75,6 +75,7 @@ function GaleriaVehiculosPage() {
             setImagenes([]);
             setVehiculoSeleccionado(null);
             setBusqueda('');
+            window.location.reload();
         } catch (error) {
             console.error(error);
             alert('❌ Error al registrar el vehiculo.');
@@ -93,6 +94,7 @@ function GaleriaVehiculosPage() {
             setImagenes([]);
             setVehiculoSeleccionado(null);
             setBusqueda('');
+            window.location.reload();
         } catch (error) {
             console.error(error);
             alert('❌ Error al registrar el vehiculo.');
@@ -109,15 +111,15 @@ function GaleriaVehiculosPage() {
 
     const handleEliminarImagenBackend = async (indice, id) => {
         try {
-            // const res = await eliminarGaleriaVehiculos(id);
-            // console.log(res)
-            // alert("✅ Vehiculo eliminado correctamente.");
+            const res = await eliminarVehiculoConcedido(id);
+            console.log(res)
+            alert("✅ Vehiculo eliminado correctamente.");
             console.log(indice)
             console.log(id)
             console.log(vehiculoSeleccionado)
             setVehiculoSeleccionado((prev) => ({
                 ...prev,
-                img: prev.img.filter((_, i) => i !== indice),
+                imagen: prev.imagen.filter((_, i) => i !== indice),
               }));
         } catch (error) {
             console.error(error);
@@ -156,10 +158,10 @@ function GaleriaVehiculosPage() {
                 </div>
 
 
-                {vehiculoSeleccionado?.img?.length > 0 ? (
+                {vehiculoSeleccionado?.imagen?.length > 0 ? (
                     <div className="mt-3">
                         <p><strong>Nombre:</strong> {vehiculoSeleccionado.nombre}</p>
-                        <p><strong>Tipo:</strong> {vehiculoSeleccionado.tipo}</p>
+                        <p><strong>Tipo:</strong> {vehiculoSeleccionado.tipo_vehiculo.nombre}</p>
                     </div>
                 ): (
                     <div className="mt-3">
@@ -171,7 +173,7 @@ function GaleriaVehiculosPage() {
                 )}
 
 
-                {vehiculoSeleccionado?.img?.length > 0 ? (
+                {vehiculoSeleccionado?.imagen?.length > 0 ? (
                     <div className="conteinerImagenVehiculo">
                         <div className='actualizarImagen'>
                             <label > Seleccion una nueva imagen</label>
@@ -196,13 +198,13 @@ function GaleriaVehiculosPage() {
                                 </thead>
                                 <tbody>
                                     {
-                                        vehiculoSeleccionado?.img.map((img, index) => {
+                                        vehiculoSeleccionado?.imagen.map((imagen, index) => {
                                             return (
                                                 <tr key={index}>
-                                                    <td>{img.id}</td>
-                                                    <td><img src={img.dir_imagen} style={{ width: '100px' }} alt="" /></td>
+                                                    <td>{imagen.id}</td>
+                                                    <td><img src={imagen.dir_imagen} style={{ width: '100px' }} alt="" /></td>
                                                     <td>
-                                                        <button id='Eliminar' onClick={() => handleEliminarImagenBackend(index, img.id)}>
+                                                        <button id='Eliminar' onClick={() => handleEliminarImagenBackend(index, imagen.id)}>
                                                             Eliminar
                                                         </button>
                                                     </td>
