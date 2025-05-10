@@ -538,9 +538,9 @@ const AsignacionChoferePage = () => {
               </div>
             )}
         </div>) : (
-        <div>
+        <div  className="dimensionTable">
           <h2>Lista de Choferes</h2>
-          <table className="tabla-moviles table table-striped">
+          <table className="table-striped">
             <thead>
               <tr>
                 <th>ID</th>
@@ -564,10 +564,10 @@ const AsignacionChoferePage = () => {
                   <td>{c.telefono}</td>
                   <td>{c.estado == 1 ? 'En Línea' : 'Fuera de Línea'}</td>
                   <td>
-                    <button className="btn-primary" onClick={() => handleMostarImagen(c.profile_icon || null)}>
+                    <button className="btn btn-primary" onClick={() => handleMostarImagen(c.profile_icon || null)}>
                       <i className="bi bi-person-vcard-fill"></i>
                     </button>
-                    <button className="btn-success" onClick={() => handleMostarVehiculosDelChofer(c.chofer?.vehiculos || null)}>
+                    <button className="btn btn-success" onClick={() => handleMostarVehiculosDelChofer(c.chofer?.vehiculos || null)}>
                       <i className="bi bi-truck"></i>
                     </button>
                   </td>

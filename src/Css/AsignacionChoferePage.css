@@ -172,6 +172,7 @@
   text-decoration: underline;
   font-weight: bold;
   color: #007bff;
+  border: 0;
 }
 
 .opcionesList button:hover {
