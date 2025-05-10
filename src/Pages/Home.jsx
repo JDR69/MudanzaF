@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import '../Css/Home.css';
 
 const slides = [
-  { id: 1, label: "First slide label", description: "Some representative placeholder content for the first slide.", image: "/Login.jpg" },
-  { id: 2, label: "Second slide label", description: "Some representative placeholder content for the second slide.", image: "/login2.jpg" },
-  { id: 3, label: "Third slide label", description: "Some representative placeholder content for the third slide.", image: "/Login.jpg" },
+  { id: 1, label: "First slide label", description: "Some representative placeholder content for the first slide.", image: "/login5.jpg" },
+  // { id: 2, label: "Second slide label", description: "Some representative placeholder content for the second slide.", image: "/login2.jpg" },
+  { id: 3, label: "Third slide label", description: "Some representative placeholder content for the third slide.", image: "/login3.jpg" },
+  { id: 4, label: "Fourth slide label", description: "Some representative placeholder content for the third slide.", image: "/login4.jpg" },
 ];
 
 const cards = [

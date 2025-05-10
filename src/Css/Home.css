@@ -115,8 +115,8 @@ body {
 .carousel-item img {
   width: 100vw !important;
   max-width: 100% !important;
-  height: auto;
-  object-fit:fill;
+  height: 500px;
+  object-fit:cover;
   object-position: center;
 }
 

@@ -141,7 +141,9 @@ export const AuthProvider = ({ children }) => {
             setLoading(false);
         } catch (error) {
             console.error(error);
+            logout();
             setLoading(false);
+            navigate('/login');
         }
 
     }
