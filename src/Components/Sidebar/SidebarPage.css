@@ -1,9 +1,9 @@
 :root {
-    --text-color: #212326;
-    --bg-color: #ffffff;
+    --text-color: #ffffff;
+    --bg-color: #000000;
     --bg3: #1f1d1d;
-    --bg4: #007bff;
-    --bg-tgderecha: #e2e8f0;
+    --bg4: #0051ff;
+    --bg-tgderecha: #000000;
   }
   
   /* === Sidebar Container === */
@@ -99,6 +99,7 @@
   .links.active {
     background-color: var(--bg4);
     color: white;
+    width: auto;
     border-radius: 4px;
   }
   

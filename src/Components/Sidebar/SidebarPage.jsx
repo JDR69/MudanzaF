@@ -39,7 +39,7 @@ export const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   return (
     <div className={sidebarOpen ? "sidebar-container open" : "sidebar-container closed"}>
       <button className="sidebar-button" onClick={ModSidebaropen}>
-        {sidebarOpen ? "<" : ">"}
+        {sidebarOpen ? ">" : "<"}
       </button>
      
       {/* Paquete 1 - Adm. Usuario */}

@@ -115,7 +115,20 @@ body {
 .carousel-item img {
   width: 100vw !important;
   max-width: 100% !important;
-  height: 100vh;
-  object-fit: cover;
+  height: auto;
+  object-fit:fill;
   object-position: center;
+}
+
+@media (max-width: 768px){
+  .carousel,
+  .carousel-inner,
+  .carousel-item,
+  .carousel-item img {
+    width: 100vw !important;
+    max-width: 100% !important;
+    height: auto;
+    object-fit:fill;
+    object-position: center;
+  }
 }
