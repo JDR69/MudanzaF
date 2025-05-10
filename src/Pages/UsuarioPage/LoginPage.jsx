@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import "../../Css/LoginPage.css"
@@ -7,7 +7,8 @@ import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
 
-    const { signin, cargarDatos, cargarChoferes} = useAuth();
+    const { signin, cargarDatos, cargarChoferes } = useAuth();
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
 
@@ -28,14 +29,17 @@ const LoginPage = () => {
         },
         validationSchema: validationSchema,
         onSubmit: async (values) => {
+            setLoading(true);
             try {
-                console.log(values)
-                await signin(values); 
+                await signin(values);
                 await cargarDatos();
                 await cargarChoferes();
-                navigate("/dasboard/homeda"); 
+                navigate("/dasboard/homeda");
             } catch (error) {
-                console.error(error)
+                console.error(error);
+                alert("Datos incorrectos");
+            } finally {
+                setLoading(false);
             }
 
         },
@@ -85,6 +89,13 @@ const LoginPage = () => {
                     </button>
                 </form>
             </div>
+            {loading && (
+                <div className='form-gris'>
+                    <div className="spinner-border text-success" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            )}
         </div>
     )
 }
