@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import '../Css/Home.css';
+import Footer from '../Components/footer/Footer';
 
 const slides = [
   { id: 1, label: "First slide label", description: "Some representative placeholder content for the first slide.", image: "/login5.jpg" },
@@ -113,6 +114,7 @@ const Home = () => {
           </div>
         </div>
       )}
+      <Footer />
     </div>
   );
 };
