@@ -20,12 +20,12 @@ import TipoVehiculoPage from "../../Pages/ServicioPage/TipoVehiculoPage.jsx";
 import RegistroInmueble from "../../Pages/ServicioPage/RegistroInmueble.jsx";
 import BitacoraVehiculosPage from "../../Pages/ServicioPage/BitacoraVehiculosPage.jsx";
 import InformacionTecnicaVehiculoPage from "../../Pages/ServicioPage/InformacionTecnicaVehiculoPage.jsx";
+import ServicioPage from "../../Pages/ServicioPage/ServicioPage.jsx";
 
 //------------------Verificacion----------//
 import VerificacionPage from "../../Pages/VerificacionPage.jsx";
 
 import "./Homed.css"
-import ServicioPage from "../../Pages/ServicioPage/ServicioPage.jsx";
 
 
 export const Homed = () => {
@@ -64,7 +64,7 @@ export const Homed = () => {
           <Route path="/bitacoraVehiculos" element={<BitacoraVehiculosPage/>} />
           <Route path="/informacionVehicular" element={<InformacionTecnicaVehiculoPage/>} />
           <Route path="/historialServicios" element={<ServicioPage/>} />
-          
+        
 
           <Route path="*" element={<div>No encontrado</div>} />
         </Routes>

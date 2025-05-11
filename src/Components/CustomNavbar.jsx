@@ -34,6 +34,14 @@ const CustomNavbar = () => {
               Catálogo
             </Nav.Link>
 
+            <Nav.Link as={Link} to="/comentarios">
+              Comentarios
+            </Nav.Link>
+
+            <Nav.Link as={Link} to="/catalogoVehiculo">
+              Seguros
+            </Nav.Link>
+
             {/* Dropdown (opcional) */}
             {/* <NavDropdown title="Categorías" id="basic-nav-dropdown">
               <NavDropdown.Item as={Link} to="/categorias/electronica">

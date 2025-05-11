@@ -23,10 +23,12 @@ import SeguroEmpresaPage from "./Pages/SeguroEmpresaPage";
 //------------PAGINA SERVICIO-----------------//
 import GestionInmueblePage from "./Pages/ServicioPage/GestionInmueblePage";
 import CatalogoVehiculoPage from "./Pages/ServicioPage/CatalogoVehiculoPage";
+import ComentariosPage from "./Pages/ComentariosPage";
+
+
 //---------------------------------------------
 import { Homed } from "./Components/Homed/Homed"
 import UsuariosPage from "./Pages/UsuarioPage/UsuariosPage";
-
 
 
 function App() {
@@ -59,7 +61,8 @@ function Main() {
         <Route path="/seguroEmpresa" element={<SeguroEmpresaPage/>}/>
         <Route path="/gestionInmueble" element={<GestionInmueblePage/>}/>
         <Route path="/catalogoVehiculo" element={<CatalogoVehiculoPage/>}/>
-     
+        <Route path="/comentarios" element={<ComentariosPage/>} />
+         
       {/* 
         <Route path="/vehiculos" element={<VehiculosPage/>}/>
         <Route path="/aa" element={<Cloudinary/>}/>
