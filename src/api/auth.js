@@ -14,6 +14,24 @@ export const obtenerUsuariosRequest = () => { return instance.get(`/api/usuario/
     withCredentials:true,
     timeout: tiempoEspera
 })}
+
+export const actualizarUsuarioRequest = (data,id) => instance.patch(`/api/usuario/updUser/${id}`,
+    data,{
+        headers: {
+            "Content-Type": "application/json"
+          },
+        withCredentials:true
+    }
+)
+
+export const eliminarUsuarioRequest = (id) => instance.patch(`/api/usuario/delUser/${id}`,
+    {
+        headers: {
+            "Content-Type": "application/json"
+          },
+        withCredentials:true
+    }
+)
 // REGISTER CLIENTE
 export const registerReques = data => instance.post(`/api/auth/register`,data,{
     headers: {
