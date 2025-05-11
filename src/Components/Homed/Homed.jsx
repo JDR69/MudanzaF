@@ -25,6 +25,7 @@ import InformacionTecnicaVehiculoPage from "../../Pages/ServicioPage/Informacion
 import VerificacionPage from "../../Pages/VerificacionPage.jsx";
 
 import "./Homed.css"
+import ServicioPage from "../../Pages/ServicioPage/ServicioPage.jsx";
 
 
 export const Homed = () => {
@@ -62,6 +63,7 @@ export const Homed = () => {
           <Route path="/verificacion" element={<VerificacionPage/>} />
           <Route path="/bitacoraVehiculos" element={<BitacoraVehiculosPage/>} />
           <Route path="/informacionVehicular" element={<InformacionTecnicaVehiculoPage/>} />
+          <Route path="/historialServicios" element={<ServicioPage/>} />
           
 
           <Route path="*" element={<div>No encontrado</div>} />

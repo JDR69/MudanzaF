@@ -219,10 +219,15 @@ const enlaceServicios = [
     icon: <MdOutlineAnalytics />,
     to: "/dasboard/informacionVehicular", // Corregido a "dashboard"
   },
-/*  {
+ {
+    label: "Servicios",
+    icon: <MdOutlineAnalytics />,
+    to: "/dasboard/historialServicios", // Corregido a "dashboard"
+  },
+  /*  {
     label: "Tipo de Viaje",
     icon: <MdOutlineAnalytics />,
-    to: "/dasboard/registroInmueble", // Corregido a "dashboard"
+    to: "/dasboard/historialServicios", // Corregido a "dashboard"
   },
   {
     label: "Gestionar Horarios del Personal",

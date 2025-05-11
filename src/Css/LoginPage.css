@@ -4,7 +4,7 @@
     align-items: center;
     height: 100vh;
   
-    background-image: url('/camion2.png'); /* ajusta la ruta */
+    background-image: url('https://res.cloudinary.com/ddltlpsy1/image/upload/v1746932977/freepicdownloader.com_-dos-trabajadores-empresa-mudanzas-descargando-cajas-minibus-large_hovnee.jpg'); /* ajusta la ruta */
     background-size:cover;      /* para que cubra todo */
     background-position: cover; /* centrado */
     background-repeat: no-repeat;
