@@ -10,7 +10,7 @@
   width: auto;
 }
 
-.btn-danger,.btn-info {
+.btn-danger,.btn-info,.btn-secondary {
   text-align: center;
   margin: 0;
   width: auto;
@@ -51,7 +51,8 @@
   .btn-success,
   .btn-danger,
   .btn-primary,
-  .btn-info {
+  .btn-info,
+  .btn-secondary {
     width: 100%;
   }
 
