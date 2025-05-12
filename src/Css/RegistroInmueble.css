@@ -83,7 +83,16 @@
     width: 50%;
     min-width: 200px;
 }
+.show, .show2, .show3 {
+  display: none;
+}
 
+.active-section {
+  display: block;
+}
+.active-section {
+  display: block;
+}
 /* ---- AQUI LA PARTE RESPONSIVE PARA CELULARES ---- */
 @media (max-width: 768px) {
     .form-row {

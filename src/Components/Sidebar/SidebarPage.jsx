@@ -188,7 +188,7 @@ const enlaceServicios = [
     to: "/dasboard/tipoVehiculo", // Corregido a "dashboard"
   },
   {
-    label: "Tipo Envalaje",
+    label: "Tipo Embalaje",
     icon: <MdOutlineAnalytics />,
     to: "/dasboard/registroInmueble", // Corregido a "dashboard"
   },
