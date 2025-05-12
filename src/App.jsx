@@ -62,7 +62,7 @@ function Main() {
         <Route path="/gestionInmueble" element={<GestionInmueblePage/>}/>
         <Route path="/catalogoVehiculo" element={<CatalogoVehiculoPage/>}/>
         <Route path="/comentarios" element={<ComentariosPage/>} />
-         
+
       {/* 
         <Route path="/vehiculos" element={<VehiculosPage/>}/>
         <Route path="/aa" element={<Cloudinary/>}/>

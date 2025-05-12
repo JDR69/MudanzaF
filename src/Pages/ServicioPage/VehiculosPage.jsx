@@ -14,6 +14,8 @@ function VehiculosPage() {
     const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
     const [vehiculos, setVehiculos] = useState([]);
+    const [mostrarRegistrarVehiculos, setMostrarRegistrarVehiculos] = useState(false)
+    const [mostrarLista, setMostarLista] = useState(true);
 
     const [filterNombre, setFilterNombre] = useState('');
     const [filterEstado, setFilterEstado] = useState('');
@@ -50,6 +52,7 @@ function VehiculosPage() {
         setLoading(true);
 
         try {
+            console.log(formData);
             const res = await registerVehiculo(formData);
             console.log("✅ Vehículo registrado:", res.data);
             setSuccess(true);
@@ -125,170 +128,202 @@ function VehiculosPage() {
     const filteredVehiculos = vehiculos.filter((v) => {
         const matchNombre = v.nombre.toLowerCase().includes(filterNombre.toLowerCase());
         const matchEstado = filterEstado === '' || String(v.estado) === filterEstado;
-        const matchTipo = filterTipo === '' || String(v.tipo) === filterTipo;    
+        const matchTipo = filterTipo === '' || String(v.tipo) === filterTipo;
         return matchNombre && matchEstado && matchTipo;
     });
+
+    const handleCambioLista = () => {
+        setMostrarRegistrarVehiculos(false);
+        setMostarLista(true);
+    }
+    const handleCambioNuevo = () => {
+        setMostrarRegistrarVehiculos(true);
+        setMostarLista(false);
+    }
 
     return (
         <div className='VehiculosConteiner'>
             <div className='VehiculosConteiner2'>
-                <div className='tituloVehiculos'>
-                    <h1>Registro de Vehiculos</h1>
-                    <i className="bi bi-truck"></i>
+                <div className='Indicaciones-Vehiculos'>
+                    <button onClick={handleCambioNuevo}>Nuevo Vehiculo</button>
+                    <button onClick={handleCambioLista}>Lista de Vehiculos</button>
+                    <button>Actualizar datos del Vehiculo</button>
                 </div>
 
-                <form onSubmit={handleSubmit}>
-                    <div className="form-group2">
-                        <label htmlFor="nombre">Nombre del Vehiculo</label>
-                        <input type="text" name="nombre" className='form-control' value={formData.nombre} onChange={handleChange} required />
-                    </div>
-                    <div className="form-group2">
-                        <label htmlFor="modelo">Modelo</label>
-                        <input type="number" name="modelo" className='form-control' value={formData.modelo} onChange={handleChange} required />
-                    </div>
-                    <div className="form-group2">
-                        <label htmlFor="motor">Motor</label>
-                        <input type="text" name="motor" className='form-control' value={formData.motor} onChange={handleChange} required />
-                    </div>
-                    <div className="form-group2">
-                        <label htmlFor="placa">Placa</label>
-                        <input type="text" name="placa" className='form-control' value={formData.placa} onChange={handleChange} required />
-                    </div>
-                    <div className="form-group2">
-                        <label htmlFor="tipo">Tipo Vehiculo</label>
-                        <select
-                            name="tipo"
-                            className="form-control"
-                            value={formData.tipo}
-                            onChange={handleChange}
-                            required
-                        >
-                            <option value="tipo">Seleccione</option>
-                            {tipoVehiculo.map((tipo) => (
-                                <option key={tipo.id} value={tipo.nombre}>
-                                    {tipo.nombre}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-                    <div className="form-group2">
-                        <label htmlFor="capacidad">Capacidad Maxima</label>
-                        <input type="number" name="capacidad" className='form-control' value={formData.capacidad} onChange={handleChange} required />
-                    </div>
-                    <div className="form-group2">
-                        <label htmlFor="estado">Estado del Vehiculo</label>
-                        <select name="estado" className='form-control' value={formData.estado} onChange={handleChange} required>
-                            <option value="">Seleccione</option>
-                            <option value="Disponible">Disponible</option>
-                            <option value="No Disponible">Deshabilitado</option>
-                        </select>
-                    </div>
-                    <div className="form-group2">
-                        <label htmlFor="seguro">Contiene seguro el vehiculo</label>
-                        <select name="seguro" className='form-control' value={formData.seguro} onChange={handleChange} required>
-                            <option value="">Seleccione</option>
-                            <option value="SI">Sí</option>
-                            <option value="NO">No</option>
-                        </select>
-                    </div>
-                    <div className="form-group2 ">
-                        <label htmlFor="costeKilometraje">Coste Kilometraje</label>
-                        <input type="number" name="costeKilometraje" className='form-control' value={formData.costeKilometraje} onChange={handleChange} required />
-                    </div>
+                {
+                    mostrarRegistrarVehiculos && (
+                        <div >
+                            <div className='tituloVehiculos'>
+                                <h1>Registro de Vehiculos</h1>
+                                <i className="bi bi-truck"></i>
+                            </div>
 
-                    <div className="text-center">
-                        <button type="submit" className="btn btn-primary">
-                            {editIndex !== null ? 'Actualizar Vehiculo' : 'Agregar Vehiculo'}
-                        </button>
-                        <button type="button" className="btn btn-primary" onClick={listarVehiculo}>
-                            Listar
-                        </button>
-                    </div>
-                </form>
+                            <div className='form-diseño'>
+                                <div className='form-Vehiculo'>
+                                    <div className="form-groupVehiculo">
+                                        <label htmlFor="nombre">Nombre del Vehiculo</label>
+                                        <input type="text" name="nombre" className='form-control' value={formData.nombre} onChange={handleChange} required />
+                                    </div>
+                                    <div className="form-groupVehiculo">
+                                        <label htmlFor="modelo">Modelo</label>
+                                        <input type="number" name="modelo" className='form-control' value={formData.modelo} onChange={handleChange} required />
+                                    </div>
+                                    <div className="form-groupVehiculo">
+                                        <label htmlFor="motor">Motor</label>
+                                        <input type="text" name="motor" className='form-control' value={formData.motor} onChange={handleChange} required />
+                                    </div>
+                                    <div className="form-groupVehiculo">
+                                        <label htmlFor="placa">Placa</label>
+                                        <input type="text" name="placa" className='form-control' value={formData.placa} onChange={handleChange} required />
+                                    </div>
+                                    <div className="form-groupVehiculo">
+                                        <label htmlFor="tipo">Tipo Vehiculo</label>
+                                        <select
+                                            name="tipo"
+                                            className="form-control"
+                                            value={formData.tipo}
+                                            onChange={handleChange}
+                                            required
+                                        >
+                                            <option value="tipo">Seleccione</option>
+                                            {tipoVehiculo.map((tipo) => (
+                                                <option key={tipo.id} value={tipo.nombre}>
+                                                    {tipo.nombre}
+                                                </option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                    <div className="form-groupVehiculo">
+                                        <label htmlFor="capacidad">Capacidad Maxima</label>
+                                        <input type="number" name="capacidad" className='form-control' value={formData.capacidad} onChange={handleChange} required />
+                                    </div>
+                                    <div className="form-groupVehiculo">
+                                        <label htmlFor="estado">Estado del Vehiculo</label>
+                                        <select name="estado" className='form-control' value={formData.estado} onChange={handleChange} required>
+                                            <option value="">Seleccione</option>
+                                            <option value="Disponible">Disponible</option>
+                                            <option value="No Disponible">Deshabilitado</option>
+                                        </select>
+                                    </div>
+                                    <div className="form-groupVehiculo">
+                                        <label htmlFor="seguro">Contiene seguro el vehiculo</label>
+                                        <select name="seguro" className='form-control' value={formData.seguro} onChange={handleChange} required>
+                                            <option value="">Seleccione</option>
+                                            <option value="SI">Sí</option>
+                                            <option value="NO">No</option>
+                                        </select>
+                                    </div>
+                                    <div className="form-groupVehiculo">
+                                        <label htmlFor="costeKilometraje">Coste Kilometraje</label>
+                                        <input type="number" name="costeKilometraje" className='form-control' value={formData.costeKilometraje} onChange={handleChange} required />
+                                    </div>
 
-                <div className="VehiculosConteiner2">
-                    <div>
-                        <label>Buscar por nombre:</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            value={filterNombre}
-                            onChange={(e) => setFilterNombre(e.target.value)}
-                        />
-                    </div>
-                    <div>
-                        <label>Filtrar por estado:</label>
-                        <select
-                            className="form-control"
-                            value={filterEstado}
-                            onChange={(e) => setFilterEstado(e.target.value)}
-                        >
-                            <option value="">Todos</option>
-                            <option value="Disponible">Disponible</option>
-                            <option value="No Disponible">Deshabilitado</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label>Filtrar por tipo de vehículo:</label>
-                        <select
-                            className="form-control"
-                            value={filterTipo}
-                            onChange={(e) => setFilterTipo(e.target.value)}
-                        >
-                            <option value="">Todos</option>
-                            {tipoVehiculo.map((tipo) => (
-                                <option key={tipo.id} value={tipo.nombre}>{tipo.nombre}</option>
-                            ))}
-                        </select>
-                    </div>
-                    <div className="botones-reportes">
-                        <button className="btn btn-danger" onClick={handleExportPDF}>
-                            Reporte PDF
-                        </button>
-                        <button className="btn btn-success" onClick={handleExportExcel}>
-                            Reporte Excel
-                        </button>
-                    </div>
+                                </div>
 
-                </div>
+                                <div className="text-center">
+                                    <button onClick={handleSubmit} className="btn btn-primary">
+                                        Registrar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
 
-                <div className='tablaVehiculos'>
-                    <h2 className="mt-4">Lista de Vehículos</h2>
-                    <table className="vehiculos-table">
-                        <thead>
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Modelo</th>
-                                <th>Motor</th>
-                                <th>Placa</th>
-                                <th>Seguro</th>
-                                <th>Tipo Vehiculo</th>
-                                <th>Capacidad Max</th>
-                                <th>Estado</th>
-                                <th>Coste Kilometraje</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {filteredVehiculos.map((vehiculo, index) => (
-                                <tr key={index}>
-                                    <td>{vehiculo.nombre}</td>
-                                    <td>{vehiculo.modelo}</td>
-                                    <td>{vehiculo.motor}</td>
-                                    <td>{vehiculo.placa}</td>
-                                    <td>{vehiculo.seguro ? 'Sí' : 'No'}</td>
-                                    <td>{vehiculo.tipo}</td>
-                                    <td>{vehiculo.capacidad}</td>
-                                    <td>{vehiculo.estado === "Disponible" ? 'Disponible' : 'Deshabilitado'}</td>
-                                    <td>{vehiculo.costeKilometraje}</td>
-                                    <td>
-                                        <button className="btn btn-warning" onClick={() => handleEdit(index)}>Editar</button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
+                    )
+                }
+
+                {
+                    mostrarLista && (
+                        <div className='form-diseño'>
+                            <div className='tituloVehiculos'>
+                                <h1>Lista de Vehículos</h1>
+                            </div>
+                            <div className='form-Vehiculo'>
+                                <div>
+                                    <label>Buscar por nombre:</label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        value={filterNombre}
+                                        onChange={(e) => setFilterNombre(e.target.value)}
+                                    />
+                                </div>
+                                <div className='form-groupVehiculo'>
+                                    <label>Filtrar por estado:</label>
+                                    <select
+                                        className="form-control"
+                                        value={filterEstado}
+                                        onChange={(e) => setFilterEstado(e.target.value)}
+                                    >
+                                        <option value="">Todos</option>
+                                        <option value="Disponible">Disponible</option>
+                                        <option value="No Disponible">Deshabilitado</option>
+                                    </select>
+                                </div>
+                                <div className='form-groupVehiculo'>
+                                    <label>Filtrar por tipo de vehículo:</label>
+                                    <select
+                                        className="form-control"
+                                        value={filterTipo}
+                                        onChange={(e) => setFilterTipo(e.target.value)}
+                                    >
+                                        <option value="">Todos</option>
+                                        {tipoVehiculo.map((tipo) => (
+                                            <option key={tipo.id} value={tipo.nombre}>{tipo.nombre}</option>
+                                        ))}
+                                    </select>
+                                </div>
+                                <div className="botones-reportes">
+                                    <button className="btn btn-danger" onClick={handleExportPDF}>
+                                        Reporte PDF
+                                    </button>
+                                    <button className="btn btn-success" onClick={handleExportExcel}>
+                                        Reporte Excel
+                                    </button>
+                                </div>
+
+                            </div>
+
+                            <div className='dimensionTable'>
+                                <table className="table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Modelo</th>
+                                            <th>Motor</th>
+                                            <th>Placa</th>
+                                            <th>Seguro</th>
+                                            <th>Tipo Vehiculo</th>
+                                            <th>Capacidad Max</th>
+                                            <th>Estado</th>
+                                            <th>Coste Kilometraje</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {filteredVehiculos.map((vehiculo, index) => (
+                                            <tr key={index}>
+                                                <td>{vehiculo.nombre}</td>
+                                                <td>{vehiculo.modelo}</td>
+                                                <td>{vehiculo.motor}</td>
+                                                <td>{vehiculo.placa}</td>
+                                                <td>{vehiculo.seguro ? 'Sí' : 'No'}</td>
+                                                <td>{vehiculo.tipo}</td>
+                                                <td>{vehiculo.capacidad}</td>
+                                                <td>{vehiculo.estado === "Disponible" ? 'Disponible' : 'Deshabilitado'}</td>
+                                                <td>{vehiculo.costeKilometraje}</td>
+                                                <td>
+                                                    <button className="btn btn-warning" onClick={() => handleEdit(index)}>Editar</button>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    )
+                }
+
             </div>
 
             {loading && (

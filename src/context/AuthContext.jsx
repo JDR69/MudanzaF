@@ -3,6 +3,7 @@ import { loginRequest,
     obtenerBitacoraRequest, 
     obtenerUsuariosRequest,
     obtenerRolesRequest, 
+    obtenerPermisosRequest,
     obtenerTipoVehiculo,
     obtenerVehiculo,
     obtenerCatalogoVehiculo,
@@ -81,6 +82,7 @@ export const AuthProvider = ({ children }) => {
                 resMaterialesActivos,
                 resCategoriasActivos,
                 resUsuarios,
+                resPermisos,
             ] = await Promise.all([
                 obtenerRolesRequest(),
                 obtenerBitacoraRequest(),
@@ -94,6 +96,7 @@ export const AuthProvider = ({ children }) => {
                 obtenerMaterialesRequest(),
                 obtenerCategoriasRequest(),
                 obtenerUsuariosRequest(),
+                obtenerPermisosRequest(),
             ])
             setRoles(resRoles.data)
             setBitacora(resBitacora.data)
@@ -108,6 +111,7 @@ export const AuthProvider = ({ children }) => {
             setMaterialesActivos(resMaterialesActivos.data)
             setCategoriasActivos(resCategoriasActivos.data)
             setUsuarios(resUsuarios.data)
+            console.log(resPermisos.data)
         } catch (err) {
             throw err;
         }

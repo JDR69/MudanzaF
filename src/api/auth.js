@@ -45,6 +45,11 @@ export const obtenerRolesRequest = () => { return instance.get(`/api/rol/get`, {
     timeout: tiempoEspera
 })}
 
+export const obtenerPermisosRequest = () => { return instance.get(`/api/permiso/getPermiso`,{
+    withCredentials: true,
+    timeout: tiempoEspera
+})}
+
 // BITACORA
 export const obtenerBitacoraRequest = () => { return instance.get(`/api/bitacora/get`,{
     withCredentials: true,
