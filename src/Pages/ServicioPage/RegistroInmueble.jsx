@@ -307,7 +307,7 @@ function RegistroInmueble() {
 
 
     function mostrarSeccion(clase) {
-        const clases = ['show', 'show2', 'show3'];
+        const clases = ['mostrar', 'mostrar2', 'mostrar3'];
         clases.forEach(c => {
             const elementos = document.getElementsByClassName(c);
             for (let i = 0; i < elementos.length; i++) {
@@ -322,20 +322,20 @@ function RegistroInmueble() {
     }
 
     window.onload = function () {
-        mostrarSeccion('show');
+        mostrarSeccion('mostrar');
     };
 
     return (
         <div className='containerRegistroInmueble'>
             <h1>Registro Inmuebles</h1>
             <div className='contenedorHijoFila'>
-                <button onClick={() => mostrarSeccion('show')} className='btn btn-primary'>Inmueble Categoría</button>
-                <button onClick={() => mostrarSeccion('show2')} className='btn btn-primary'>Materiales</button>
-                <button onClick={() => mostrarSeccion('show3')} className='btn btn-primary'>Items</button>
+                <button onClick={() => mostrarSeccion('mostrar')} className='btn btn-primary'>Inmueble Categoría</button>
+                <button onClick={() => mostrarSeccion('mostrar2')} className='btn btn-primary'>Materiales</button>
+                <button onClick={() => mostrarSeccion('mostrar3')} className='btn btn-primary'>Items</button>
             </div>
             {/* INFORMACION COMPLETA DE CATEGORIA INMUEBLE*/}
 
-            <div className='RegistroInmuebleCategoria show'>
+            <div className='RegistroInmuebleCategoria mostrar'>
                 <h2>Registrar Categoría de Inmueble</h2>
                 <div className="form-row">
                     <div className="input-check-group">
@@ -457,7 +457,7 @@ function RegistroInmueble() {
 
             {/* INFORMACION COMPLETA DE INMUEBLE */}
 
-            <div className='RegistroInmuebleProductos show2'>
+            <div className='RegistroInmuebleProductos mostrar2'>
                 <h2>Registrar Items</h2>
                 <div className="form-row">
                     <div className="input-check-group">
@@ -619,7 +619,7 @@ function RegistroInmueble() {
 
             {/* AQUI TODA LA INFORMACION DE MATERIALES */}
 
-            <div className='RegistroInmuebleProductos show3'>
+            <div className='RegistroInmuebleProductos mostrar3'>
                 <h2>Registrar Materiales</h2>
                 <div className="form-row">
                     <div className="input-check-group">
