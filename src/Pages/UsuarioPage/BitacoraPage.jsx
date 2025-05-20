@@ -30,6 +30,56 @@ const BitacoraPage = () => {
         XLSX.writeFile(workbook, 'bitacora.xlsx');
     };
 
+    const exportHTML = () => {
+        const win = window.open('', '', 'width=900,height=600');
+        const html = `
+            <html>
+            <head>
+                <title>Reporte de Bitacora</title>
+                <style>
+                    body { font-family: Arial, sans-serif; padding: 20px; }
+                    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+                    th, td { border: 1px solid #000; padding: 8px; text-align: left; }
+                    th { background-color: #f2f2f2; }
+                </style>
+            </head>
+            <body>
+                <h2>Reporte de Bitacora</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Usuario</th>
+                            <th>Correo</th>
+                            <th>Dirección IP</th>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${filteredBitacoras.map( bitacora => `
+                                <tr key=${bitacora.id}>
+                                    <td>${bitacora.id}</td>
+                                    <td>${bitacora.usuario?.nombre}</td>
+                                    <td>${bitacora.usuario?.email}</td>
+                                    <td>${bitacora.ip}</td>
+                                    <td>${bitacora.fecha}</td>
+                                    <td>${bitacora.hora}</td>
+                                    <td>${bitacora.tipo_sesion}</td>
+                                </tr>
+                            
+                        `).join('')}
+                    </tbody>
+                </table>
+            </body>
+            </html>
+        `;
+        win.document.write(html);
+        win.document.close();
+        win.focus();
+    };
+
     const filteredBitacoras = (Array.isArray(bitacora) ? bitacora : [])
         .filter(b => b.usuario?.nombre.toLowerCase().includes(searchName.toLowerCase()))
         .sort((a, b) => {
@@ -56,7 +106,7 @@ const BitacoraPage = () => {
                 </select>
                 <button className="btn btn-danger" onClick={handleExportPDF}>Exportar PDF</button>
                 <button className="btn btn-success" onClick={handleExportExcel}>Exportar Excel</button>
-                <button className="btn btn-info" onClick={handleExportExcel}>Exportar HTML</button>
+                <button className="btn btn-info" onClick={exportHTML}>Exportar HTML</button>
       
             </div>
 
