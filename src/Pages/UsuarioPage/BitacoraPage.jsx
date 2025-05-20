@@ -17,7 +17,7 @@ const BitacoraPage = () => {
             startY: 20,
             head: [['ID', 'Usuario', 'Correo', 'IP', 'Fecha', 'Hora', 'Acción']],
             body: filteredBitacoras.map(b => [
-                b.id, b.nombre, b.email, b.ip, b.fecha, b.hora, b.tipo_sesion
+                b.id, b.usuario.nombre, b.usuario.email, b.ip, b.fecha, b.hora, b.tipo_sesion
             ])
         });
         doc.save('bitacora.pdf');
