@@ -140,6 +140,77 @@ function VehiculosPage() {
         setMostrarRegistrarVehiculos(true);
         setMostarLista(false);
     }
+const handleExportHTML = () => {
+    let html = `
+    <html>
+    <head>
+        <title>Reporte de Vehículos</title>
+        <style>
+            table {
+                border-collapse: collapse;
+                width: 100%;
+                margin-top: 20px;
+                font-family: Arial, sans-serif;
+            }
+            th, td {
+                border: 1px solid #333;
+                padding: 8px;
+                text-align: left;
+            }
+            th {
+                background-color: #f2f2f2;
+            }
+            h2 {
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Reporte de Vehículos</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Modelo</th>
+                    <th>Motor</th>
+                    <th>Placa</th>
+                    <th>Seguro</th>
+                    <th>Tipo</th>
+                    <th>Capacidad</th>
+                    <th>Estado</th>
+                    <th>Coste Kilometraje</th>
+                </tr>
+            </thead>
+            <tbody>
+    `;
+
+    filteredVehiculos.forEach(v => {
+        html += `
+        <tr>
+            <td>${v.nombre}</td>
+            <td>${v.modelo}</td>
+            <td>${v.motor}</td>
+            <td>${v.placa}</td>
+            <td>${v.seguro ? 'Sí' : 'No'}</td>
+            <td>${v.tipo}</td>
+            <td>${v.capacidad}</td>
+            <td>${v.estado === 1 ? 'Disponible' : 'Deshabilitado'}</td>
+            <td>${v.costeKilometraje}</td>
+        </tr>
+        `;
+    });
+
+    html += `
+            </tbody>
+        </table>
+    </body>
+    </html>
+    `;
+
+    const newWindow = window.open('', '_blank');
+    newWindow.document.write(html);
+    newWindow.document.close();
+};
 
     return (
         <div className='VehiculosConteiner'>
@@ -278,6 +349,9 @@ function VehiculosPage() {
                                     </button>
                                     <button className="btn btn-success" onClick={handleExportExcel}>
                                         Reporte Excel
+                                    </button>
+                                       <button className="btn btn-info" onClick={handleExportHTML}>
+                                        Reporte HTML
                                     </button>
                                 </div>
 

@@ -144,6 +144,65 @@ function UsuariosPage() {
             alert(error.response.data.error);
         }
     }
+const exportarHTML = () => {
+    if (usuariosFiltrados.length === 0) {
+        alert("No hay usuarios para exportar.");
+        return;
+    }
+
+    const columnas = ["ID", "Nombre", "Correo", "Teléfono", "Dirección", "Rol"];
+    const filasHTML = usuariosFiltrados.map((u) => `
+        <tr>
+            <td>${u.id}</td>
+            <td>${u.nombre}</td>
+            <td>${u.correo}</td>
+            <td>${u.telefono}</td>
+            <td>${u.direccion}</td>
+            <td>${typeof u.rol === 'string' ? u.rol : u.rol?.nombre || ''}</td>
+        </tr>
+    `).join("");
+
+    const contenidoHTML = `
+        <!DOCTYPE html>
+        <html lang="es">
+        <head>
+            <meta charset="UTF-8">
+            <title>Reporte de Usuarios</title>
+            <style>
+                table {
+                    border-collapse: collapse;
+                    width: 100%;
+                }
+                th, td {
+                    border: 1px solid #ccc;
+                    padding: 8px;
+                    text-align: left;
+                }
+                th {
+                    background-color: #f2f2f2;
+                }
+                h1 {
+                    text-align: center;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Reporte de Usuarios</h1>
+            <table>
+                <thead>
+                    <tr>${columnas.map(col => `<th>${col}</th>`).join("")}</tr>
+                </thead>
+                <tbody>
+                    ${filasHTML}
+                </tbody>
+            </table>
+        </body>
+        </html>
+    `;
+
+    const blob = new Blob([contenidoHTML], { type: 'text/html;charset=utf-8' });
+    saveAs(blob, 'reporte_usuarios.html');
+};
 
     
     return (
@@ -154,6 +213,7 @@ function UsuariosPage() {
                     <button onClick={handleListarUsuarios} className="btn btn-primary">Listar Usuarios</button>
                     <button onClick={exportarPDF} className="btn btn-danger">Exportar PDF</button>
                     <button onClick={exportarExcel} className="btn btn-success">Exportar Excel</button>
+ <button onClick={exportarHTML} className="btn btn-info">Exportar HTML</button>
 
                     <input
                         type="text"

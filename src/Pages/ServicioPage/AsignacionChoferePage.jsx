@@ -3,6 +3,11 @@ import '../../Css/AsignacionChoferePage.css';
 import Cloudinary from '../../Cloudinary';
 import { registerChofer, concederVehiculo, eliminarConcecido, actualizarDatosDelChofer } from '../../api/auth';
 import { useAuth } from '../../context/AuthContext';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
+import * as XLSX from 'xlsx';
+import { saveAs } from 'file-saver';
+
 
 const AsignacionChoferePage = () => {
   const { image, handleFileChange, uploadImage } = Cloudinary();
@@ -213,7 +218,7 @@ const AsignacionChoferePage = () => {
 
       const nuevaImagen = await uploadImage();
 
-      if(nuevaImagen){
+      if (nuevaImagen) {
         nuevoChofer.profile_icon = nuevaImagen;
       }
       const data = {
@@ -221,7 +226,7 @@ const AsignacionChoferePage = () => {
         direccion: nuevoChofer.direccion ?? null,
         email: nuevoChofer.email ?? null,
         estado: nuevoChofer.estado === 1 ? "Disponible" : "No Disponible",
-        nombre:nuevoChofer.nombre ?? null,
+        nombre: nuevoChofer.nombre ?? null,
         url_profile: nuevoChofer.profile_icon ?? null,
         telefono: nuevoChofer.telefono ?? null
       }
@@ -234,12 +239,90 @@ const AsignacionChoferePage = () => {
       alert(error.response.data.error);
     }
   }
+  const exportarPDF = () => {
+    const doc = new jsPDF();
+
+    doc.text("Lista de Choferes", 14, 10);
+    autoTable(doc, {
+      startY: 20,
+      head: [['Nombre', 'Carnet', 'Teléfono', 'Estado']],
+      body: choferes.map(c => [
+        c.nombre || '',
+        c.chofer?.ci || '',
+        c.telefono || '',
+        c.estado === 1 ? 'Disponible' : 'No Disponible'
+      ])
+    });
+
+    doc.save("Choferes.pdf");
+  };
+
+
+  const exportarExcel = () => {
+    const datos = choferes.map(c => ({
+      Nombre: c.nombre,
+      Carnet: c.chofer?.ci,
+      Telefono: c.telefono,
+      Estado: c.chofer?.estado === 1 ? 'Disponible' : 'No Disponible'
+    }));
+
+    const worksheet = XLSX.utils.json_to_sheet(datos);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Choferes');
+
+    const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+    const blob = new Blob([excelBuffer], { type: 'application/octet-stream' });
+
+    saveAs(blob, 'Choferes.xlsx');
+  };
+  const exportarHTML = () => {
+    console.log(choferes[0]);
+
+    let htmlContent = `
+    <html>
+      <head><title>Choferes</title></head>
+      <body>
+        <h2>Lista de Choferes</h2>
+        <table border="1" cellpadding="5" cellspacing="0">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Carnet</th>
+              <th>Teléfono</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${choferes.map(c => `
+              <tr>
+                <td>${c.nombre || ''}</td>
+                <td>${c.chofer?.ci || ''}</td>
+                <td>${c.telefono || ''}</td>
+                <td>${c.estado === 1 ? 'Disponible' : 'No Disponible'}</td>
+              </tr>
+              
+            `).join('')}
+          </tbody>
+        </table>
+      </body>
+    </html>
+  `;
+
+    const blob = new Blob([htmlContent], { type: 'text/html' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'Choferes.html';
+    link.click();
+  };
+
 
   return (
+
     <div className="container-chofer">
       <div className='opcionesList'>
         <button onClick={handleCambioAgregar}>Agregar Chofer</button>
         <button onClick={handleCambioListar}>Listar Choferes</button>
+
         <button
           checked={editar}
           onClick={handleCambioActualizar}
@@ -553,7 +636,14 @@ const AsignacionChoferePage = () => {
               </div>
             )}
         </div>) : (
-        <div  className="dimensionTable">
+
+        <div className="dimensionTable">
+          <div className="botones-reportes">
+            <button onClick={exportarPDF} className='btn btn-danger'>Exportar PDF</button>
+            <button onClick={exportarExcel} className='btn btn-success'>Exportar Excel</button>
+            <button onClick={exportarHTML} className='btn btn-info'> Exportar HTML</button>
+          </div>
+
           <h2>Lista de Choferes</h2>
           <table className="table-striped">
             <thead>
