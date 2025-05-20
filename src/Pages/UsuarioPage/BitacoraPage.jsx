@@ -31,7 +31,7 @@ const BitacoraPage = () => {
     };
 
     const filteredBitacoras = (Array.isArray(bitacora) ? bitacora : [])
-        .filter(b => b.nombre?.toLowerCase().includes(searchName.toLowerCase()))
+        .filter(b => b.usuario?.nombre.toLowerCase().includes(searchName.toLowerCase()))
         .sort((a, b) => {
             if (sortByDate === 'asc') return new Date(a.fecha) - new Date(b.fecha);
             return new Date(b.fecha) - new Date(a.fecha);
@@ -56,6 +56,8 @@ const BitacoraPage = () => {
                 </select>
                 <button className="btn btn-danger" onClick={handleExportPDF}>Exportar PDF</button>
                 <button className="btn btn-success" onClick={handleExportExcel}>Exportar Excel</button>
+                <button className="btn btn-info" onClick={handleExportExcel}>Exportar HTML</button>
+      
             </div>
 
             <div className="table-responsive">
@@ -72,8 +74,8 @@ const BitacoraPage = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {bitacora.length > 0 ? (
-                            bitacora.map((bitacora) => (
+                        {filteredBitacoras.length > 0 ? (
+                            filteredBitacoras.map((bitacora) => (
                                 <tr key={bitacora.id}>
                                     <td>{bitacora.id}</td>
                                     <td>{bitacora.usuario?.nombre}</td>
