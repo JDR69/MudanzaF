@@ -101,6 +101,7 @@ export const AuthProvider = ({ children }) => {
                 obtenerPermisosRequest(),
             ])
             setRoles(resRoles.data)
+            console.log(resBitacora.data)
             setBitacora(resBitacora.data)
             setTipoVehiculo(resTipoVehiculo.data)
             setVehiculos(resVehiculos.data)

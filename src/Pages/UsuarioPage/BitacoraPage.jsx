@@ -31,7 +31,7 @@ const BitacoraPage = () => {
     };
 
     const filteredBitacoras = (Array.isArray(bitacora) ? bitacora : [])
-        .filter(b => b.nombre.toLowerCase().includes(searchName.toLowerCase()))
+        .filter(b => b.nombre?.toLowerCase().includes(searchName.toLowerCase()))
         .sort((a, b) => {
             if (sortByDate === 'asc') return new Date(a.fecha) - new Date(b.fecha);
             return new Date(b.fecha) - new Date(a.fecha);
@@ -72,12 +72,12 @@ const BitacoraPage = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {filteredBitacoras.length > 0 ? (
-                            filteredBitacoras.map((bitacora) => (
+                        {bitacora.length > 0 ? (
+                            bitacora.map((bitacora) => (
                                 <tr key={bitacora.id}>
                                     <td>{bitacora.id}</td>
-                                    <td>{bitacora.nombre}</td>
-                                    <td>{bitacora.email}</td>
+                                    <td>{bitacora.usuario?.nombre}</td>
+                                    <td>{bitacora.usuario?.email}</td>
                                     <td>{bitacora.ip}</td>
                                     <td>{bitacora.fecha}</td>
                                     <td>{bitacora.hora}</td>
