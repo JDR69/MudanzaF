@@ -1,0 +1,135 @@
+/* .bitacora-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+  }
+  
+  .bitacora-table th,
+  .bitacora-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .bitacora-table th {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .btn {
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn-success {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .btn-danger {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  .me-2 {
+    margin-right: 8px;
+  } */
+
+  .contenedoresPrincipales {
+    background-color: #fff;
+    padding: 24px;
+    margin: 20px auto;
+    max-width: 1000px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
+  }
+  
+  .contenedoresPrincipales h2 {
+    font-size: 24px;
+    margin-bottom: 16px;
+    color: #333;
+    border-left: 5px solid #007bff;
+    padding-left: 10px;
+  }
+  
+  .table-responsive {
+    overflow-x: auto;
+  }
+  
+  .bitacora-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  
+  .bitacora-table thead {
+    background-color: #007bff;
+    color: white;
+    text-transform: uppercase;
+  }
+  
+  .bitacora-table th,
+  .bitacora-table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .bitacora-table tr:hover {
+    background-color: #f9f9f9;
+  }
+  
+  .btn {
+    border: none;
+    padding: 8px 12px;
+    margin: 0 3px;
+    border-radius: 6px;
+    font-size: 13px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: 0.2s ease-in-out;
+  }
+  
+  .btn-success {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .btn-success:hover {
+    background-color: #218838;
+  }
+  
+  .btn-danger {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  .btn-danger:hover {
+    background-color: #c82333;
+  }
+  
+  .me-2 {
+    margin-right: 6px;
+  }
+  .btn.generar {
+    background-color: #007bff;
+    color: white;
+    margin-bottom: 16px;
+    padding: 10px 16px;
+    font-size: 14px;
+    border-radius: 6px;
+    transition: 0.2s;
+    font-weight: bold;
+    display: inline-block;
+  }
+  
+  .btn.generar:hover {
+    background-color: #0056b3;
+  }  
+  
+  

@@ -305,3 +305,44 @@ export const obtenerInmuebles = () => { return instance.get(`/api/inmuebles/get`
 })}
 
 
+// BACKUP
+
+export const obtenerBackups=async ()=>{
+    const response=await fetch("https://pruebabackup.onrender.com/api/backup/getAll",{
+        method:"GET",
+        headers:{
+            "Content-Type":"application/json"
+        }
+    })
+    return response;
+}
+
+
+export const deleteBackup=async (id)=>{
+    return await fetch(`https://pruebabackup.onrender.com/api/backup/del/${id}`,{
+        method:"DELETE",
+        headers:{
+            "Content-Type":"application/json"
+        }
+    })
+}
+export const downloadBackup=async (id)=>{
+    return await fetch(`https://pruebabackup.onrender.com/api/backup/download/${id}`,{
+        method:"GET",
+        headers:{
+            "Content-Type":"application/json"
+        }
+    })
+
+}
+
+export const generarBackup=async ()=>{
+    const response=await fetch("https://pruebabackup.onrender.com/api/backup/reg",{
+        method:"POST",
+        headers:{
+            "Content-Type":"aplication/json"
+        }
+    })
+    const data=response.json()  ;
+    return data;
+}

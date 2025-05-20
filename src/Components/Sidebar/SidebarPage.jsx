@@ -6,6 +6,7 @@ import {
   AiOutlineHome,
   AiOutlineApartment,
   AiOutlineSetting,
+  AiOutlineCloudDownload
 } from "react-icons/ai";
 import { MdOutlineAnalytics, MdLogout } from "react-icons/md";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -178,6 +179,12 @@ const enlaceUsuario = [
     icon: <AiOutlineApartment />,
     to: "/dasboard/seguros", // Corregido a "dashboard"
   },
+  /**********************************CGGC******************** */
+  {
+    label:"Backup",
+    icon: <AiOutlineCloudDownload/>,
+    to: "/dasboard/backup"
+  }
 ];
 
 const enlaceServicios = [

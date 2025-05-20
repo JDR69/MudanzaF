@@ -11,7 +11,7 @@ import PerfilDeUsuario from "../../Pages/UsuarioPage/PerfilDeUsuario.jsx";
 import UsuariosPage from "../../Pages/UsuarioPage/UsuariosPage.jsx";
 import SeguroEmpresaPage from "../../Pages/SeguroEmpresaPage.jsx";
 import ContraseñaPage from "../../Pages/UsuarioPage/ContraseñaPage.jsx";
-
+import BackupPage from "./../../Pages/UsuarioPage/BackupPage.jsx"
 //-------------------Servicios------------//
 import VehiculosPage from "../../Pages/ServicioPage/VehiculosPage.jsx";
 import GaleriaVehiculosPage from "../../Pages/ServicioPage/GaleriaVehiculosPage.jsx";
@@ -64,6 +64,8 @@ export const Homed = () => {
           <Route path="/bitacoraVehiculos" element={<BitacoraVehiculosPage/>} />
           <Route path="/informacionVehicular" element={<InformacionTecnicaVehiculoPage/>} />
           <Route path="/historialServicios" element={<ServicioPage/>} />
+          /*********CGGC *************************/
+          <Route path="/backup" element= {<BackupPage />}/>
         
 
           <Route path="*" element={<div>No encontrado</div>} />
