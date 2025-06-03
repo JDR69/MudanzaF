@@ -30,6 +30,8 @@ import ServicioModificadoPage from "../../Pages/ServicioPage/ServicioModificadoP
 import DetalleServicio from "../../Pages/ServicioPage/DetalleModificadoPage.jsx";
 import AsignacionAyudantePage from "../../Pages/ServicioPage/AsignacionAyudantePage.jsx";
 
+import NotificacionesPage from "../../Pages/TrasladoPage/NotificacionesPage.jsx";
+
 
 export const Homed = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -67,6 +69,7 @@ export const Homed = () => {
           <Route path="/bitacoraVehiculos" element={<BitacoraVehiculosPage/>} />
           <Route path="/informacionVehicular" element={<InformacionTecnicaVehiculoPage/>} />
           <Route path="/historialServicios" element={<ServicioPage/>} />
+          <Route path="/notificaciones" element={<NotificacionesPage/>} />
           /*********CGGC *************************/
           <Route path="/backup" element= {<BackupPage />}/>
         

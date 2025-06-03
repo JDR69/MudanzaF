@@ -256,11 +256,11 @@ const enlaceServicios = [
 
 ];
 const Translado = [
- /* {
-    label: "Facturacion",
+  {
+    label: "Notificar",
     icon: <MdOutlineAnalytics />,
-    to: "/dasboard/proveedorRegister", // Corregido a "dashboard"
-  },
+    to: "/dasboard/notificaciones", // Corregido a "dashboard"
+  },/*
    {
     label: "Gestionar Incidentes",
     icon: <MdOutlineAnalytics />,

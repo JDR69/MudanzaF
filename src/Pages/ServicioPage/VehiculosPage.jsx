@@ -216,7 +216,7 @@ function VehiculosPage() {
                         </select>
                         <select className="form-control" value={filterTipo} onChange={(e) => setFilterTipo(e.target.value)}>
                             <option value="">Todos</option>
-                            {tipoVehiculo.map((tipo) => (<option key={tipo.id} value={tipo.id}>{tipo.nombre}</option>))}
+                            {tipoVehiculo.map((tipo) => (<option key={tipo.id} value={tipo.nombre}>{tipo.nombre}</option>))}
                         </select>
                         <div className="botones-reportes">
                             <button className="btn btn-danger" onClick={handleExportPDF}>Reporte PDF</button>
