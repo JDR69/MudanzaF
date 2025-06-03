@@ -63,7 +63,7 @@ export const bitacoraVerificacionRequest = (data) => instance.post(`/api/bitacor
         withCredentials:true
     })
 // VEHICULO
-export const registerVehiculo = (data) => instance.post(`/api/veh/reg`,
+export const registerVehiculo = (data) => instance.put(`/api/veh/reg`,
     data,{
         headers: {
             "Content-Type": "application/json"
@@ -76,6 +76,14 @@ export const obtenerVehiculo = () => { return instance.get(`/api/veh/get`,{
     timeout: tiempoEspera
 })}
 
+export const actualizarDatosVehiculo = (id,data) => instance.put(`/api/veh/${id}/update` ,
+    data,{
+         headers: {
+            "Content-Type": "application/json"
+          },
+        withCredentials:true
+    }
+)
 
 // TIPO VEHICULO
 export const obtenerTipoVehiculo = () => { return instance.get(`/api/tipoVeh/get`,{
