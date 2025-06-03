@@ -38,7 +38,7 @@ const CustomNavbar = () => {
               Comentarios
             </Nav.Link>
 
-            <Nav.Link as={Link} to="/catalogoVehiculo">
+            <Nav.Link as={Link} to="/seguros">
               Seguros
             </Nav.Link>
 

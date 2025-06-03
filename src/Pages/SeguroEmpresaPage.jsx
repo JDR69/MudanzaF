@@ -3,13 +3,18 @@ import { insertarNuevoSeguro, actualizarSeguroBackend, eliminarSeguroBackend } f
 import Cloudinary from '../Cloudinary';
 import { useAuth } from '../context/AuthContext';
 import '../Css/SeguroEmpresaPage.css';
+import { useLocation } from 'react-router-dom';
 
 const SeguroEmpresaPage = () => {
     const [formData, setFormData] = useState({ descripcion: '' });
     const [seguros2, setSeguros2] = useState([]);
     const [editingId, setEditingId] = useState(null);
     const { loading, message, image, handleFileChange, uploadImage } = Cloudinary();
-    const { seguros } = useAuth(); // datos originales del backend
+    const { seguros, user } = useAuth(); // datos originales del backend
+    const location = useLocation(); // Para obtener la ruta actual
+    
+    // Determinar si estamos en la ruta pública (/seguros) o en la administrativa (/seguroEmpresa)
+    const isPublicView = location.pathname === '/seguros';
 
     // Copiar datos del backend al estado editable
     useEffect(() => {
@@ -81,42 +86,45 @@ const SeguroEmpresaPage = () => {
 
     return (
         <div className="seguro-empresa-container">
-            <h2>Gestión de Seguros</h2>
+            {!isPublicView && (
+                <>
+                    <h2>Gestión de Seguros</h2>
+                    <form onSubmit={handleSubmit} className="seguro-form">
+                        <div className="form-group">
+                            <label htmlFor="descripcion">Descripción del Seguro:</label>
+                            <textarea
+                                id="descripcion"
+                                name="descripcion"
+                                value={formData.descripcion}
+                                onChange={handleInputChange}
+                                required
+                            />
+                        </div>
 
-            <form onSubmit={handleSubmit} className="seguro-form">
-                <div className="form-group">
-                    <label htmlFor="descripcion">Descripción del Seguro:</label>
-                    <textarea
-                        id="descripcion"
-                        name="descripcion"
-                        value={formData.descripcion}
-                        onChange={handleInputChange}
-                        required
-                    />
-                </div>
+                        <div className="form-group">
+                            <label htmlFor="imagen">Imagen del Seguro:</label>
+                            <input
+                                type="file"
+                                id="imagen"
+                                name="imagen"
+                                onChange={(e) => handleFileChange(e.target.files[0])}
+                                accept="image/*"
+                                required
+                            />
+                        </div>
 
-                <div className="form-group">
-                    <label htmlFor="imagen">Imagen del Seguro:</label>
-                    <input
-                        type="file"
-                        id="imagen"
-                        name="imagen"
-                        onChange={(e) => handleFileChange(e.target.files[0])}
-                        accept="image/*"
-                        required
-                    />
-                </div>
-
-                <button type="submit" className="btn-submit">
-                    Guardar Seguro
-                </button>
-            </form>
+                        <button type="submit" className="btn-submit">
+                            Guardar Seguro
+                        </button>
+                    </form>
+                </>
+            )}
 
             <div className="seguros-list">
-                <h3>Seguros Registrados</h3>
                 {seguros2.map(seguro => (
                     <div key={seguro.id} className="seguro-item">
-                        {editingId === seguro.id ? (
+                  <h1>{isPublicView ? "Nuestros Seguros" : "Seguros Registrados"}</h1>
+                        {!isPublicView && editingId === seguro.id ? (
                             <div className="seguro-edit">
                                 <textarea
                                     value={seguro.descripcion}
@@ -155,18 +163,20 @@ const SeguroEmpresaPage = () => {
                             <div className="seguro-content">
                                 <p>{seguro.descripcion}</p>
                                 <img src={seguro.dir_Img} alt="Seguro" className="seguro-imagen" />
-                                <div className="content-buttons">
-                                    <button className="btn-edit" onClick={() => setEditingId(seguro.id)}>
-                                        Editar
-                                    </button>
-                                    <button className="btn-delete" onClick={() => {
-                                        if (window.confirm('¿Estás seguro de que deseas eliminar este seguro?')) {
-                                            eliminarSeguro(seguro.id);
-                                        }
-                                    }}>
-                                        Eliminar
-                                    </button>
-                                </div>
+                                {!isPublicView && (
+                                    <div className="content-buttons">
+                                        <button className="btn-edit" onClick={() => setEditingId(seguro.id)}>
+                                            Editar
+                                        </button>
+                                        <button className="btn-delete" onClick={() => {
+                                            if (window.confirm('¿Estás seguro de que deseas eliminar este seguro?')) {
+                                                eliminarSeguro(seguro.id);
+                                            }
+                                        }}>
+                                            Eliminar
+                                        </button>
+                                    </div>
+                                )}
                             </div>
                         )}
                     </div>

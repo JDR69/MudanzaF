@@ -1,28 +1,31 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import '../Css/Home.css';
 import Footer from '../Components/footer/Footer';
 
 const slides = [
-  { id: 1, label: "First slide label", description: "Some representative placeholder content for the first slide.", image: "/login5.jpg" },
+  { id: 1, label: "Servicios Locales", description: "Llevar tus cosas a otro departamento.", image: "/login5.jpg" },
   // { id: 2, label: "Second slide label", description: "Some representative placeholder content for the second slide.", image: "/login2.jpg" },
-  { id: 3, label: "Third slide label", description: "Some representative placeholder content for the third slide.", image: "/login3.jpg" },
-  { id: 4, label: "Fourth slide label", description: "Some representative placeholder content for the third slide.", image: "/login4.jpg" },
+  { id: 3, label: "Servicios Internacionales", description: "Servicio por carretera a todo el continente.", image: "/login3.jpg" },
+  { id: 4, label: "Servicios Nacionales", description: "Mudanza en tu ciudad local de ubicacion a ubicacion.", image: "https://res.cloudinary.com/ddltlpsy1/image/upload/v1748927254/FAFLW2rWEAAXMR4_ojdnag.jpg" },
 ];
 
 const cards = [
-  { id: 1, title: "Mudanza residencial", text: "Te ayudamos a trasladar tus pertenencias con seguridad y puntualidad.", image: "/Login.jpg", updated: "Hace 5 minutos", tipo: "local" },
-  { id: 2, title: "Embalaje profesional", text: "Ofrecemos servicio de embalaje para proteger tus objetos delicados.", image: "/Login.jpg", updated: "Hace 10 minutos", tipo: "local" },
-  { id: 3, title: "Mudanzas corporativas", text: "Movemos oficinas completas sin interrumpir tus operaciones.", image: "/Login.jpg", updated: "Hace 20 minutos", tipo: "nacional" },
-  { id: 4, title: "Mudanzas corporativas", text: "Movemos oficinas completas sin interrumpir tus operaciones.", image: "/Login.jpg", updated: "Hace 20 minutos", tipo: "nacional" },
-  { id: 5, title: "Mudanzas corporativas", text: "Movemos oficinas completas sin interrumpir tus operaciones.", image: "/Login.jpg", updated: "Hace 20 minutos", tipo: "nacional" },
-  { id: 6, title: "Mudanzas corporativas", text: "Movemos oficinas completas sin interrumpir tus operaciones.", image: "/Login.jpg", updated: "Hace 20 minutos", tipo: "local" }
+  { id: 1, title: "Mudanza residencial", text: "Te ayudamos a trasladar tus pertenencias con seguridad y puntualidad.", image: "https://res.cloudinary.com/ddltlpsy1/image/upload/v1746661906/suzi2_xhjait.jpg", updated: "Hace 5 minutos", tipo: "local" },
+  { id: 2, title: "Embalaje profesional", text: "Ofrecemos servicio de embalaje para proteger tus objetos delicados.", image: "https://res.cloudinary.com/ddltlpsy1/image/upload/v1746300299/transporte2_cvjbtf.jpg", updated: "Hace 10 minutos", tipo: "local" },
+  { id: 3, title: "Mudanzas corporativas", text: "Movemos oficinas completas sin interrumpir tus operaciones.", image: "https://res.cloudinary.com/ddltlpsy1/image/upload/v1748927410/repartidor-pila-paquetes_23-2148590662_x8e8vm.avif", updated: "Hace 20 minutos", tipo: "nacional" },
+  { id: 4, title: "Mudanzas corporativas", text: "Movemos oficinas completas sin interrumpir tus operaciones.", image: "https://res.cloudinary.com/ddltlpsy1/image/upload/v1748927401/vista-frontal-repartidores-concepto-trabajo_23-2148684734_rhd5zi.avif", updated: "Hace 20 minutos", tipo: "nacional" },
+  { id: 5, title: "Mudanzas corporativas", text: "Movemos oficinas completas sin interrumpir tus operaciones.", image: "https://res.cloudinary.com/ddltlpsy1/image/upload/v1748927398/vista-frontal-repartidores-concepto-trabajo_23-2148684715_pqocey.avif", updated: "Hace 20 minutos", tipo: "nacional" },
+  { id: 6, title: "Mudanzas corporativas", text: "Movemos oficinas completas sin interrumpir tus operaciones.", image: "https://res.cloudinary.com/ddltlpsy1/image/upload/v1748927394/vista-frontal-repartidores-concepto-trabajo_23-2148684735_bgfwwd.avif", updated: "Hace 20 minutos", tipo: "local" }
 ];
 
 const Home = () => {
   const [tipoServicio, setTipoServicio] = useState("todos");
-
+  const navigate = useNavigate();
+  
   return (
-    <div>
+    <div className="home-container">
+      {/* Carousel - untouched as requested */}
       <div id="customCarousel" className="carousel slide carousel-container" data-bs-ride="carousel">
         <div className="carousel-indicators">
           {slides.map((slide, index) => (
@@ -59,22 +62,37 @@ const Home = () => {
         </button>
       </div>
 
-
-
-      {/* Slogan */}
+      {/* Enhanced Slogan with navigation */}
       <div className="slogan-section">
-        <h1>“Tu mudanza segura, rápida y sin complicaciones”</h1>
-        <button type="button">Solicitar Servicio</button>
+        <h1>"Tu mudanza segura, rápida y sin complicaciones"</h1>
+        <button type="button" onClick={() => navigate('/catalogoVehiculo')} className="cta-button">
+          Solicitar Servicio
+        </button>
       </div>
 
-      {/* Filtro de servicios */}
-      <div className="dropdown-section">
-        <h4>Filtrar Servicios</h4>
-        <ul>
-          <li><button onClick={() => setTipoServicio("todos")}>Todos los servicios</button></li>
-          <li><button onClick={() => setTipoServicio("locales")}>Servicios Locales</button></li>
-          <li><button onClick={() => setTipoServicio("nacionales")}>Servicios Nacionales</button></li>
-        </ul>
+      {/* Enhanced Filter section */}
+      <div className="filter-section">
+        <h4>Nuestros Servicios</h4>
+        <div className="filter-buttons">
+          <button 
+            className={tipoServicio === "todos" ? "active-filter" : ""} 
+            onClick={() => setTipoServicio("todos")}
+          >
+            Todos los servicios
+          </button>
+          <button 
+            className={tipoServicio === "locales" ? "active-filter" : ""} 
+            onClick={() => setTipoServicio("locales")}
+          >
+            Servicios Locales
+          </button>
+          <button 
+            className={tipoServicio === "nacionales" ? "active-filter" : ""} 
+            onClick={() => setTipoServicio("nacionales")}
+          >
+            Servicios Nacionales
+          </button>
+        </div>
       </div>
 
       {/* Servicios Locales */}
@@ -83,8 +101,13 @@ const Home = () => {
           <h2>Servicios de Mudanza Locales</h2>
           <div className="cards-grid">
             {cards.filter(card => card.tipo === "local").map((card) => (
-              <div key={card.id} className="card-custom">
-                <img src={card.image} alt={card.title} />
+              <div key={card.id} className="card-custom" onClick={() => navigate('/catalogoVehiculo')}>
+                <div className="card-image-container">
+                  <img src={card.image} alt={card.title} />
+                  <div className="card-overlay">
+                    <button className="card-action-btn">Pedido Rapido</button>
+                  </div>
+                </div>
                 <div className="card-body-custom">
                   <h5>{card.title}</h5>
                   <p>{card.text}</p>
@@ -102,8 +125,13 @@ const Home = () => {
           <h2>Servicios de Mudanza Nacionales</h2>
           <div className="cards-grid">
             {cards.filter(card => card.tipo === "nacional").map((card) => (
-              <div key={card.id} className="card-custom">
-                <img src={card.image} alt={card.title} />
+              <div key={card.id} className="card-custom" onClick={() => navigate('/seguroEmpresa')}>
+                <div className="card-image-container">
+                  <img src={card.image} alt={card.title} />
+                  <div className="card-overlay">
+                    <button className="card-action-btn">Ver detalles</button>
+                  </div>
+                </div>
                 <div className="card-body-custom">
                   <h5>{card.title}</h5>
                   <p>{card.text}</p>
@@ -114,6 +142,19 @@ const Home = () => {
           </div>
         </div>
       )}
+
+      {/* New testimonial section */}
+      <div className="testimonials-section">
+        <h2>Lo que dicen nuestros clientes</h2>
+        <div className="testimonial-container">
+          <div className="testimonial">
+            <div className="quote">"Excelente servicio, mi mudanza fue rápida y sin complicaciones."</div>
+            <div className="author">- María García</div>
+            <button onClick={() => navigate('/comentarios')} className="testimonial-btn">Ver más comentarios</button>
+          </div>
+        </div>
+      </div>
+      
       <Footer />
     </div>
   );

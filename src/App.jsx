@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import {  AuthProvider, useAuth } from "./context/AuthContext"
+import { AuthProvider, useAuth } from "./context/AuthContext"
 import CustomNavbar from "./Components/CustomNavbar"
 import Home from "./Pages/Home"
 // import VehiculosPage from "./Pages/VehiculosPage"
@@ -51,19 +51,20 @@ function Main() {
 
   return (
     <>
-       <CustomNavbar />
+      <CustomNavbar />
       <Routes>
 
         {/* ROUTES USUARIO */}
-        <Route path="/login" element={<LoginPage/>}/>
-        <Route path="" element={<Home/>}/>
-        <Route path="/register" element={<RegistroClientPage/>}/>
-        <Route path="/seguroEmpresa" element={<SeguroEmpresaPage/>}/>
-        <Route path="/gestionInmueble" element={<GestionInmueblePage/>}/>
-        <Route path="/catalogoVehiculo" element={<CatalogoVehiculoPage/>}/>
-        <Route path="/comentarios" element={<ComentariosPage/>} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="" element={<Home />} />
+        <Route path="/register" element={<RegistroClientPage />} />
+        <Route path="/seguroEmpresa" element={<SeguroEmpresaPage />} />
+        <Route path="/gestionInmueble" element={<GestionInmueblePage />} />
+        <Route path="/catalogoVehiculo" element={<CatalogoVehiculoPage />} />
+        <Route path="/comentarios" element={<ComentariosPage />} />
+        <Route path="/seguros" element={<SeguroEmpresaPage />} />
 
-      {/* 
+        {/* 
         <Route path="/vehiculos" element={<VehiculosPage/>}/>
         <Route path="/aa" element={<Cloudinary/>}/>
         <Route path="/galeriaVehiculos" element={<GaleriaVehiculosPage/>}/>
@@ -78,9 +79,9 @@ function Main() {
          <Route path="/registroInmueble" element={<RegistroInmueble/>}/>
 
         {/* <Route path="/catalogo" element={<CatalogoVehiculoPage/>}/> */}
-        <Route path="/dasboard/*" element={<Homed/>}/>
+        <Route path="/dasboard/*" element={<Homed />} />
         {/* <Route path="/tipoV" element={<TipoVehiculoPage/>}/> */}
-        <Route path="/usuarios" element={<UsuariosPage/>}/>
+        <Route path="/usuarios" element={<UsuariosPage />} />
 
       </Routes>
     </>
