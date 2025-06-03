@@ -231,6 +231,13 @@ const enlaceServicios = [
     icon: <MdOutlineAnalytics />,
     to: "/dasboard/historialServicios", // Corregido a "dashboard"
   },
+
+    // cambios de fernando
+    {
+      label: "Servicios Modificado",
+      icon: <MdOutlineAnalytics />,
+      to: "/dasboard/servicioModificado", // Corregido a "dashboard"
+    },
   /*  {
     label: "Tipo de Viaje",
     icon: <MdOutlineAnalytics />,

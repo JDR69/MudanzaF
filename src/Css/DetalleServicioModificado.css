@@ -1,0 +1,65 @@
+.contenedor-detalle {
+    max-width: 80%;
+    margin: auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+}
+
+.titulo-detalle {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    font-weight: 600;
+    color: #000;
+    text-shadow: none !important;
+}
+
+.grupo-items {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.item-grupo h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 4px;
+    color: #007bff;
+}
+
+.item-card {
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    border-left: 4px solid #007bff;
+    background: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border-radius: 6px;
+}
+
+.item-card p {
+    margin: 2px 0;
+}
+
+.contenedor-boton {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.btn-ayudantes {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn-ayudantes:hover {
+    background-color: #0056b3;
+}

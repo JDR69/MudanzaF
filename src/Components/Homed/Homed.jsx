@@ -26,6 +26,9 @@ import ServicioPage from "../../Pages/ServicioPage/ServicioPage.jsx";
 import VerificacionPage from "../../Pages/VerificacionPage.jsx";
 
 import "./Homed.css"
+import ServicioModificadoPage from "../../Pages/ServicioPage/ServicioModificadoPage.jsx";
+import DetalleServicio from "../../Pages/ServicioPage/DetalleModificadoPage.jsx";
+import AsignacionAyudantePage from "../../Pages/ServicioPage/AsignacionAyudantePage.jsx";
 
 
 export const Homed = () => {
@@ -67,6 +70,12 @@ export const Homed = () => {
           /*********CGGC *************************/
           <Route path="/backup" element= {<BackupPage />}/>
         
+        ////******** --------------------------------*/
+           <Route path="/servicioModificado" element={<ServicioModificadoPage/>} />
+           <Route path="/servicioModificado/:id/detalle" element={<DetalleServicio/>} />
+          <Route path="/ServicioModificado/:id/asignacion" element={<AsignacionAyudantePage/>} />
+                  
+
 
           <Route path="*" element={<div>No encontrado</div>} />
         </Routes>
