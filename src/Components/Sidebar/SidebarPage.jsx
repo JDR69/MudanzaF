@@ -260,17 +260,17 @@ const Translado = [
     label: "Notificar",
     icon: <MdOutlineAnalytics />,
     to: "/dasboard/notificaciones", // Corregido a "dashboard"
-  },/*
+  },
    {
-    label: "Gestionar Incidentes",
+    label: "Incidentes",
     icon: <MdOutlineAnalytics />,
-    to: "/dasboard/compras",
+    to: "/dasboard/incidentes",
   },
   {
-    label: "Gestionar Pagos",
+    label: "Inventario Traslado",
     icon: <MdOutlineAnalytics />,
-    to: "/dasboard/compras",
-  },*/
+    to: "/dasboard/compras2",
+  },
 
 ];
 const enlacesecundario = [
@@ -287,11 +287,22 @@ const enlacesecundario = [
 ];
 
 const enlaceExperiencia =[
- /* {
-    label: "Notificaones",
+  {
+    label: "Comentarios",
     icon: <MdOutlineAnalytics />,
-    to: "/dasboard/apertura",
+    to: "/dasboard/comentarios",
   },
+    {
+    label: "Notificaciones",
+    icon: <MdOutlineAnalytics />,
+    to: "/dasboard/notificaciones", // Corregido a "dashboard"
+  },
+   {
+    label: "Busqueda Vehicular",
+    icon: <MdOutlineAnalytics />,
+    to: "/dasboard/informacionVehicular", // Corregido a "dashboard"
+  },
+  /*
   {
     label: "Comentarios",
     icon: <MdOutlineAnalytics />,

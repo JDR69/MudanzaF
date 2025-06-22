@@ -31,6 +31,8 @@ import DetalleServicio from "../../Pages/ServicioPage/DetalleModificadoPage.jsx"
 import AsignacionAyudantePage from "../../Pages/ServicioPage/AsignacionAyudantePage.jsx";
 
 import NotificacionesPage from "../../Pages/TrasladoPage/NotificacionesPage.jsx";
+import ComentariosPage from "../../Pages/ComentariosPage.jsx";
+import IncidentesPage from "../../Pages/TrasladoPage/IncidentesPage.jsx";
 
 
 export const Homed = () => {
@@ -70,7 +72,12 @@ export const Homed = () => {
           <Route path="/informacionVehicular" element={<InformacionTecnicaVehiculoPage/>} />
           <Route path="/historialServicios" element={<ServicioPage/>} />
           <Route path="/notificaciones" element={<NotificacionesPage/>} />
+          <Route path="/comentarios" element={<ComentariosPage/>} />
+        <Route path="/incidentes" element={<IncidentesPage/>} />
+       
           /*********CGGC *************************/
+          <Route path="/notificaciones" element={<NotificacionesPage/>} />
+       
           <Route path="/backup" element= {<BackupPage />}/>
         
         ////******** --------------------------------*/
