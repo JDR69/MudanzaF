@@ -270,12 +270,7 @@ const Translado = [
     label: "Incidentes",
     icon: <MdOutlineAnalytics />,
     to: "/dasboard/incidentes",
-  },
-  {
-    label: "Inventario Traslado",
-    icon: <MdOutlineAnalytics />,
-    to: "/dasboard/compras2",
-  },
+  }
 
 ];
 const enlacesecundario = [
