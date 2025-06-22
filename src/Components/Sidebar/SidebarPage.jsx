@@ -257,6 +257,11 @@ const enlaceServicios = [
 ];
 const Translado = [
   {
+    label: "Informacion Translado",
+    icon: <MdOutlineAnalytics />,
+    to: "/dasboard/translado", // Corregido a "dashboard"
+  },
+  {
     label: "Notificar",
     icon: <MdOutlineAnalytics />,
     to: "/dasboard/notificaciones", // Corregido a "dashboard"

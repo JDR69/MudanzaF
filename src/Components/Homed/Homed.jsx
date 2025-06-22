@@ -34,6 +34,8 @@ import NotificacionesPage from "../../Pages/TrasladoPage/NotificacionesPage.jsx"
 import ComentariosPage from "../../Pages/ComentariosPage.jsx";
 import IncidentesPage from "../../Pages/TrasladoPage/IncidentesPage.jsx";
 
+import TranslafoPage from "../../Pages/TrasladoPage/TranslafoPage.jsx";
+
 
 export const Homed = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -73,6 +75,7 @@ export const Homed = () => {
           <Route path="/historialServicios" element={<ServicioPage/>} />
           <Route path="/notificaciones" element={<NotificacionesPage/>} />
           <Route path="/comentarios" element={<ComentariosPage/>} />
+          <Route path="/translado" element={<TranslafoPage/>} />
         <Route path="/incidentes" element={<IncidentesPage/>} />
        
           /*********CGGC *************************/
