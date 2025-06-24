@@ -14,7 +14,8 @@ import { loginRequest,
     obtenerMaterialesRequest,
     obtenerMaterialesCompletasRequest,
     obtenerInmuebles,
-    obtenerBackups/**CGGC **** */
+    obtenerBackups,/**CGGC **** */
+    obtenerComentarios
 } from "../api/auth";
 
 const AuthContext = createContext();
@@ -44,7 +45,7 @@ export const AuthProvider = ({ children }) => {
     const [materialesActivos, setMaterialesActivos] = useState([]);
     const [categoriasActivos, setCategoriasActivos] = useState([]);
     const [backups,setBackups]=useState([]);/***********CGGC */
-
+    const [comentarios,setComentarios]=useState([])
     const setUserData = (data) => {
         setUser(data);
     };
@@ -138,7 +139,17 @@ export const AuthProvider = ({ children }) => {
             console.log(data)
             setBackups(data)
         }catch(error){
-            console.log("aajajdnnadjnjand")
+            console.log("Error Backup")
+            throw error;
+        }
+    }
+    const cargarComentarios=async ()=>{
+        try{
+            const res=await obtenerComentarios();
+            console.log(res.data)
+            setComentarios(res.data)
+        }catch(error){
+            console.log("Error comentario")
             throw error;
         }
     }
@@ -159,6 +170,7 @@ export const AuthProvider = ({ children }) => {
             cargarChoferes();
             ////*******CGGC */
             cargarBackup();
+            cargarComentarios();
             setUser(JSON.parse(savedUser));
             setLoading(false);
         } catch (error) {
@@ -194,7 +206,8 @@ return (
         
         backups,
         setBackups,
-
+        comentarios,
+        setComentarios,
         inmuebles,
         setInmuebles,
         categorias,

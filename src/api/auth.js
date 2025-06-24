@@ -354,3 +354,18 @@ export const generarBackup=async ()=>{
     const data=response.json()  ;
     return data;
 }
+
+//Comentarios
+export const obtenerComentarios = () => { return instance.get('/api/comentario/getAllComentario',{
+    withCredentials: true,
+    timeout: tiempoEspera
+})}
+
+
+export const regComentario = (data) => { return instance.post('/api/comentario/registrar',
+    data,{
+        headers: {
+            "Content-Type": "application/json"  },
+        withCredentials: true,
+        timeout: tiempoEspera
+    })}

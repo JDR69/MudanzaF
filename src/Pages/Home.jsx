@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import '../Css/Home.css';
 import Footer from '../Components/footer/Footer';
-
+import Testimonio from "../Components/Coments/coments"
 const slides = [
   { id: 1, label: "Servicios Locales", description: "Llevar tus cosas a otro departamento.", image: "/login5.jpg" },
   // { id: 2, label: "Second slide label", description: "Some representative placeholder content for the second slide.", image: "/login2.jpg" },
@@ -144,7 +144,7 @@ const Home = () => {
       )}
 
       {/* New testimonial section */}
-      <div className="testimonials-section">
+      {/* <div className="testimonials-section">
         <h2>Lo que dicen nuestros clientes</h2>
         <div className="testimonial-container">
           <div className="testimonial">
@@ -153,8 +153,8 @@ const Home = () => {
             <button onClick={() => navigate('/comentarios')} className="testimonial-btn">Ver más comentarios</button>
           </div>
         </div>
-      </div>
-      
+      </div> */}
+      <Testimonio/>
       <Footer />
     </div>
   );

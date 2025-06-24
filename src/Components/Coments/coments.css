@@ -1,0 +1,104 @@
+.testimonials-section {
+  background-color: #f0f8ff; /* azul muy claro */
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+.testimonial-container {
+  background-color: #ffffff;
+  border-radius: 12px;
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 2rem 1.5rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.testimonial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.quote {
+  font-style: italic;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.author {
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #555;
+}
+
+.testimonial-controls {
+  margin: 10px 0;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.testimonial-controls button {
+  background-color: #007bff;
+  border: none;
+  padding: 0.5rem 1rem;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: background-color 0.3s;
+}
+
+.testimonial-controls button:hover {
+  background-color: #0056b3;
+}
+
+.testimonial-btn {
+  margin-top: 1rem;
+  padding: 0.5rem 1.2rem;
+  border: 2px solid #007bff;
+  background-color: transparent;
+  color: #007bff;
+  border-radius: 30px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.testimonial-btn:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.comentario-formulario {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 500px;
+}
+
+.comentario-formulario textarea {
+  resize: none;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+
+.comentario-formulario button {
+  align-self: flex-end;
+  padding: 0.4rem 1.2rem;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.comentario-formulario button:hover {
+  background-color: #218838;
+}
